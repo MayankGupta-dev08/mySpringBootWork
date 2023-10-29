@@ -32,9 +32,16 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- ADDING SUPPORT FOR SPRING BOOT DEVTOOLS -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
+        </dependency>
+
+        <!-- ADDING SUPPORT FOR SPRING BOOT ACTUATOR -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
     </dependencies>
 
