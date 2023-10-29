@@ -5,10 +5,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class SimpleRestController {
-//    exposing --> / (root of webpage) to return Hello World
 
+    // exposing --> / --> as edpoint for our home page
     @GetMapping("/")
-    public String sayHello() {
-        return "Hello World!!";
+    public String homePage() {
+        return "Home!!";
+    }
+
+    // exposing a new endpoint --> /about --> on new page
+    @GetMapping("/about")
+    public String aboutPage() {
+        return "About Us!!";
+    }
+
+    // exposing a new endpoint --> /contact --> on new page
+    @GetMapping("/contact")
+    public String contactPage() {
+        return "Contact Us!!";
     }
 }
