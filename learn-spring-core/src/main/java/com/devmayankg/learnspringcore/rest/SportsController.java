@@ -8,6 +8,7 @@ package com.devmayankg.learnspringcore.rest;
 
 import com.devmayankg.learnspringcore.util.Coach;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,7 +19,8 @@ public class SportsController {
     private Coach myCoach;
 
     @Autowired  // for constructor injection
-    public SportsController(Coach myCoach) {
+    public SportsController(@Qualifier("cricketCoach") Coach myCoach) {
+        // if both @qualifier and @Primary are being used for a field then @Qualifier will have a higher priority
         this.myCoach = myCoach;
     }
 
