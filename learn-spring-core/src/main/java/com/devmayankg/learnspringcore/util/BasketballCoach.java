@@ -1,18 +1,17 @@
 package com.devmayankg.learnspringcore.util;
 
-import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 @Component
-@Primary
-public class FootballCoach implements Coach {
-
-    public FootballCoach() {
+@Lazy
+public class BasketballCoach implements Coach {
+    public BasketballCoach() {
         System.out.println("Constructor initiated of " + getClass().getSimpleName());
     }
 
     @Override
     public String getDailyWorkout() {
-        return "Do dribbling practice for an hour.";
+        return "practice 3-pointer shooting for an hour.";
     }
 }

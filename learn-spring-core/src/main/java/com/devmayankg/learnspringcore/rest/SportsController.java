@@ -21,6 +21,7 @@ public class SportsController {
     @Autowired  // for constructor injection
     public SportsController(@Qualifier("cricketCoach") Coach myCoach) {
         // if both @qualifier and @Primary are being used for a field then @Qualifier will have a higher priority
+        System.out.println("Constructor initiated of " + getClass().getSimpleName());
         this.myCoach = myCoach;
     }
 

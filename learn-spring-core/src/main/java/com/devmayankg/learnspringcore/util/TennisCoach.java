@@ -1,18 +1,16 @@
 package com.devmayankg.learnspringcore.util;
 
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 @Component
-@Primary
-public class FootballCoach implements Coach {
+public class TennisCoach implements Coach {
 
-    public FootballCoach() {
+    public TennisCoach() {
         System.out.println("Constructor initiated of " + getClass().getSimpleName());
     }
 
     @Override
     public String getDailyWorkout() {
-        return "Do dribbling practice for an hour.";
+        return "practice smashing for an hour.";
     }
 }
