@@ -1,5 +1,11 @@
 package com.devmayankg.learnspringcore.rest;
 
+/**
+* Constructor Injection: preferred for required dependencies
+* Setter Injection: preferred for optional dependencies
+* Field Injection: not preferred, makes the code harder for unit tests (maybe used in legacy projects)
+*/
+
 import com.devmayankg.learnspringcore.util.Coach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class SportsController {
 
+//    @Autowired    // field injection
     private Coach myCoach;
 
     @Autowired  // for constructor injection
