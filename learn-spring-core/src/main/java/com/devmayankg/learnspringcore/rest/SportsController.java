@@ -1,10 +1,10 @@
 package com.devmayankg.learnspringcore.rest;
 
 /**
-* Constructor Injection: preferred for required dependencies
-* Setter Injection: preferred for optional dependencies
-* Field Injection: not preferred, makes the code harder for unit tests (maybe used in legacy projects)
-*/
+ * Constructor Injection: preferred for required dependencies
+ * Setter Injection: preferred for optional dependencies
+ * Field Injection: not preferred, makes the code harder for unit tests (maybe used in legacy projects)
+ */
 
 import com.devmayankg.learnspringcore.util.Coach;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,18 +14,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class SportsController {
-
-//    @Autowired    // field injection
+    //    @Autowired    // field injection
     private Coach myCoach;
+    private Coach anotherCoach;
 
     @Autowired  // for constructor injection
-    public SportsController(@Qualifier("cricketCoach") Coach myCoach) {
+    public SportsController(@Qualifier("cricketCoach") Coach myCoach, @Qualifier("cricketCoach") Coach anotherCoach) {
         // if both @qualifier and @Primary are being used for a field then @Qualifier will have a higher priority
         System.out.println("Constructor initiated of " + getClass().getSimpleName());
         this.myCoach = myCoach;
+        this.anotherCoach = anotherCoach;
     }
 
-//    @Autowired //for setter injection
+    //    @Autowired //for setter injection
     public void setMyCoach(Coach myCoach) {
         this.myCoach = myCoach;
     }
@@ -38,5 +39,10 @@ public class SportsController {
     @GetMapping("/getWorkoutPlan")
     private String getContentForWorkoutPage() {
         return myCoach.getDailyWorkout();
+    }
+
+    @GetMapping("/checkKar")
+    private String isEqual() {
+        return "Comparing beans: myCoach == anotherCoach, " + (myCoach == anotherCoach);
     }
 }
