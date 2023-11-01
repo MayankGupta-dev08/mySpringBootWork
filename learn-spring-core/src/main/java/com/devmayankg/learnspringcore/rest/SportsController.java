@@ -22,7 +22,7 @@ public class SportsController {
         this.myCoach = myCoach;
     }
 
-    //    @Autowired //for setter injection
+//    @Autowired //for setter injection
     public void setMyCoach(Coach myCoach) {
         this.myCoach = myCoach;
     }
