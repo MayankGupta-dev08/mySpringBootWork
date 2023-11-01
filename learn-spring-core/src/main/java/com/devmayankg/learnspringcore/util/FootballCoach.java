@@ -1,4 +1,4 @@
-package com.devmayankg.learnspringcore;
+package com.devmayankg.learnspringcore.util;
 
 //@Component
 public class FootballCoach implements Coach {

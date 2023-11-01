@@ -1,4 +1,4 @@
-package com.devmayankg.learnspringcore;
+package com.devmayankg.learnspringcore.util;
 
 public interface Coach {
 
