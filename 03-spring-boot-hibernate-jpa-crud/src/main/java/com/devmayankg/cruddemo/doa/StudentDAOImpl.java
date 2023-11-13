@@ -30,7 +30,8 @@ public class StudentDAOImpl implements DataAccessObjectI<Student> {
     // GET
     @Override
     public Student getDataById(int id) {
-        return null;
+        System.out.println("Finding... the details for the id: " + id);
+        return entityManager.find(Student.class, id);
     }
 
     // GET
