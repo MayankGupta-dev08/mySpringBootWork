@@ -26,6 +26,6 @@ public class BasketballCoach implements Coach {
 
     @Override
     public String getDailyWorkout() {
-        return "practice 3-pointer shooting for an hour.";
+        return "Practice 3-pointer shooting for an hour.";
     }
 }
