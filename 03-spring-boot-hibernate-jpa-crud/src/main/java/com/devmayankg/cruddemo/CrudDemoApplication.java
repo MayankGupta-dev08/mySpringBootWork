@@ -32,15 +32,14 @@ public class CrudDemoApplication {
         Student student3 = new Student("Kevin", "De Bruyne", "kevin.debruyne@blg.com");
         Student student4 = new Student("Christiano", "Ronaldo", "chris.ronaldo@pgl.com");
         Student student5 = new Student("Erling", "Haaland", "erling.haaland@nrw.com");
+        Student student6 = new Student("Angel", "Di Maria", "angel.dimaria@arg.com");
 
         //2. Saving the student details
-        /*studentDAO.postData(student1);
-        studentDAO.postData(student2);
-        studentDAO.postData(student3);
-        studentDAO.postData(student4);
-        studentDAO.postData(student5);
+        studentDAO.postData(student1); studentDAO.postData(student2);
+        studentDAO.postData(student3); studentDAO.postData(student4);
+        studentDAO.postData(student5); studentDAO.postData(student6);
         System.out.println("Saving students details");
-        System.out.println("---------------------------------------------");*/
+        System.out.println("---------------------------------------------");
 
         //3. Get a student detail using id
         int id = 1;
@@ -63,17 +62,25 @@ public class CrudDemoApplication {
         Optional<Student> result_FN = studentDAO.getDataByFirstName("Kevin").stream().findFirst();
         result_FN.ifPresentOrElse(
                 student -> System.out.println("Found: " + student),
-                () -> System.out.println("Not Found!!")
+                () -> System.out.println("Not Found any entry matching the first_name!!")
         );
         System.out.println("---------------------------------------------");
 
         // 6. Get a student using lastName
-        Optional<Student> result_LN = studentDAO.getDataByFirstName("Mbappe").stream().findFirst();
-        result_LN.ifPresentOrElse(
-                student -> System.out.println("Found: " + student),
-                () -> System.out.println("Not Found!!")
-        );
+        List<Student> results = studentDAO.getDataByLastName("Messi");
+        if (results.isEmpty())
+            System.out.println("Not Found any entry matching the last_name!!");
+        else
+            results.forEach(student -> System.out.println("Found: " + student));
         System.out.println("---------------------------------------------");
 
+        // 6. Get a student using email
+        List<Student> ans = studentDAO.getDataByEmail("%arg.com");
+        if (ans.isEmpty())
+            System.out.println("Not Found any entry matching the email!!");
+        else
+            ans.forEach(student -> System.out.println("Found: " + student));
+        System.out.println("---------------------------------------------");
     }
+
 }

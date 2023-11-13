@@ -41,10 +41,17 @@ public class StudentDAOImpl implements DataAccessObjectI<Student> {
 
     // GET
     @Override
+    public List<Student> getAllData() {
+        System.out.println("Fetching entries for all the students....");
+        return executeQuery("", "");
+    }
+
+    // GET
+    @Override
     public List<Student> getDataByFirstName(String firstName) {
         System.out.println("Fetching entries for all the students whose firstName=" + firstName);
         // NOTE: for the query entity field names will be exact as the fieldName used in class (firstName and not first_name)
-        return executeQuery(" WHERE firstName='" + firstName + "'");
+        return executeQuery(" WHERE firstName='" + firstName + "'", " ORDER BY firstName asc");
     }
 
     // GET
@@ -52,14 +59,13 @@ public class StudentDAOImpl implements DataAccessObjectI<Student> {
     public List<Student> getDataByLastName(String lastName) {
         System.out.println("Fetching entries for all the students whose lastName=" + lastName);
         // NOTE: for the query entity field names will be exact as the fieldName used in class (lastName and not last_name)
-        return executeQuery(" WHERE lastName='" + lastName + "'");
+        return executeQuery(" WHERE lastName='" + lastName + "'", " ORDER BY lastName desc");
     }
 
     // GET
-    @Override
-    public List<Student> getAllData() {
-        System.out.println("Fetching entries for all the students....");
-        return executeQuery("");
+    public List<Student> getDataByEmail(String email) {
+        System.out.println("Fetching entries for all the students whose email is LIKE '" + email + "'");
+        return executeQuery(" WHERE email LIKE '" + email + "'", " ORDER BY id desc");
     }
 
     // PUT
@@ -80,11 +86,11 @@ public class StudentDAOImpl implements DataAccessObjectI<Student> {
 
     }
 
-    private List<Student> executeQuery(String whereClause) {
+    private List<Student> executeQuery(String whereClause, String orderByClause) {
         // jpaEntity would not be the name of the db_table but entity className
         Class<Student> myClass = Student.class;
         String jpaEntity = myClass.getSimpleName();
-        String ql = "FROM " + jpaEntity + whereClause;
+        String ql = "FROM " + jpaEntity + whereClause + orderByClause;
         TypedQuery<Student> query = entityManager.createQuery(ql, myClass);
         return query.getResultList();
     }
