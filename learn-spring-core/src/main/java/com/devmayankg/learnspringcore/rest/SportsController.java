@@ -19,7 +19,7 @@ public class SportsController {
     private Coach anotherCoach;
 
     @Autowired  // for constructor injection
-    public SportsController(@Qualifier("cricketCoach") Coach myCoach, @Qualifier("footballCoach") Coach anotherCoach) {
+    public SportsController(@Qualifier("cricketCoach") Coach myCoach, @Qualifier("swimCoach") Coach anotherCoach) {
         // if both @qualifier and @Primary are being used for a field then @Qualifier will have a higher priority
         System.out.println("Constructor initiated of " + getClass().getSimpleName());
         this.myCoach = myCoach;
@@ -38,7 +38,9 @@ public class SportsController {
 
     @GetMapping("/getWorkoutPlan")
     private String getContentForWorkoutPage() {
-        return myCoach.getDailyWorkout();
+        // return "Workout1: " + myCoach.getDailyWorkout() + "\n" + "Workout2: " + anotherCoach.getDailyWorkout();
+        // return "Workout1: " + myCoach.getDailyWorkout() + "System.lineSeparator()" + "Workout2: " + anotherCoach.getDailyWorkout();
+        return "Workout1: " + myCoach.getDailyWorkout() + "<br>" + "Workout2: " + anotherCoach.getDailyWorkout();
     }
 
     @GetMapping("/checkKar")
