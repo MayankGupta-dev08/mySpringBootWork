@@ -6,14 +6,17 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Java Config Bean: make an existing third party class available to spring framework
- * So here, we have created a class to use the third party class as a Bean because we can't add @Component to that class
+ * Java Config Bean: Take an existing third party class or own class and expose it as a Spring Bean.
+ * So here, we have created a class to use the third party class as a Bean because we can't add @Component to that class.
  */
 @Configuration
 public class ConfigJavaBean {
 
-    @Bean
-    public Coach swimCoach() {
+    /**
+     * Having a custom bean id (swimCoach) for the method initializeSwimCoach()
+     */
+    @Bean("swimCoach")
+    public Coach initializeSwimCoach() {
         return new SwimCoach();
     }
 }
