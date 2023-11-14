@@ -27,7 +27,7 @@ public class CrudDemoApplication {
     private void processingData(StudentDAOImpl studentDAO) {
         createSomeStudentsAndSaveInDBUsingJava(studentDAO);
         retrieveTheEntitiesFromDBUsingJava(studentDAO);
-        updateSomeEntitiesFromDBUsingJava(studentDAO);
+//        updateSomeEntitiesFromDBUsingJava(studentDAO);
     }
 
     private static void createSomeStudentsAndSaveInDBUsingJava(StudentDAOImpl studentDAO) {
@@ -69,7 +69,8 @@ public class CrudDemoApplication {
         System.out.println("------------------------------------------------------------------------------------------");
 
         // 5. Get a student using firstName
-        List<Student> result_FN = studentDAO.getEntitiesByFirstName("Kevin");
+        List<Student> result_FN = studentDAO.getEntitiesByQueryingField(
+                "firstname", "Kevin", false, "id", true);
         if (result_FN.isEmpty())
             System.out.println("Not Found any entry matching the last_name!!");
         else
@@ -77,7 +78,8 @@ public class CrudDemoApplication {
         System.out.println("------------------------------------------------------------------------------------------");
 
         // 6. Get a student using email
-        List<Student> ans = studentDAO.getEntitiesByEmail("%arg.com");
+        List<Student> ans = studentDAO.getEntitiesByQueryingField(
+                "EMAIL", "%arg.com", true, "LASTname", false);
         if (ans.isEmpty())
             System.out.println("Not Found any entry matching the email!!");
         else
@@ -86,7 +88,7 @@ public class CrudDemoApplication {
     }
 
     private void updateSomeEntitiesFromDBUsingJava(StudentDAOImpl studentDAO) {
-        boolean resp = studentDAO.updateFirstNameById(1, "Leonel");
+        boolean resp = studentDAO.updateFieldOfEntityById(1, "firstName", "Leonel");
         System.out.println("------------------------------------------------------------------------------------------");
 
         studentDAO.updateFieldOfEntityById(6, "firstname", "Killian");

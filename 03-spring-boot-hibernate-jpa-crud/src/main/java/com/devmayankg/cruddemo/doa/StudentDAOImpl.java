@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * All JPQL (Jakarta Persistence API Query Language) is based on Entity Name and Entity fields.
@@ -31,11 +32,11 @@ public class StudentDAOImpl implements DataAccessObjectI<Student> {
         System.out.println("Saved the detail of: " + student.toString());
     }
 
-    // GET
 
     /**
      * Since Id is a Primary Key we can use find() and it will always return result/null.
      */
+    // GET
     @Override
     public Student getEntityById(int id) {
         System.out.println("Finding... the details for the id: " + id);
@@ -51,31 +52,15 @@ public class StudentDAOImpl implements DataAccessObjectI<Student> {
 
     // GET
     @Override
-    public List<Student> getEntitiesByFirstName(String firstName) {
-        System.out.println("Fetching entries for all the students whose firstName=" + firstName);
+    public List<Student> getEntitiesByQueryingField(String field, String value, boolean isLike, String orderByField, boolean isAsc) {
+        field = getExactFieldName(field);
+        orderByField = getExactFieldName(orderByField);
+
+        System.out.println(String.format("Fetching entries for all the students whose %s %s %s", field, isLike ? "LIKE" : "=", value));
         // NOTE: for the query entity field names will be exact as the fieldName used in class (firstName and not first_name)
-        return executeQuery(" WHERE firstName='" + firstName + "'", " ORDER BY firstName asc");
-    }
-
-    // GET
-    public List<Student> getEntitiesByEmail(String email) {
-        System.out.println("Fetching entries for all the students whose email is LIKE '" + email + "'");
-        return executeQuery(" WHERE email LIKE '" + email + "'", " ORDER BY id desc");
-    }
-
-    // PUT
-    @Override
-    @Transactional
-    public boolean updateFirstNameById(int id, String firstName) {
-        Student student = getEntityById(id);
-        if (student != null) {
-            student.setFirstName(firstName);
-            entityManager.merge(student);
-            System.out.println("Updated student with " + id + ": " + student.toString());
-            return true;
-        }
-        System.out.println("Could not find a student with id: " + id);
-        return false;
+        String whereClause = String.format("WHERE %s %s '%s'", field, isLike ? "LIKE" : "=", value);
+        String orderByClause = String.format("ORDER BY %s %s", orderByField, isAsc ? "asc" : "desc");
+        return executeQuery(whereClause, orderByClause);
     }
 
     // PUT
@@ -140,8 +125,16 @@ public class StudentDAOImpl implements DataAccessObjectI<Student> {
         // jpaEntity would not be the name of the db_table but entity className
         Class<Student> myClass = Student.class;
         String jpaEntity = myClass.getSimpleName();
-        String ql = "FROM " + jpaEntity + whereClause + orderByClause;
+        String ql = String.format("FROM %s %s %s", jpaEntity, whereClause, orderByClause);
+        // createQuery is used for SELECT queries, so we don't need to mention SELECT again
         TypedQuery<Student> query = entityManager.createQuery(ql, myClass);
         return query.getResultList();
+    }
+
+    private static String getExactFieldName(String field) {
+        return Stream.of("firstName", "lastName", "email")
+                .filter(f -> f.equalsIgnoreCase(field))
+                .findFirst()
+                .orElse("null");
     }
 }

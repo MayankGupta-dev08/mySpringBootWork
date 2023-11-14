@@ -15,14 +15,8 @@ public interface DataAccessObjectI<T> {
     List<T> getAllEntities();
 
     // GET
-    List<T> getEntitiesByFirstName(String firstName);
+    List<T> getEntitiesByQueryingField(String field, String value, boolean isLike, String orderByField, boolean isAsc);
 
-    // GET
-    List<T> getEntitiesByEmail(String email);
-
-
-    // PUT
-    boolean updateFirstNameById(int id, String firstName);
 
     // PUT
     boolean updateFieldOfEntityById(int id, String field, String value);
