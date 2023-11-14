@@ -5,18 +5,35 @@ import java.util.List;
 public interface DataAccessObjectI<T> {
 
     // POST
-    void postData(T obj);
+    void postEntity(T obj);
+
 
     // GET
-    T getDataById(int id);
-    List<T> getDataByFirstName(String firstName);
-    List<T> getDataByLastName(String lastName);
-    List<T> getAllData();
+    T getEntityById(int id);
+
+    // GET
+    List<T> getAllEntities();
+
+    // GET
+    List<T> getEntitiesByFirstName(String firstName);
+
+    // GET
+    List<T> getEntitiesByEmail(String email);
+
 
     // PUT
-    boolean updateById(int id);
+    boolean updateFirstNameById(int id, String firstName);
+
+    // PUT
+    boolean updateFieldOfEntityById(int id, String field, String value);
+
+    // PUT
+    int updateByQuery(String field, String value);
+
 
     // DELETE
-    void deleteById();
-    void deleteAll();
+    void deleteEntityById();
+
+    // DELETE
+    void deleteAllEntities();
 }
