@@ -27,7 +27,8 @@ public class CrudDemoApplication {
     private void processingData(StudentDAOImpl studentDAO) {
         createSomeStudentsAndSaveInDBUsingJava(studentDAO);
         retrieveTheEntitiesFromDBUsingJava(studentDAO);
-//        updateSomeEntitiesFromDBUsingJava(studentDAO);
+        updateSomeEntitiesFromDBUsingJava(studentDAO);
+        deleteSomeEntitiesFromDBUsingJava(studentDAO);
     }
 
     private static void createSomeStudentsAndSaveInDBUsingJava(StudentDAOImpl studentDAO) {
@@ -97,6 +98,15 @@ public class CrudDemoApplication {
         System.out.println("------------------------------------------------------------------------------------------");
 
         studentDAO.updateAllEntitiesByQuery("email", "abc@gmail.com");
+        System.out.println("------------------------------------------------------------------------------------------");
+    }
+
+    private void deleteSomeEntitiesFromDBUsingJava(StudentDAOImpl studentDAO) {
+        studentDAO.deleteEntityById(4);
+        System.out.println("------------------------------------------------------------------------------------------");
+        studentDAO.deleteEntityByQuery("lastname", "Benzema", false);
+        System.out.println("------------------------------------------------------------------------------------------");
+        studentDAO.deleteAllEntities();
         System.out.println("------------------------------------------------------------------------------------------");
     }
 

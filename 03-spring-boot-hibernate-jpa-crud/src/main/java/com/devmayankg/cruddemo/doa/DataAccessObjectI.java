@@ -26,8 +26,11 @@ public interface DataAccessObjectI<T> {
 
 
     // DELETE
-    void deleteEntityById();
+    boolean deleteEntityById(int id);
 
     // DELETE
-    void deleteAllEntities();
+    int deleteEntityByQuery(String field, String value, boolean isLikeOperator);
+
+    // DELETE
+    int deleteAllEntities();
 }
