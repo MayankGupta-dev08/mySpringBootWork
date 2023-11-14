@@ -8,7 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.util.List;
-import java.util.Optional;
 
 @SpringBootApplication
 public class CrudDemoApplication {
@@ -26,6 +25,12 @@ public class CrudDemoApplication {
     }
 
     private void processingData(StudentDAOImpl studentDAO) {
+        createSomeStudentsAndSaveInDBUsingJava(studentDAO);
+        retrieveTheEntitiesFromDBUsingJava(studentDAO);
+        updateSomeEntitiesFromDBUsingJava(studentDAO);
+    }
+
+    private static void createSomeStudentsAndSaveInDBUsingJava(StudentDAOImpl studentDAO) {
         //1. Create some student details
         Student student1 = new Student("Leo", "Messi", "leo.messi@arg.com");
         Student student2 = new Student("Karim", "Benzema", "karim.benzema@frc.com");
@@ -35,52 +40,53 @@ public class CrudDemoApplication {
         Student student6 = new Student("Angel", "Di Maria", "angel.dimaria@arg.com");
 
         //2. Saving the student details
-        studentDAO.postData(student1); studentDAO.postData(student2);
-        studentDAO.postData(student3); studentDAO.postData(student4);
-        studentDAO.postData(student5); studentDAO.postData(student6);
         System.out.println("Saving students details");
-        System.out.println("---------------------------------------------");
+        studentDAO.postEntity(student1);
+        studentDAO.postEntity(student2);
+        studentDAO.postEntity(student3);
+        studentDAO.postEntity(student4);
+        studentDAO.postEntity(student5);
+        studentDAO.postEntity(student6);
+        System.out.println("------------------------------------------------------------------------------------------");
+    }
 
+    private static void retrieveTheEntitiesFromDBUsingJava(StudentDAOImpl studentDAO) {
         //3. Get a student detail using id
         int id = 1;
-        Student response = studentDAO.getDataById(id);
+        Student response = studentDAO.getEntityById(id);
         if (response != null) System.out.println("Found the detail: " + response.toString());
         else System.out.println("Could not find the student for the id: " + id);
-        System.out.println("---------------------------------------------");
+        System.out.println("------------------------------------------------------------------------------------------");
 
         //4. Get all students details
-        List<Student> studentList = studentDAO.getAllData();
+        List<Student> studentList = studentDAO.getAllEntities();
         if (!studentList.isEmpty()) {
             System.out.println("List of all the students are:");
             for (Student student : studentList) {
                 System.out.println(student.toString());
             }
         } else System.out.println("No entries found in the table!!");
-        System.out.println("---------------------------------------------");
+        System.out.println("------------------------------------------------------------------------------------------");
 
         // 5. Get a student using firstName
-        Optional<Student> result_FN = studentDAO.getDataByFirstName("Kevin").stream().findFirst();
-        result_FN.ifPresentOrElse(
-                student -> System.out.println("Found: " + student),
-                () -> System.out.println("Not Found any entry matching the first_name!!")
-        );
-        System.out.println("---------------------------------------------");
-
-        // 6. Get a student using lastName
-        List<Student> results = studentDAO.getDataByLastName("Messi");
-        if (results.isEmpty())
+        List<Student> result_FN = studentDAO.getEntitiesByFirstName("Kevin");
+        if (result_FN.isEmpty())
             System.out.println("Not Found any entry matching the last_name!!");
         else
-            results.forEach(student -> System.out.println("Found: " + student));
-        System.out.println("---------------------------------------------");
+            result_FN.forEach(student -> System.out.println("Found: " + student));
+        System.out.println("------------------------------------------------------------------------------------------");
 
         // 6. Get a student using email
-        List<Student> ans = studentDAO.getDataByEmail("%arg.com");
+        List<Student> ans = studentDAO.getEntitiesByEmail("%arg.com");
         if (ans.isEmpty())
             System.out.println("Not Found any entry matching the email!!");
         else
             ans.forEach(student -> System.out.println("Found: " + student));
-        System.out.println("---------------------------------------------");
+        System.out.println("------------------------------------------------------------------------------------------");
+    }
+
+    private void updateSomeEntitiesFromDBUsingJava(StudentDAOImpl studentDAO) {
+
     }
 
 }
