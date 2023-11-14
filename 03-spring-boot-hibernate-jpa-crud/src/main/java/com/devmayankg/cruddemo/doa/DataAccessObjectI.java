@@ -28,7 +28,7 @@ public interface DataAccessObjectI<T> {
     boolean updateFieldOfEntityById(int id, String field, String value);
 
     // PUT
-    int updateByQuery(String field, String value);
+    int updateAllEntitiesByQuery(String field, String value);
 
 
     // DELETE

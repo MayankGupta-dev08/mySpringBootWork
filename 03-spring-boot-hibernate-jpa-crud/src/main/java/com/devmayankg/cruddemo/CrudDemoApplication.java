@@ -86,7 +86,16 @@ public class CrudDemoApplication {
     }
 
     private void updateSomeEntitiesFromDBUsingJava(StudentDAOImpl studentDAO) {
+        boolean resp = studentDAO.updateFirstNameById(1, "Leonel");
+        System.out.println("------------------------------------------------------------------------------------------");
 
+        studentDAO.updateFieldOfEntityById(6, "firstname", "Killian");
+        System.out.println("------------------------------------------------------------------------------------------");
+        studentDAO.updateFieldOfEntityById(6, "lastname", "Mbappe");
+        System.out.println("------------------------------------------------------------------------------------------");
+
+        studentDAO.updateAllEntitiesByQuery("email", "abc@gmail.com");
+        System.out.println("------------------------------------------------------------------------------------------");
     }
 
 }

@@ -32,6 +32,7 @@ public class StudentDAOImpl implements DataAccessObjectI<Student> {
     }
 
     // GET
+
     /**
      * Since Id is a Primary Key we can use find() and it will always return result/null.
      */
@@ -85,12 +86,14 @@ public class StudentDAOImpl implements DataAccessObjectI<Student> {
                 .anyMatch(f -> f.toLowerCase().equalsIgnoreCase(field))) {
             Student student = getEntityById(id);
             if (student != null) {
+                System.out.println("Found the entity with " + id + ": " + student.toString());
                 switch (field.toLowerCase()) {
                     case "firstname" -> student.setFirstName(value);
                     case "lastname" -> student.setLastName(value);
                     case "email" -> student.setEmail(value);
                     default -> System.out.println("Invalid field entered!!");
                 }
+                System.out.println("Updating in progress...");
                 entityManager.merge(student);
                 System.out.println("Updated student with " + id + ": " + student.toString());
                 return true;
@@ -106,13 +109,14 @@ public class StudentDAOImpl implements DataAccessObjectI<Student> {
     // PUT
     @Override
     @Transactional
-    public int updateByQuery(String field, String value) {
+    public int updateAllEntitiesByQuery(String field, String value) {
         if (List.of("firstName", "lastName", "email").stream()
                 .anyMatch(f -> f.toLowerCase().equalsIgnoreCase(field))) {
             Class<Student> myClass = Student.class;
             String jpaEntity = myClass.getSimpleName();
             String ql = "UPDATE " + jpaEntity + " SET " + field + "='" + value + "'";
-            int rowsUpdated = entityManager.createQuery(ql, myClass).executeUpdate();
+            System.out.println("Updating... for query=" + ql + ".");
+            int rowsUpdated = entityManager.createNativeQuery(ql, myClass).executeUpdate();
             System.out.println("Success: Updated rows " + rowsUpdated);
             return rowsUpdated;
         }
