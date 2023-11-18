@@ -1,12 +1,14 @@
 package com.dev.mayang.restspringboot.rest;
 
 import com.dev.mayang.restspringboot.entity.Student;
+import com.dev.mayang.restspringboot.errorResponse.StudentErrorResponse;
+import com.dev.mayang.restspringboot.exception.StudentNotFoundException;
 import jakarta.annotation.PostConstruct;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +19,7 @@ public class StudentRestController {
     private List<Student> theStudents;
 
     @PostConstruct
-    public void loadData() {
+    public void loadStudentData() {
         this.theStudents = new ArrayList<>();
         theStudents.add(new Student(1, "Walter", "White"));
         theStudents.add(new Student(2, "Jessie", "Pinkman"));
@@ -32,12 +34,21 @@ public class StudentRestController {
     @GetMapping("/students/{studentId}")
     public Student getStudent(@PathVariable int studentId) {
         if (studentId <= 0 || studentId > theStudents.size()) {
-            // we will throw some exception
-            return null;
+            throw new StudentNotFoundException("Student not found with id: " + studentId);
         }
 
-        return theStudents.stream()
-                .filter(s -> s.getId() == studentId)
-                .findFirst().get();
+        return theStudents.stream().filter(s -> s.getId() == studentId).findFirst().get();
+    }
+
+    // @ExceptionHandler for handling student exception
+    @ExceptionHandler
+    public ResponseEntity<StudentErrorResponse> handleSNFException(StudentNotFoundException exception) {
+        StudentErrorResponse errorResp = new StudentErrorResponse();
+        errorResp.setStatusCode(HttpStatus.NOT_FOUND.value());
+        errorResp.setStatus(HttpStatus.NOT_FOUND.name());
+        errorResp.setMessage(exception.getMessage());
+        errorResp.setTimestamp(new Timestamp(System.currentTimeMillis()));
+
+        return new ResponseEntity<>(errorResp, HttpStatus.NOT_FOUND);
     }
 }
