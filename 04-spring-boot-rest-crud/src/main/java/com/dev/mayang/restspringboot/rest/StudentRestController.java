@@ -1,14 +1,13 @@
 package com.dev.mayang.restspringboot.rest;
 
 import com.dev.mayang.restspringboot.entity.Student;
-import com.dev.mayang.restspringboot.errorResponse.StudentErrorResponse;
 import com.dev.mayang.restspringboot.exception.StudentNotFoundException;
 import jakarta.annotation.PostConstruct;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,28 +37,5 @@ public class StudentRestController {
         }
 
         return theStudents.stream().filter(s -> s.getId() == studentId).findFirst().get();
-    }
-
-    // @ExceptionHandler for handling student exception
-    @ExceptionHandler
-    public ResponseEntity<StudentErrorResponse> handleSNFException(StudentNotFoundException exception) {
-        StudentErrorResponse errorResp = new StudentErrorResponse();
-        errorResp.setStatus(HttpStatus.NOT_FOUND.value());
-        errorResp.setError(HttpStatus.NOT_FOUND.name());
-        errorResp.setMessage(exception.getMessage());
-        errorResp.setTimestamp(new Timestamp(System.currentTimeMillis()));
-
-        return new ResponseEntity<>(errorResp, HttpStatus.NOT_FOUND);
-    }
-
-    @ExceptionHandler
-    public ResponseEntity<StudentErrorResponse> handleGenericException(Exception exception) {
-        StudentErrorResponse errorResp = new StudentErrorResponse();
-        errorResp.setStatus(HttpStatus.BAD_REQUEST.value());
-        errorResp.setError(HttpStatus.BAD_REQUEST.name());
-        errorResp.setMessage(exception.getMessage());
-        errorResp.setTimestamp(new Timestamp(System.currentTimeMillis()));
-
-        return new ResponseEntity<>(errorResp, HttpStatus.BAD_REQUEST);
     }
 }

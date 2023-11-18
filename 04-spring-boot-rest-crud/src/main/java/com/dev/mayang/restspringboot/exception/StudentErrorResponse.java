@@ -1,4 +1,4 @@
-package com.dev.mayang.restspringboot.errorResponse;
+package com.dev.mayang.restspringboot.exception;
 
 import java.sql.Timestamp;
 
