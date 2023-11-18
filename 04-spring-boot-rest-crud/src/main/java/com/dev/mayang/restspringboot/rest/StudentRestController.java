@@ -44,8 +44,8 @@ public class StudentRestController {
     @ExceptionHandler
     public ResponseEntity<StudentErrorResponse> handleSNFException(StudentNotFoundException exception) {
         StudentErrorResponse errorResp = new StudentErrorResponse();
-        errorResp.setStatusCode(HttpStatus.NOT_FOUND.value());
-        errorResp.setStatus(HttpStatus.NOT_FOUND.name());
+        errorResp.setStatus(HttpStatus.NOT_FOUND.value());
+        errorResp.setError(HttpStatus.NOT_FOUND.name());
         errorResp.setMessage(exception.getMessage());
         errorResp.setTimestamp(new Timestamp(System.currentTimeMillis()));
 

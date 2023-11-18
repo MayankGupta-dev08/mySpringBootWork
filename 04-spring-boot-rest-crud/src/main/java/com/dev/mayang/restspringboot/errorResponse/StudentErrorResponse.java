@@ -4,35 +4,35 @@ import java.sql.Timestamp;
 
 public class StudentErrorResponse {
 
-    private int statusCode;
-    private String status;
+    private int status;
+    private String error;
     private String message;
     private Timestamp timestamp;
 
     public StudentErrorResponse() {
     }
 
-    public StudentErrorResponse(int statusCode, String status, String message, Timestamp timestamp) {
-        this.statusCode = statusCode;
+    public StudentErrorResponse(int status, String error, String message, Timestamp timestamp) {
         this.status = status;
+        this.error = error;
         this.message = message;
         this.timestamp = timestamp;
     }
 
-    public int getStatusCode() {
-        return statusCode;
-    }
-
-    public void setStatusCode(int statusCode) {
-        this.statusCode = statusCode;
-    }
-
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
     }
 
     public String getMessage() {
