@@ -21,4 +21,15 @@ public class EmployeeService implements ServiceI<Employee> {
     public List<Employee> findAll() {
         return employeeDAO.getAllEntities();
     }
+
+    @Override
+    public Employee findById(int id) {
+        Employee employeeWithId = employeeDAO.getEntityById(id);
+        if (employeeWithId != null) {
+            System.out.println("Found the detail: " + employeeWithId.toString());
+            return employeeWithId;
+        }
+        System.out.println(String.format("Could not find Employee with id:%s", id));
+        return null;
+    }
 }

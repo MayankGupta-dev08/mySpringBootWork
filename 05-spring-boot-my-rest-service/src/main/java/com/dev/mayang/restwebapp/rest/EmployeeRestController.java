@@ -4,6 +4,7 @@ import com.dev.mayang.restwebapp.entity.Employee;
 import com.dev.mayang.restwebapp.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,5 +25,11 @@ public class EmployeeRestController {
     @GetMapping("/employees")
     public List<Employee> findAll() {
         return employeeService.findAll();
+    }
+
+    // expose "/employees/{employeeId}" for GET single employees using id
+    @GetMapping("/employees/{employeeId}")
+    public Employee findById(@PathVariable int employeeId) {
+        return employeeService.findById(employeeId);
     }
 }
