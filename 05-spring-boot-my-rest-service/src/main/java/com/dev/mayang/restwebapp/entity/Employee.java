@@ -2,6 +2,7 @@ package com.dev.mayang.restwebapp.entity;
 
 import jakarta.persistence.*;
 
+/**TableName="employee" And ClassName="Employee"*/
 @Entity
 @Table(name = "employee")
 public class Employee {
