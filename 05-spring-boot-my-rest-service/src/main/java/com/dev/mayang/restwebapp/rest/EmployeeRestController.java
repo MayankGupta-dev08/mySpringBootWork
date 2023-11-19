@@ -1,7 +1,7 @@
 package com.dev.mayang.restwebapp.rest;
 
-import com.dev.mayang.restwebapp.dao.EmployeeDAO;
 import com.dev.mayang.restwebapp.entity.Employee;
+import com.dev.mayang.restwebapp.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,16 +13,16 @@ import java.util.List;
 @RequestMapping("/api")
 public class EmployeeRestController {
 
-    private EmployeeDAO employeeDAO;
+    private EmployeeService employeeService;
 
-    @Autowired  //quick and dirty: simple constructor injection for EmployeeDAO
-    public EmployeeRestController(EmployeeDAO employeeDAO) {
-        this.employeeDAO = employeeDAO;
+    @Autowired  // constructor injection for EmployeeService
+    public EmployeeRestController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
     }
 
     // expose "/employees" for GET all employees
     @GetMapping("/employees")
     public List<Employee> findAll() {
-        return employeeDAO.getAllEntities();
+        return employeeService.findAll();
     }
 }
