@@ -1,0 +1,23 @@
+## FOR SPRING DATA REST, we only need 3 items:
+
+1. Our Entity Class: Employee
+2. JpaRepository Interface: EmployeeRepository extends JpaRepository<EntityClass, PrimaryKey>
+3. Maven POM dependency for: spring-boot-starter-data-rest
+
+
+## Default REST ENDPOINTS
+
+1. GET - http://localhost:8080/employees
+2. GET - http://localhost:8080/employees/{employeeId}
+3. POST - http://localhost:8080/employees
+4. PUT - http://localhost:8080/employees/{employeeId}
+5. DELETE - http://localhost:8080/employees/{employeeId}
+
+## After adding base-path property, Custom REST ENDPOINTS
+spring.data.rest.base-path=/my-api
+
+1. GET - http://localhost:8080/my-api/employees
+2. GET - http://localhost:8080/my-api/employees/{employeeId}
+3. POST - http://localhost:8080/my-api/employees
+4. PUT - http://localhost:8080/my-api/employees/{employeeId}
+5. DELETE - http://localhost:8080/my-api/employees/{employeeId}
