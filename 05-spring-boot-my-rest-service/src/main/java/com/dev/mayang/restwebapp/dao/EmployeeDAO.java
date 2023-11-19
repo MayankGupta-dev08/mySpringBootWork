@@ -7,7 +7,7 @@ import java.util.List;
 public class EmployeeDAO implements DataAccessObject<Employee> {
     @Override
     public void postEntity(Employee obj) {
-        
+
     }
 
     @Override
