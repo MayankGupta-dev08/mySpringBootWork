@@ -3,10 +3,7 @@ package com.dev.mayang.restwebapp.rest;
 import com.dev.mayang.restwebapp.entity.Employee;
 import com.dev.mayang.restwebapp.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,5 +28,11 @@ public class EmployeeRestController {
     @GetMapping("/employees/{employeeId}")
     public Employee findById(@PathVariable int employeeId) {
         return employeeService.findById(employeeId);
+    }
+
+    // expose "/employees" for POST an employee
+    @PostMapping("/employees")
+    public void save(@RequestBody Employee employee) {
+        employeeService.save(employee);
     }
 }

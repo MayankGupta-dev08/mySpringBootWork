@@ -27,8 +27,10 @@ public class EmployeeDAO implements DataAccessObject<Employee> {
     }
 
     @Override
-    public void postEntity(Employee obj) {
-
+    public void postEntity(Employee employee) {
+        System.out.println("Saving employee...");
+        entityManager.persist(employee);
+        System.out.println(String.format("Saved Employee: %s", employee.toString()));
     }
 
     @Override
