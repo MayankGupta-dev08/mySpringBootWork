@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 /**
  * Basic Roadmap for all methods: 1. Create Query | 2. Execute the query to get the result | 3. Return the result.
@@ -27,8 +26,10 @@ public class EmployeeDAO implements DataAccessObject<Employee> {
     }
 
     @Override
-    public void postEntity(Employee obj) {
-
+    public String postEntity(Employee employee) {
+        System.out.println("Saving employee...");
+        entityManager.persist(employee);
+        return String.format("Saved Employee: %s", employee.toString());
     }
 
     @Override
@@ -44,40 +45,24 @@ public class EmployeeDAO implements DataAccessObject<Employee> {
     }
 
     @Override
-    public List<Employee> getEntitiesByQueryingField(String field, String value, boolean isLike, String orderByField, boolean isAsc) {
-        // NOTE: for the query entity field names will be exact as the fieldName used in class (firstName and not first_name)
-        field = getExactFieldName(field);
-        orderByField = getExactFieldName(orderByField);
-        System.out.println(String.format("Fetching entries for all the students whose %s %s %s", field, isLike ? "LIKE" : "=", value));
-
-        String whereClause = String.format("WHERE %s %s '%s'", field, isLike ? "LIKE" : "=", value);
-        String orderByClause = String.format("ORDER BY %s %s", orderByField, isAsc ? "asc" : "desc");
-        return executeQuery(whereClause, orderByClause);
+    public String deleteEntityById(Employee employee) {
+        entityManager.remove(employee);
+        return String.format("Deleted Employee: %s", employee.toString());
     }
 
     @Override
-    public boolean updateFieldOfEntityById(int id, String field, String value) {
-        return false;
+    public String deleteAllEntities() {
+        String jpaEntity = TABLE_CLASS.getSimpleName();
+        String ql = String.format("DELETE FROM %s", jpaEntity);
+        System.out.println("Deleting all the data ...");
+        int rowsUpdated = entityManager.createQuery(ql).executeUpdate();
+        return String.format("Success!! Deleted rows %s.", rowsUpdated);
     }
 
     @Override
-    public int updateAllEntitiesByQuery(String field, String value) {
-        return 0;
-    }
-
-    @Override
-    public boolean deleteEntityById(int id) {
-        return false;
-    }
-
-    @Override
-    public int deleteEntityByQuery(String field, String value, boolean isLikeOperator) {
-        return 0;
-    }
-
-    @Override
-    public int deleteAllEntities() {
-        return 0;
+    public Employee updateEntity(Employee employee) {
+        System.out.println("Updating ...");
+        return entityManager.merge(employee);
     }
 
     private List<Employee> executeQuery(String whereClause, String orderByClause) {
@@ -88,12 +73,5 @@ public class EmployeeDAO implements DataAccessObject<Employee> {
         // createQuery is used for SELECT queries, so we don't need to mention SELECT again
         TypedQuery<Employee> query = entityManager.createQuery(ql, TABLE_CLASS);
         return query.getResultList();
-    }
-
-    private static String getExactFieldName(String field) {
-        return Stream.of("firstName", "lastName", "email")
-                .filter(f -> f.equalsIgnoreCase(field))
-                .findFirst()
-                .orElse("null");
     }
 }
