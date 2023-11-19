@@ -28,9 +28,7 @@ public class EmployeeService implements ServiceI<Employee> {
     @Override
     public Employee findById(int id) {
         Employee employee = employeeDAO.getEntityById(id);
-        if (employee == null)
-            throw new RuntimeException(String.format("Invalid operation! Could not find Employee with id=%s.", id));
-
+        isEmployeeNull(employee, String.format("Invalid operation! Could not find Employee with id=%s.", id));
         System.out.println("Found the detail: " + employee.toString());
         return employee;
     }
@@ -39,9 +37,7 @@ public class EmployeeService implements ServiceI<Employee> {
     @Override
     @Transactional
     public String save(Employee employee) {
-        if (employee == null)
-            throw new RuntimeException("Invalid operation: Send valid Employee entity!");
-
+        isEmployeeNull(employee, "Invalid operation: Send valid Employee entity!");
         return employeeDAO.postEntity(employee);
     }
 
@@ -59,5 +55,25 @@ public class EmployeeService implements ServiceI<Employee> {
     @Transactional
     public String deleteAll() {
         return employeeDAO.deleteAllEntities();
+    }
+
+    // PUT
+    @Override
+    @Transactional
+    public String updateEntity(Employee new_employee) {
+        isEmployeeNull(new_employee, "Invalid operation: Send valid Employee entity!");
+        int id = new_employee.getId();
+        Employee old_employee = findById(id);
+
+        Employee old_emp = new Employee(old_employee.getFirstName(), old_employee.getLastName(), old_employee.getEmail());
+        old_emp.setId(id);
+
+        Employee employee = employeeDAO.updateEntity(new_employee);
+        return String.format("Updated %s --> %s", old_emp, employee);
+    }
+
+    private static void isEmployeeNull(Employee employee, String message) {
+        if (employee == null)
+            throw new RuntimeException(message);
     }
 }

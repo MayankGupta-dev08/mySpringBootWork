@@ -13,4 +13,6 @@ public interface ServiceI<T> {
     String deleteById(int id);
 
     String deleteAll();
+
+    String updateEntity(T obj);
 }

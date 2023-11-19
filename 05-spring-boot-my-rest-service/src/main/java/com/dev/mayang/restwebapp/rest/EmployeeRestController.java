@@ -53,4 +53,11 @@ public class EmployeeRestController {
     public String deleteAll() {
         return employeeService.deleteAll();
     }
+
+    // expose "/employees" for PUT an employee
+    @SuppressWarnings("unused")
+    @PutMapping("/employees")
+    public String update(@RequestBody Employee employee) {
+        return employeeService.updateEntity(employee);
+    }
 }
