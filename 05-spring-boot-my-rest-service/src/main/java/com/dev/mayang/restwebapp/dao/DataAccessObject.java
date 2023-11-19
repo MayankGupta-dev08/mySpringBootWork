@@ -5,7 +5,7 @@ import java.util.List;
 public interface DataAccessObject<T> {
 
     // POST
-    void postEntity(T obj);
+    String postEntity(T obj);
 
 
     // GET
@@ -26,11 +26,11 @@ public interface DataAccessObject<T> {
 
 
     // DELETE
-    boolean deleteEntityById(int id);
+    String deleteEntityById(T obj);
 
     // DELETE
     int deleteEntityByQuery(String field, String value, boolean isLikeOperator);
 
     // DELETE
-    int deleteAllEntities();
+    String deleteAllEntities();
 }

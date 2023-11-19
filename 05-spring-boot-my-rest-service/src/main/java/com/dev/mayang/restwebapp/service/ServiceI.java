@@ -8,5 +8,9 @@ public interface ServiceI<T> {
 
     T findById(int id);
 
-    void save(T obj);
+    String save(T obj);
+
+    String deleteById(int id);
+
+    String deleteAll();
 }

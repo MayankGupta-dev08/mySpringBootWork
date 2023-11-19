@@ -27,10 +27,10 @@ public class EmployeeDAO implements DataAccessObject<Employee> {
     }
 
     @Override
-    public void postEntity(Employee employee) {
+    public String postEntity(Employee employee) {
         System.out.println("Saving employee...");
         entityManager.persist(employee);
-        System.out.println(String.format("Saved Employee: %s", employee.toString()));
+        return String.format("Saved Employee: %s", employee.toString());
     }
 
     @Override
@@ -68,8 +68,9 @@ public class EmployeeDAO implements DataAccessObject<Employee> {
     }
 
     @Override
-    public boolean deleteEntityById(int id) {
-        return false;
+    public String deleteEntityById(Employee employee) {
+        entityManager.remove(employee);
+        return String.format("Deleted Employee: %s", employee.toString());
     }
 
     @Override
@@ -78,8 +79,12 @@ public class EmployeeDAO implements DataAccessObject<Employee> {
     }
 
     @Override
-    public int deleteAllEntities() {
-        return 0;
+    public String deleteAllEntities() {
+        String jpaEntity = TABLE_CLASS.getSimpleName();
+        String ql = String.format("DELETE FROM %s", jpaEntity);
+        System.out.println("Deleting all the data ...");
+        int rowsUpdated = entityManager.createQuery(ql).executeUpdate();
+        return String.format("Success!! Deleted rows %s.", rowsUpdated);
     }
 
     private List<Employee> executeQuery(String whereClause, String orderByClause) {

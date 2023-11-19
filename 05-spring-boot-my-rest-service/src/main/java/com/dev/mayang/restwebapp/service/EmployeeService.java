@@ -27,23 +27,37 @@ public class EmployeeService implements ServiceI<Employee> {
     // GET by id
     @Override
     public Employee findById(int id) {
-        Employee employeeWithId = employeeDAO.getEntityById(id);
-        if (employeeWithId != null) {
-            System.out.println("Found the detail: " + employeeWithId.toString());
-            return employeeWithId;
-        }
-        System.out.println(String.format("Could not find Employee with id:%s", id));
-        return null;
+        Employee employee = employeeDAO.getEntityById(id);
+        if (employee == null)
+            throw new RuntimeException(String.format("Invalid operation! Could not find Employee with id=%s.", id));
+
+        System.out.println("Found the detail: " + employee.toString());
+        return employee;
     }
 
     // POST
     @Override
     @Transactional
-    public void save(Employee employee) {
-        if (employee == null) {
-            System.out.println("Invalid operation: Send valid Employee entity!");
-            return;
-        }
-        employeeDAO.postEntity(employee);
+    public String save(Employee employee) {
+        if (employee == null)
+            throw new RuntimeException("Invalid operation: Send valid Employee entity!");
+
+        return employeeDAO.postEntity(employee);
+    }
+
+    // DELETE by id
+    @Override
+    @Transactional
+    public String deleteById(int id) {
+        Employee employeeById = findById(id);
+        System.out.println(String.format("Deleting employee with id: %s...", id));
+        return employeeDAO.deleteEntityById(employeeById);
+    }
+
+    // DELETE all
+    @Override
+    @Transactional
+    public String deleteAll() {
+        return employeeDAO.deleteAllEntities();
     }
 }
