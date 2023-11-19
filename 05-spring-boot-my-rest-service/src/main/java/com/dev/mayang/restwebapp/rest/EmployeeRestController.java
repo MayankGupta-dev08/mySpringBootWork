@@ -15,7 +15,7 @@ public class EmployeeRestController {
 
     private EmployeeDAO employeeDAO;
 
-    @Autowired
+    @Autowired  //quick and dirty: simple constructor injection for EmployeeDAO
     public EmployeeRestController(EmployeeDAO employeeDAO) {
         this.employeeDAO = employeeDAO;
     }
