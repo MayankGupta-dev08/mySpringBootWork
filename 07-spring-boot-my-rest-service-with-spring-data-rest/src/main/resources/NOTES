@@ -21,3 +21,12 @@ spring.data.rest.base-path=/my-api
 3. POST - http://localhost:8080/my-api/employees
 4. PUT - http://localhost:8080/my-api/employees/{employeeId}
 5. DELETE - http://localhost:8080/my-api/employees/{employeeId}
+
+## After adding custom repo path, Updated REST ENDPOINTS
+@RepositoryRestResource(path = "yt-employees")
+
+1. GET - http://localhost:8080/my-api/yt-employees
+2. GET - http://localhost:8080/my-api/yt-employees/{employeeId}
+3. POST - http://localhost:8080/my-api/yt-employees
+4. PUT - http://localhost:8080/my-api/yt-employees/{employeeId}
+5. DELETE - http://localhost:8080/my-api/yt-employees/{employeeId}
