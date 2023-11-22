@@ -1,0 +1,7 @@
+## After adding rest.base-path property and @RepositoryRestResource, Custom REST ENDPOINTS
+
+1. GET - http://localhost:8080/our-api/our-employees
+2. GET - http://localhost:8080/our-api/our-employees/{employeeId}
+3. POST - http://localhost:8080/our-api/our-employees
+4. PUT - http://localhost:8080/our-api/our-employees/{employeeId}
+5. DELETE - http://localhost:8080/our-api/our-employees/{employeeId}
