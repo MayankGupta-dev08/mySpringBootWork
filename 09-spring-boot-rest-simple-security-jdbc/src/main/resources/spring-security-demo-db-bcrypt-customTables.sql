@@ -29,6 +29,8 @@ VALUES
 ('mahesh','{bcrypt}$2a$12$vaiXdLDsL.ddpZ5hLsGrGua570BTlUnpcc7Nr9m6rkLHVki2NUZgq',1),
 ('mayank','{bcrypt}$2a$12$fn9yA66At6I0SMNFxEPkHuXlWgiiNsn4r5a6bYslQVhpeYFVOTaAW',1);
 
+SELECT * FROM employee_directory.our_members;
+
 --
 -- Table structure for table `our_roles`
 --
@@ -53,5 +55,7 @@ VALUES
 ('mayank','ROLE_MANAGER'),
 ('mayank','ROLE_ADMIN');
 
-SELECT * FROM 'employee_directory.our_members';
-SELECT * FROM 'employee_directory.our_roles';
+SELECT * FROM employee_directory.our_roles;
+
+-- SHOWING ALL ENTRIES FOR THE 'employee' TABLE
+SELECT * FROM employee_directory.employee;
