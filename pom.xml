@@ -11,6 +11,13 @@
     <name>mySpringBootWork</name> <!-- Project name -->
     <url>http://maven.apache.org</url> <!-- Project URL -->
 
+    <parent> <!-- This parent will take care of the version of all spring dependencies -->
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.1.5</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
     <!-- Project properties -->
     <properties>
         <java.version>17</java.version> <!-- Java version used for compilation -->
@@ -35,14 +42,16 @@
 
     <!-- Project dependencies -->
     <dependencies>
-        <!-- Dependency on JUnit for testing -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.1</version>
-            <scope>test</scope> <!-- Dependency scope: only used for testing -->
+        <dependency> <!-- MAIN SPRING BOOT WEB DEPENDENCY -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <!-- Other dependencies can be listed here -->
+
+        <dependency> <!-- MAIN SPRING BOOT TEST DEPENDENCY -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <!-- Build configuration -->

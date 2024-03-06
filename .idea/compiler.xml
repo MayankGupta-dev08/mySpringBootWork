@@ -30,6 +30,18 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="learn-spring-core" options="-parameters" />
       <module name="myFirstApp" options="-parameters" />
+      <module name="mySpringBootWork" options="-parameters" />
+      <module name="sb_01-spring-core-framework" options="-parameters" />
+      <module name="sb_02-spring-boot-basic" options="-parameters" />
+      <module name="sb_03-spring-boot-core" options="-parameters" />
+      <module name="sb_04-spring-boot-hibernate-jpa" options="-parameters" />
+      <module name="sb_05-spring-boot-rest-crud" options="-parameters" />
+      <module name="sb_06-spring-boot-my-simple-rest-service" options="-parameters" />
+      <module name="sb_07-spring-boot-my-rest-service-springdata-jpa" options="-parameters" />
+      <module name="sb_08-spring-boot-my-rest-service-springdata-rest" options="-parameters" />
+      <module name="sb_09-spring-boot-rest-simple-security" options="-parameters" />
+      <module name="sb_10-spring-boot-rest-simple-security-jdbc" options="-parameters" />
+      <module name="sb_11-spring-boot-mvc-thymeleaf" options="-parameters" />
     </option>
   </component>
 </project>

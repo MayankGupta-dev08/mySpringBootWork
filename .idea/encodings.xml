@@ -27,5 +27,7 @@
     <file url="file://$PROJECT_DIR$/sb_10-spring-boot-rest-simple-security-jdbc/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/sb_11-spring-boot-mvc-thymeleaf/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/sb_11-spring-boot-mvc-thymeleaf/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
   </component>
 </project>
