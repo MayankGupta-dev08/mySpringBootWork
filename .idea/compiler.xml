@@ -6,10 +6,25 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="myFirstApp" />
+        <module name="sb_09-spring-boot-rest-simple-security" />
         <module name="learn-spring-core" />
+        <module name="myFirstApp" />
+        <module name="sb_03-spring-boot-core" />
+        <module name="sb_08-spring-boot-my-rest-service-springdata-rest" />
+        <module name="sb_04-spring-boot-hibernate-jpa" />
+        <module name="sb_11-spring-boot-mvc-thymeleaf" />
+        <module name="sb_05-spring-boot-rest-crud" />
+        <module name="sb_06-spring-boot-my-simple-rest-service" />
+        <module name="sb_01-spring-core-framework" />
+        <module name="sb_02-spring-boot-basic" />
+        <module name="sb_07-spring-boot-my-rest-service-springdata-jpa" />
+        <module name="sb_10-spring-boot-rest-simple-security-jdbc" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="_01-spring-core-framework" target="1.8" />
+      <module name="spring-boot-my-rest-service-springdata-jpa" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

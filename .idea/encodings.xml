@@ -3,5 +3,29 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/01-spring-boot-overview/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/02-spring-boot-spring-core/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_01-spring-core-framework/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/_01-spring-core-framework/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sb_01-spring-core-framework/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sb_01-spring-core-framework/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sb_02-spring-boot-basic/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sb_02-spring-boot-basic/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sb_03-spring-boot-core/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sb_03-spring-boot-core/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sb_04-spring-boot-hibernate-jpa/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sb_04-spring-boot-hibernate-jpa/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sb_05-spring-boot-rest-crud/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sb_05-spring-boot-rest-crud/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sb_06-spring-boot-my-simple-rest-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sb_06-spring-boot-my-simple-rest-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sb_07-spring-boot-my-rest-service-springdata-jpa/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sb_07-spring-boot-my-rest-service-springdata-jpa/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sb_08-spring-boot-my-rest-service-springdata-rest/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sb_08-spring-boot-my-rest-service-springdata-rest/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sb_09-spring-boot-rest-simple-security/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sb_09-spring-boot-rest-simple-security/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sb_10-spring-boot-rest-simple-security-jdbc/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sb_10-spring-boot-rest-simple-security-jdbc/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sb_11-spring-boot-mvc-thymeleaf/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sb_11-spring-boot-mvc-thymeleaf/src/main/resources" charset="UTF-8" />
   </component>
 </project>

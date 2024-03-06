@@ -9,6 +9,14 @@
       <list>
         <option value="$PROJECT_DIR$/01-spring-boot-overview/pom.xml" />
         <option value="$PROJECT_DIR$/02-spring-boot-spring-core/pom.xml" />
+        <option value="$PROJECT_DIR$/_01-spring-core-framework/pom.xml" />
+        <option value="$PROJECT_DIR$/sb_01-spring-core-framework/pom.xml" />
+        <option value="$PROJECT_DIR$/sb_02-spring-boot-basic/pom.xml" />
+        <option value="$PROJECT_DIR$/sb_03-spring-boot-core/pom.xml" />
+        <option value="$PROJECT_DIR$/sb_03-spring-boot-core/sb_04-spring-boot-hibernate-jpa/pom.xml" />
+        <option value="$PROJECT_DIR$/sb_04-spring-boot-hibernate-jpa/pom.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-my-rest-service-springdata-jpa/pom.xml" />
       </list>
     </option>
   </component>
