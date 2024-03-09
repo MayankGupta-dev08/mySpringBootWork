@@ -8,7 +8,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * Spring IoC Container:
  * - Create and Manage objects and their lifecycle.
  * - Inject Dependencies to our class/es.
- * - BeanFactory, ApplicationContext, ClassPathXmlApplicationContext
+ * - BeanFactory, ApplicationContext, ClassPathXmlApplicationContext, AnnotationConfigApplicationContext
  */
 class EmailApplication {
     public static void main(String... args) {
