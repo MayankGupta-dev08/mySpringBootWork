@@ -19,5 +19,13 @@ class EmailApplication {
         emailClient.sendEmail("my third email!!");
         System.out.println("---------------------------------");
         emailClient.sendEmail("my fourth email...");
+
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
+        //Bean Scope
+        BasicSpellChecker basicSpellChecker1 = applicationContext.getBean("basicSpellChecker", BasicSpellChecker.class);
+        System.out.println(basicSpellChecker1);
+        BasicSpellChecker basicSpellChecker2 = applicationContext.getBean("basicSpellChecker", BasicSpellChecker.class);
+        System.out.println(basicSpellChecker2);
     }
 }

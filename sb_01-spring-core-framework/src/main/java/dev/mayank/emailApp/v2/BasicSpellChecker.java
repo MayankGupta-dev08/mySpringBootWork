@@ -1,8 +1,11 @@
 package dev.mayank.emailApp.v2;
 
 import dev.mayank.emailApp.SpellChecker;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+//@Scope("singleton") //Default
+@Scope("prototype")
 @Component("basicSpellChecker")
 class BasicSpellChecker implements SpellChecker {
     @Override
