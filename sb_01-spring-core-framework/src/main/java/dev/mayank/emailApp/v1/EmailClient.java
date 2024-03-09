@@ -1,9 +1,17 @@
-package dev.mayank;
+package dev.mayank.emailApp.v1;
 
 class EmailClient {
     private SpellChecker spellChecker;
-
+    /* @Autowired
     public EmailClient(SpellChecker spellChecker) {
+        this.spellChecker = spellChecker;
+    } */
+
+    public SpellChecker getSpellChecker() {
+        return spellChecker;
+    }
+
+    public void setSpellChecker(SpellChecker spellChecker) {
         this.spellChecker = spellChecker;
     }
 

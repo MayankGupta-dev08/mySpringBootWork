@@ -1,4 +1,4 @@
-package dev.mayank;
+package dev.mayank.emailApp.v1;
 
 class AdvancedSpellChecker implements SpellChecker {
     @Override

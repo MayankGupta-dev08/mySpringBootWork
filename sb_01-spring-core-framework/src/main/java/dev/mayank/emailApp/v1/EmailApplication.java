@@ -1,4 +1,4 @@
-package dev.mayank;
+package dev.mayank.emailApp.v1;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -12,16 +12,21 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 class EmailApplication {
     public static void main(String... args) {
-        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
+        ApplicationContext applicationContext =
+                getClassPathXmlApplicationContext();
+                // getAnnotationConfigApplicationContext();
         EmailClient emailClient = applicationContext.getBean("emailClient", EmailClient.class);
         sendDummyEmails(emailClient);
     }
 
     @SuppressWarnings("unused")
-    private static void depInjectionUsingClassPathXmlAppContext() {
-        ApplicationContext appContext = new ClassPathXmlApplicationContext("beans.xml");
-        EmailClient emailClient = appContext.getBean("emailClient", EmailClient.class);
-        sendDummyEmails(emailClient);
+    private static AnnotationConfigApplicationContext getAnnotationConfigApplicationContext() {
+        return new AnnotationConfigApplicationContext(AppConfig.class);
+    }
+
+    @SuppressWarnings("unused")
+    private static ClassPathXmlApplicationContext getClassPathXmlApplicationContext() {
+        return new ClassPathXmlApplicationContext("beans.xml");
     }
 
     private static void sendDummyEmails(EmailClient emailClient) {
@@ -30,11 +35,12 @@ class EmailApplication {
         emailClient.sendEmail("my second email...");
     }
 
-    @SuppressWarnings("unused")
     @Deprecated
+    @SuppressWarnings("unused")
     private static void withoutSpringFramework() {
         //restriction --> manually injecting dependency
-        EmailClient legacyEmailClient = new EmailClient(new BasicSpellChecker());
+        EmailClient legacyEmailClient = new EmailClient();
+        legacyEmailClient.setSpellChecker(new BasicSpellChecker());
         sendDummyEmails(legacyEmailClient);
     }
 }

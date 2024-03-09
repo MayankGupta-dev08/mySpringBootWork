@@ -1,13 +1,16 @@
-package dev.mayank;
+package dev.mayank.emailApp.v1;
 
 import org.springframework.context.annotation.Bean;
 
 class AppConfig {
     @Bean(name = "emailClient")
     public EmailClient createEmailClient() {
-        return new EmailClient(createBasicSpellChecker());
+        EmailClient emailClient = new EmailClient();
+        emailClient.setSpellChecker(createBasicSpellChecker());
+        return emailClient;
     }
 
+    @SuppressWarnings("unused")
     @Bean(name = "basicSpellChecker")
     public SpellChecker createBasicSpellChecker() {
         return new BasicSpellChecker();

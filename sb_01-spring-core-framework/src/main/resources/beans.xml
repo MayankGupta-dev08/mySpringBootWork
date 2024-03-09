@@ -4,11 +4,12 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 		https://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="emailClient" class="dev.mayank.EmailClient">
-        <constructor-arg ref="advancedSpellChecker"/>
+    <bean id="emailClient" class="dev.mayank.emailApp.v1.EmailClient">
+        <!-- <constructor-arg ref="advancedSpellChecker"/>-->
+        <property name="spellChecker" ref="advancedSpellChecker"/>
     </bean>
-    <bean id="basicSpellChecker" class="dev.mayank.BasicSpellChecker">
+    <bean id="basicSpellChecker" class="dev.mayank.emailApp.v1.BasicSpellChecker">
     </bean>
-    <bean id="advancedSpellChecker" class="dev.mayank.AdvancedSpellChecker">
+    <bean id="advancedSpellChecker" class="dev.mayank.emailApp.v1.AdvancedSpellChecker">
     </bean>
 </beans>
