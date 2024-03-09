@@ -9,6 +9,7 @@ target/
 .idea/*
 *.iws
 *.iml
+*/*.iml
 *.ipr
 
 ### Eclipse ###
