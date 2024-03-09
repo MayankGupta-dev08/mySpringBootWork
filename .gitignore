@@ -5,14 +5,11 @@ target/
 !**/src/test/**/target/
 
 ### IntelliJ IDEA ###
-.idea/compiler.xml
-.idea/encodings.xml
-.idea/jarRepositories.xml
-.idea/libraries/
-.idea/modules.xml
-.idea/misc.xml
+*/.idea/*
+.idea/*
 *.iws
 *.iml
+*/*.iml
 *.ipr
 
 ### Eclipse ###
