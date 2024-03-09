@@ -8,6 +8,7 @@
     </parent>
 
     <artifactId>sb_02-spring-boot-basic</artifactId>
+    <description>Demo project for Spring Boot</description>
     <packaging>jar</packaging>
 
     <name>sb_02-spring-boot-basic</name>
@@ -18,11 +19,22 @@
     </properties>
 
     <dependencies>
+        <!-- ADDING SUPPORT FOR SPRING BOOT DEVTOOLS -->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.1</version>
-            <scope>test</scope>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+        </dependency>
+
+        <!-- ADDING SUPPORT FOR SPRING BOOT ACTUATOR -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <!-- ADDING SUPPORT FOR SPRING BOOT SECURITY -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
     </dependencies>
 </project>
