@@ -1,5 +1,7 @@
 package dev.mayank.emailApp.v1;
 
+import dev.mayank.emailApp.SpellChecker;
+
 class AdvancedSpellChecker implements SpellChecker {
     @Override
     public boolean checkSpelling(String msg) {

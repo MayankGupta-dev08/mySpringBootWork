@@ -39,6 +39,7 @@ class EmailApplication {
     @SuppressWarnings("unused")
     private static void withoutSpringFramework() {
         //restriction --> manually injecting dependency
+//        EmailClient legacyEmailClient = new EmailClient(new AdvancedSpellChecker());
         EmailClient legacyEmailClient = new EmailClient();
         legacyEmailClient.setSpellChecker(new BasicSpellChecker());
         sendDummyEmails(legacyEmailClient);
