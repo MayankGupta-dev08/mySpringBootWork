@@ -1,4 +1,4 @@
-# Spring Core Notes
+# Spring Boot Core Notes
 
 ----
 

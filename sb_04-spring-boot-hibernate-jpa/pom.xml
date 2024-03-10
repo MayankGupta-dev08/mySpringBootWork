@@ -28,7 +28,6 @@
             <scope>runtime</scope>
         </dependency>
 
-
         <!-- ADDING SUPPORT FOR SPRING BOOT DEVTOOLS -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
