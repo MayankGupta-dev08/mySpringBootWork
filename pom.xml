@@ -21,6 +21,8 @@
     <!-- Project properties -->
     <properties>
         <java.version>17</java.version> <!-- Java version used for compilation -->
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -66,8 +68,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
                 <configuration>
-                    <source>7</source> <!-- Java source compatibility level -->
-                    <target>7</target> <!-- Java target compatibility level -->
+                    <source>17</source> <!-- Java source compatibility level -->
+                    <target>17</target> <!-- Java target compatibility level -->
                 </configuration>
             </plugin>
 
