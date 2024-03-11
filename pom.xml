@@ -1,0 +1,149 @@
+<!-- The root element of a Maven Project Object Model (POM) -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <!-- Project metadata -->
+    <modelVersion>4.0.0</modelVersion> <!-- POM model version -->
+    <groupId>dev.mayank</groupId> <!-- Unique identifier for the project's group -->
+    <artifactId>mySpringBootWork</artifactId> <!-- Unique identifier for the project -->
+    <packaging>pom</packaging> <!-- Packaging type, in this case, a POM project -->
+    <version>1.0-SNAPSHOT</version> <!-- Project version -->
+    <name>mySpringBootWork</name> <!-- Project name -->
+    <url>http://maven.apache.org</url> <!-- Project URL -->
+
+    <parent> <!-- This parent will take care of the version of all spring dependencies -->
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.1.5</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <!-- Project properties -->
+    <properties>
+        <java.version>17</java.version> <!-- Java version used for compilation -->
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <!-- Modules of the project -->
+    <modules>
+        <!-- List of child modules -->
+        <!-- Each module is a separate Maven project with its own POM -->
+        <module>sb_01-spring-core-framework</module>
+        <module>sb_02-spring-boot-basic</module>
+        <module>sb_03-spring-boot-core</module>
+        <module>sb_04-spring-boot-hibernate-jpa</module>
+        <module>sb_05-spring-boot-rest-crud</module>
+        <module>sb_06-spring-boot-my-simple-rest-service</module>
+        <module>sb_07-spring-boot-my-rest-service-springdata-jpa</module>
+        <module>sb_08-spring-boot-my-rest-service-springdata-rest</module>
+        <module>sb_09-spring-boot-rest-simple-security</module>
+        <module>sb_10-spring-boot-rest-simple-security-jdbc</module>
+        <module>sb_11-spring-boot-mvc-thymeleaf</module>
+    </modules>
+
+    <!-- Project dependencies -->
+    <dependencies>
+        <dependency> <!-- MAIN SPRING BOOT WEB DEPENDENCY -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency> <!-- MAIN SPRING BOOT TEST DEPENDENCY -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <!-- Build configuration -->
+    <build>
+        <!-- Maven plugins used during the build process -->
+        <plugins>
+            <!-- Maven Compiler Plugin configuration -->
+            <!-- Configures source and target compatibility levels -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>17</source> <!-- Java source compatibility level -->
+                    <target>17</target> <!-- Java target compatibility level -->
+                </configuration>
+            </plugin>
+
+            <!-- Spring Boot Maven Plugin -->
+            <!-- Provides Spring Boot support during the build -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.6.2</version>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- Maven profiles for build customization -->
+    <profiles>
+        <profile> <!-- Profile for skipping tests -->
+            <id>fast</id> <!-- Profile identifier -->
+            <build>
+                <plugins>
+                    <!-- Maven Surefire Plugin configuration -->
+                    <!-- Skips running tests when activated -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.1.0</version>
+                        <configuration>
+                            <skipTests>true</skipTests>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile> <!-- Profile for running all tests -->
+            <id>all</id>
+            <build>
+                <plugins>
+                    <!-- Maven Surefire Plugin configuration -->
+                    <!-- Enables running all tests when activated -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.1.0</version>
+                        <configuration>
+                            <skipTests>false</skipTests>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile> <!-- Profile for running only tests -->
+            <id>test</id>
+            <build>
+                <plugins>
+                    <!-- Maven Surefire Plugin configuration -->
+                    <!-- Defines executions to run tests -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.1.0</version>
+                        <executions>
+                            <execution>
+                                <id>run-tests</id>
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>test</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+</project>
