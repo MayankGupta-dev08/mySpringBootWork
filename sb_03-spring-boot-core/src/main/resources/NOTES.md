@@ -97,7 +97,7 @@
       - Spring Boot auto-configuration attempts to automatically configure the Spring application by guessing the required beans based on the classpath and other configurations.
 
 5. **@RestController**:
-     - This annotation is used to mark a class as a controller in a Spring MVC application. It combines the `@Controller` and `@ResponseBody` annotations.
+     - This annotation is used to mark a class as a controller in a [Spring MVC](https://github.com/MayankGupta-dev08/mySpringBootWork/edit/master/sb_03-spring-boot-core/src/main/resources/NOTES.md#spring-mvc-model-view-controller) application. It combines the `@Controller` and `@ResponseBody` annotations.
      - `@Controller` indicates that the class serves as a controller for handling HTTP requests.
      - `@ResponseBody` tells Spring MVC to serialize the return value of the methods in the controller directly to the HTTP response body.
 
@@ -108,3 +108,36 @@
      - `@PutMapping` maps HTTP PUT requests.
      - `@DeleteMapping` maps HTTP DELETE requests.
      - These annotations help define the mapping between URLs and controller methods in a RESTful API.
+
+### Spring MVC (Model-View-Controller)
+
+Spring MVC is a framework within the larger Spring Framework for building web applications in Java. It follows the MVC (Model-View-Controller) architectural pattern, which separates an application into three main logical components:
+
+#### Components:
+
+1. **Model**: Represents the application's data and business logic. In Spring MVC, the model typically consists of POJOs (Plain Old Java Objects) or entities that encapsulate the data and behavior of the application.
+
+2. **View**: Represents the presentation layer of the application. It is responsible for rendering the model data to the user interface. In Spring MVC, views are often implemented using technologies like JSP (JavaServer Pages), Thymeleaf, or FreeMarker.
+
+3. **Controller**: Acts as an intermediary between the model and the view. It receives user input, processes it, and updates the model accordingly. Controllers in Spring MVC are typically implemented as Java classes annotated with `@Controller` or `@RestController` annotations, and they handle HTTP requests by defining methods annotated with `@RequestMapping` or other specialized request mapping annotations.
+
+#### Features:
+
+- **Request Mapping**: Define how incoming requests are mapped to controller methods.
+- **Data Binding**: Automatically bind incoming request data to Java objects.
+- **Validation**: Support for validating input data using annotations or custom validators.
+- **Exception Handling**: Handle exceptions gracefully and customize error responses.
+- **View Resolution**: Flexible view resolution mechanisms to support various view technologies.
+- **Interceptors**: Intercept incoming requests and outgoing responses for preprocessing or post-processing.
+- **Internationalization**: Built-in support for internationalization and localization.
+- **File Upload**: Convenient handling of file uploads in web applications.
+- **Security Integration**: Integration with Spring Security for handling authentication and authorization.
+
+#### Advantages:
+
+- **Modularity**: Separation of concerns leads to cleaner and more maintainable code.
+- **Testability**: Components can be easily unit tested in isolation.
+- **Flexibility**: Support for various view technologies and customization options.
+- **Integration**: Seamless integration with other Spring modules and third-party libraries.
+
+Spring MVC provides a robust and flexible framework for building web applications in Java, making it a popular choice among developers for enterprise-grade projects.
