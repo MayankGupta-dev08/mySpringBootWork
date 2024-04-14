@@ -2,6 +2,9 @@ package dev.mayank.restApp.exception;
 
 import java.sql.Timestamp;
 
+/**
+ * Our ErrorResponse class (POJO) for StudentNotFoundException
+ */
 public class StudentErrorResponse {
 
     private int status;

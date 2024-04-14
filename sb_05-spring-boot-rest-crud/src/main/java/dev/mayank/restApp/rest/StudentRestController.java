@@ -12,7 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/swagger")
+@SuppressWarnings("unused")
+@RequestMapping("/swagger") // http://localhost:8080/swagger/
 public class StudentRestController {
 
     private List<Student> theStudents;

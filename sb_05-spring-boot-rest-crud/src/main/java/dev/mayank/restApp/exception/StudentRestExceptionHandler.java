@@ -7,8 +7,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.sql.Timestamp;
 
-// @ExceptionHandler for handling student exception
+/**
+ * @ExceptionHandler for handling StudentNotFoundException whose methods @returns `ResponseEntity<StudentErrorResponse>`.
+ */
 @ControllerAdvice
+@SuppressWarnings("unused")
 public class StudentRestExceptionHandler {
 
     @ExceptionHandler
