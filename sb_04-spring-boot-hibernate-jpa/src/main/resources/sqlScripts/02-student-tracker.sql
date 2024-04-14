@@ -15,3 +15,4 @@ CREATE TABLE `student` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
+SELECT* FROM student_tracker.student;

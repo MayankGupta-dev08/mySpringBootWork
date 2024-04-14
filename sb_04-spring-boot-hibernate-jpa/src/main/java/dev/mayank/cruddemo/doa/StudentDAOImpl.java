@@ -12,6 +12,7 @@ import java.util.stream.Stream;
 
 /**
  * All JPQL (Jakarta Persistence API Query Language) is based on Entity Name and Entity fields.
+ * EntityManager is a JPA interface, whose implementation is handled by Hibernate in this case.
  */
 @Repository
 public class StudentDAOImpl implements DataAccessObjectI<Student> {

@@ -3,6 +3,9 @@ package dev.mayank.cruddemo.entity;
 
 import jakarta.persistence.*;
 
+/**
+ * @Entity: This is the java class mapped to the DB table
+ */
 @Entity
 @Table(name = "student")
 public class Student {

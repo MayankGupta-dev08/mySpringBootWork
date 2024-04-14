@@ -19,7 +19,12 @@ class CrudDemoApplication {
         SpringApplication.run(CrudDemoApplication.class, args);
     }
 
+    /**
+     * For our CLI App; CommandLineRunner from the SpringBoot Framework will get executed once sspring beans have been loaded.
+     * It is also getting the bean for StudentDAOImpl by Dependency Injection.
+     */
     @Bean
+    @SuppressWarnings("unused")
     public CommandLineRunner commandLineRunner(StudentDAOImpl studentDAO) {
         return runner -> {
             System.out.println("Command Line Started!!");
@@ -30,8 +35,8 @@ class CrudDemoApplication {
     private void performCRUDOperations(StudentDAOImpl studentDAO) {
         createStudentsAndStoreInDB(studentDAO);
         retrieveStudentEntitiesFromDB(studentDAO);
-        updateSomeEntitiesFromDBUsingJava(studentDAO);
-        deleteSomeEntitiesFromDBUsingJava(studentDAO);
+        updateSomeEntitiesFromDB(studentDAO);
+        deleteSomeEntitiesFromDB(studentDAO);
     }
 
     private void createStudentsAndStoreInDB(StudentDAOImpl studentDAO) {
@@ -86,7 +91,7 @@ class CrudDemoApplication {
         System.out.println("------------------------------------------------------------------------------------------");
     }
 
-    private void updateSomeEntitiesFromDBUsingJava(StudentDAOImpl studentDAO) {
+    private void updateSomeEntitiesFromDB(StudentDAOImpl studentDAO) {
         boolean resp = studentDAO.updateFieldOfEntityById(1, "firstName", "Leonel");
         System.out.println("------------------------------------------------------------------------------------------");
 
@@ -99,7 +104,7 @@ class CrudDemoApplication {
         System.out.println("------------------------------------------------------------------------------------------");
     }
 
-    private void deleteSomeEntitiesFromDBUsingJava(StudentDAOImpl studentDAO) {
+    private void deleteSomeEntitiesFromDB(StudentDAOImpl studentDAO) {
         studentDAO.deleteEntityById(4);
         System.out.println("------------------------------------------------------------------------------------------");
         studentDAO.deleteEntityByQuery("lastname", "Benzema", false);
