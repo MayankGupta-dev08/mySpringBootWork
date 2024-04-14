@@ -12,20 +12,25 @@ import java.util.stream.Stream;
 
 /**
  * All JPQL (Jakarta Persistence API Query Language) is based on Entity Name and Entity fields.
+ * EntityManager is a JPA interface, whose implementation is handled by Hibernate in this case.
+ * Our JPA EntityManager needs a DataSource, which defines the DB Connection info.
+ * Both of them are automatically created by SpringBoot. We will autowire/inject our EM into StudentDAO class.
  */
-@Repository
-public class StudentDAOImpl implements DataAccessObjectI<Student> {
+@Repository //Specialised Annotation for DAO Class
+public class StudentDAO implements DataAccessObjectI<Student> {
 
-    private EntityManager entityManager;
     private static final Class<Student> MY_CLASS_FOR_TABLE = Student.class;
+    private EntityManager entityManager;
 
     @Autowired
     @SuppressWarnings(value = "unused")
-    public StudentDAOImpl(EntityManager entityManager) {
+    public StudentDAO(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
-    // POST
+    /**
+     * @POST
+     */
     @Override
     @Transactional
     public void postEntity(Student student) {
@@ -33,25 +38,27 @@ public class StudentDAOImpl implements DataAccessObjectI<Student> {
         System.out.println("Saved the detail of: " + student.toString());
     }
 
-
     /**
-     * Since Id is a Primary Key we can use find() and it will always return result/null.
+     * @GET by ID. Since ID is a Primary Key, we can use find(), and it will always return result/null.
      */
-    // GET
     @Override
     public Student getEntityById(int id) {
         System.out.println("Finding... the details for the id: " + id);
         return entityManager.find(MY_CLASS_FOR_TABLE, id);
     }
 
-    // GET
+    /**
+     * @GET all
+     */
     @Override
     public List<Student> getAllEntities() {
         System.out.println("Fetching all the entries from the Student Table....");
         return executeQuery("", "");
     }
 
-    // GET
+    /**
+     * @GET by field
+     */
     @Override
     public List<Student> getEntitiesByQueryingField(String field, String value, boolean isLike, String orderByField, boolean isAsc) {
         field = getExactFieldName(field);
@@ -64,7 +71,9 @@ public class StudentDAOImpl implements DataAccessObjectI<Student> {
         return executeQuery(whereClause, orderByClause);
     }
 
-    // PUT
+    /**
+     * @PUT
+     */
     @Override
     @Transactional
     public boolean updateFieldOfEntityById(int id, String field, String value) {
@@ -92,7 +101,9 @@ public class StudentDAOImpl implements DataAccessObjectI<Student> {
         return false;
     }
 
-    // PUT
+    /**
+     * @PUT
+     */
     @Override
     @Transactional
     public int updateAllEntitiesByQuery(String field, String value) {
@@ -100,9 +111,10 @@ public class StudentDAOImpl implements DataAccessObjectI<Student> {
                 .anyMatch(f -> f.equalsIgnoreCase(field))) {
             String fieldName = getExactFieldName(field);
             String jpaEntity = MY_CLASS_FOR_TABLE.getSimpleName();
-            String ql = String.format("UPDATE %s SET %s = '%s'", jpaEntity, fieldName, value);
-            System.out.println("Updating... for query=" + ql + ".");
-            int rowsUpdated = entityManager.createNativeQuery(ql, MY_CLASS_FOR_TABLE).executeUpdate();
+            String queryString = String.format("UPDATE %s SET %s = '%s'", jpaEntity, fieldName, value);
+            System.out.println("Updating... for query=" + queryString + ".");
+
+            int rowsUpdated = entityManager.createNativeQuery(queryString, MY_CLASS_FOR_TABLE).executeUpdate();
             System.out.println("Success: Updated rows " + rowsUpdated);
             return rowsUpdated;
         }
@@ -110,7 +122,9 @@ public class StudentDAOImpl implements DataAccessObjectI<Student> {
         return -1;
     }
 
-    // DELETE
+    /**
+     * @DELETE By ID
+     */
     @Override
     @Transactional
     public boolean deleteEntityById(int id) {
@@ -127,7 +141,9 @@ public class StudentDAOImpl implements DataAccessObjectI<Student> {
         }
     }
 
-    // DELETE
+    /**
+     * @DELETE By FIELD
+     */
     @Override
     @Transactional
     public int deleteEntityByQuery(String field, String value, boolean isLike) {
@@ -135,9 +151,10 @@ public class StudentDAOImpl implements DataAccessObjectI<Student> {
                 .anyMatch(f -> f.equalsIgnoreCase(field))) {
             String fieldName = getExactFieldName(field);
             String jpaEntity = MY_CLASS_FOR_TABLE.getSimpleName();
-            String ql = String.format("DELETE FROM %s WHERE %s %s '%s'", jpaEntity, fieldName, isLike ? "LIKE" : "=", value);
-            System.out.println("Deleting... for query=" + ql + ".");
-            int rowsUpdated = entityManager.createQuery(ql).executeUpdate();
+            String queryString = String.format("DELETE FROM %s WHERE %s %s '%s'", jpaEntity, fieldName, isLike ? "LIKE" : "=", value);
+            System.out.println("Deleting... for query=" + queryString + ".");
+
+            int rowsUpdated = entityManager.createQuery(queryString).executeUpdate();
             System.out.println("Success: Deleted rows " + rowsUpdated);
             return rowsUpdated;
         }
@@ -145,7 +162,9 @@ public class StudentDAOImpl implements DataAccessObjectI<Student> {
         return -1;
     }
 
-    // DELETE
+    /**
+     * @DELETE ALL
+     */
     @Override
     @Transactional
     public int deleteAllEntities() {
@@ -157,19 +176,23 @@ public class StudentDAOImpl implements DataAccessObjectI<Student> {
         return rowsUpdated;
     }
 
-    private List<Student> executeQuery(String whereClause, String orderByClause) {
-        // jpaEntity would not be the name of the db_table but entity className
-        String jpaEntity = MY_CLASS_FOR_TABLE.getSimpleName();
-        String ql = String.format("FROM %s %s %s", jpaEntity, whereClause, orderByClause);
-        // createQuery is used for SELECT queries, so we don't need to mention SELECT again
-        TypedQuery<Student> query = entityManager.createQuery(ql, MY_CLASS_FOR_TABLE);
-        return query.getResultList();
-    }
-
-    private static String getExactFieldName(String field) {
+    private String getExactFieldName(String field) {
         return Stream.of("firstName", "lastName", "email")
                 .filter(f -> f.equalsIgnoreCase(field))
                 .findFirst()
                 .orElse("null");
+    }
+
+    /**
+     * All JPQL syntax is based on the entity name and entity field and not the names used in DB
+     */
+    private List<Student> executeQuery(String whereClause, String orderByClause) {
+        // jpaEntity would not be the name of the db_table but entity className
+        String jpaEntity = MY_CLASS_FOR_TABLE.getSimpleName();
+        String queryString = String.format("FROM %s %s %s", jpaEntity, whereClause, orderByClause);
+
+        // createQuery is used for SELECT queries, so we don't need to mention SELECT again
+        TypedQuery<Student> query = entityManager.createQuery(queryString, MY_CLASS_FOR_TABLE);
+        return query.getResultList();
     }
 }

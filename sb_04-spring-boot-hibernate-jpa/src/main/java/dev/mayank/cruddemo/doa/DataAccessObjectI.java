@@ -3,10 +3,8 @@ package dev.mayank.cruddemo.doa;
 import java.util.List;
 
 public interface DataAccessObjectI<T> {
-
     // POST
     void postEntity(T obj);
-
 
     // GET
     T getEntityById(int id);
@@ -17,13 +15,11 @@ public interface DataAccessObjectI<T> {
     // GET
     List<T> getEntitiesByQueryingField(String field, String value, boolean isLike, String orderByField, boolean isAsc);
 
-
     // PUT
     boolean updateFieldOfEntityById(int id, String field, String value);
 
     // PUT
     int updateAllEntitiesByQuery(String field, String value);
-
 
     // DELETE
     boolean deleteEntityById(int id);

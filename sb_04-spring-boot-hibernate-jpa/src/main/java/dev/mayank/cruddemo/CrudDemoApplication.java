@@ -1,6 +1,6 @@
 package dev.mayank.cruddemo;
 
-import dev.mayank.cruddemo.doa.StudentDAOImpl;
+import dev.mayank.cruddemo.doa.StudentDAO;
 import dev.mayank.cruddemo.entity.Student;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -9,6 +9,9 @@ import org.springframework.context.annotation.Bean;
 
 import java.util.List;
 
+/**
+ * Creating a SpringBoot CLI App (Command Line App)
+ */
 @SpringBootApplication
 class CrudDemoApplication {
 
@@ -16,27 +19,42 @@ class CrudDemoApplication {
         SpringApplication.run(CrudDemoApplication.class, args);
     }
 
-    private static void createSomeStudentsAndSaveInDBUsingJava(StudentDAOImpl studentDAO) {
-        //1. Create some student details
-        Student student1 = new Student("Leo", "Messi", "leo.messi@arg.com");
-        Student student2 = new Student("Karim", "Benzema", "karim.benzema@frc.com");
-        Student student3 = new Student("Kevin", "De Bruyne", "kevin.debruyne@blg.com");
-        Student student4 = new Student("Christiano", "Ronaldo", "chris.ronaldo@pgl.com");
-        Student student5 = new Student("Erling", "Haaland", "erling.haaland@nrw.com");
-        Student student6 = new Student("Angel", "Di Maria", "angel.dimaria@arg.com");
+    /**
+     * For our CLI App; CommandLineRunner from the SpringBoot Framework will get executed once sspring beans have been loaded.
+     * It is also getting the bean for StudentDAO by Dependency Injection.
+     */
+    @Bean
+    @SuppressWarnings("unused")
+    public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
+        return runner -> {
+            System.out.println("Command Line Started!!");
+            performCRUDOperations(studentDAO);
+        };
+    }
 
-        //2. Saving the student details
+    private void performCRUDOperations(StudentDAO studentDAO) {
+        createStudentsAndStoreInDB(studentDAO);
+        retrieveStudentEntitiesFromDB(studentDAO);
+        updateSomeEntitiesFromDB(studentDAO);
+        deleteSomeEntitiesFromDB(studentDAO);
+    }
+
+    private void createStudentsAndStoreInDB(StudentDAO studentDAO) {
+        List<Student> students = List.of(
+                new Student("Leo", "Messi", "leo.messi@arg.com"),
+                new Student("Karim", "Benzema", "karim.benzema@frc.com"),
+                new Student("Kevin", "De Bruyne", "kevin.debruyne@blg.com"),
+                new Student("Christiano", "Ronaldo", "chris.ronaldo@pgl.com"),
+                new Student("Erling", "Haaland", "erling.haaland@nrw.com"),
+                new Student("Angel", "Di Maria", "angel.dimaria@arg.com")
+        );
+
         System.out.println("Saving students details");
-        studentDAO.postEntity(student1);
-        studentDAO.postEntity(student2);
-        studentDAO.postEntity(student3);
-        studentDAO.postEntity(student4);
-        studentDAO.postEntity(student5);
-        studentDAO.postEntity(student6);
+        students.forEach(studentDAO::postEntity);
         System.out.println("------------------------------------------------------------------------------------------");
     }
 
-    private static void retrieveTheEntitiesFromDBUsingJava(StudentDAOImpl studentDAO) {
+    private void retrieveStudentEntitiesFromDB(StudentDAO studentDAO) {
         //3. Get a student detail using id
         int id = 1;
         Student response = studentDAO.getEntityById(id);
@@ -44,7 +62,7 @@ class CrudDemoApplication {
         else System.out.println("Could not find the student for the id: " + id);
         System.out.println("------------------------------------------------------------------------------------------");
 
-        //4. Get all students details
+        //4. Get details for all students
         List<Student> studentList = studentDAO.getAllEntities();
         if (!studentList.isEmpty()) {
             System.out.println("List of all the students are:");
@@ -73,22 +91,7 @@ class CrudDemoApplication {
         System.out.println("------------------------------------------------------------------------------------------");
     }
 
-    @Bean
-    public CommandLineRunner commandLineRunner(StudentDAOImpl studentDAO) {
-        return runner -> {
-            System.out.println("Command Line Started!!");
-            processingData(studentDAO);
-        };
-    }
-
-    private void processingData(StudentDAOImpl studentDAO) {
-        createSomeStudentsAndSaveInDBUsingJava(studentDAO);
-        retrieveTheEntitiesFromDBUsingJava(studentDAO);
-        updateSomeEntitiesFromDBUsingJava(studentDAO);
-        deleteSomeEntitiesFromDBUsingJava(studentDAO);
-    }
-
-    private void updateSomeEntitiesFromDBUsingJava(StudentDAOImpl studentDAO) {
+    private void updateSomeEntitiesFromDB(StudentDAO studentDAO) {
         boolean resp = studentDAO.updateFieldOfEntityById(1, "firstName", "Leonel");
         System.out.println("------------------------------------------------------------------------------------------");
 
@@ -101,7 +104,7 @@ class CrudDemoApplication {
         System.out.println("------------------------------------------------------------------------------------------");
     }
 
-    private void deleteSomeEntitiesFromDBUsingJava(StudentDAOImpl studentDAO) {
+    private void deleteSomeEntitiesFromDB(StudentDAO studentDAO) {
         studentDAO.deleteEntityById(4);
         System.out.println("------------------------------------------------------------------------------------------");
         studentDAO.deleteEntityByQuery("lastname", "Benzema", false);

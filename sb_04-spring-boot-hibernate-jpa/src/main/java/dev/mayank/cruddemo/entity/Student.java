@@ -3,11 +3,14 @@ package dev.mayank.cruddemo.entity;
 
 import jakarta.persistence.*;
 
+/**
+ * @Entity: This is the java class mapped to the DB table
+ */
 @Entity
 @Table(name = "student")
 public class Student {
 
-    @Id
+    @Id //PrimaryKey
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
@@ -21,6 +24,7 @@ public class Student {
     @Column(name = "email")
     private String email;
 
+    // This constructor is a mandatory due to @Entity
     public Student() {
     }
 
