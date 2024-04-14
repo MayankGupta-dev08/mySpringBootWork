@@ -11,6 +11,7 @@
     <packaging>jar</packaging>
 
     <name>sb_05-spring-boot-rest-crud</name>
+    <description>Demo project for Rest Service using Spring Boot</description>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -18,5 +19,11 @@
     </properties>
 
     <dependencies>
+        <dependency> <!-- ADDING SUPPORT FOR SPRING BOOT DEVTOOLS -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
     </dependencies>
 </project>
