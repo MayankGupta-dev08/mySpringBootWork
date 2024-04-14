@@ -56,3 +56,48 @@
 - **Hibernate Documentation**: [Hibernate Website](https://www.hibernate.org/orm)
 - **JPA Implementations**: Besides Hibernate (most popular and default implementation), other implementations of JPA include EclipseLink, Apache OpenJPA.
 - **Benefits of JPA**: Standardizes ORM operations, enabling portability across different ORM implementations and promoting flexible, maintainable code.
+
+## CommandLineRunner in Spring Boot
+
+The `CommandLineRunner` interface in Spring Boot provides a way to execute custom logic or tasks once the Spring application context has been fully initialized. It allows developers to run code at application startup, typically to perform tasks such as initialization, setup, or data loading.
+
+### Interface Definition
+
+The `CommandLineRunner` interface is defined as follows:
+
+```java
+@FunctionalInterface
+public interface CommandLineRunner {
+  void run(String... args) throws Exception;
+}
+```
+
+- It contains a single method `run(String... args)` that needs to be implemented. This method is invoked by Spring Boot once the application context is ready, and it accepts command-line arguments as parameters.
+
+### Usage
+
+To use CommandLineRunner:
+
+- Define a bean of type CommandLineRunner in your Spring Boot application context.
+- Implement the run method of the CommandLineRunner interface to execute the desired tasks or logic.
+
+### Customization
+
+You can create custom implementations of the CommandLineRunner interface to execute specific tasks during application startup. This allows for flexibility and customization according to the requirements of your application.
+
+### Exception Handling
+
+Any exceptions thrown during the execution of the run method will be caught by Spring Boot and logged. You can handle exceptions within the run method if necessary.
+
+### Typical Use Cases
+
+Some typical use cases for CommandLineRunner include:
+- Initializing database data or performing database migrations.
+- Loading configuration from external sources.
+- Performing health checks or system diagnostics.
+- Starting background tasks such as schedulers or timers.
+
+### Multiple Runners
+
+- You can define multiple CommandLineRunner beans in your application context. Spring Boot will execute them in the order specified by their @Order annotation or based on the Ordered interface.
+- In the provided code example, the CrudDemoApplication class defines a CommandLineRunner bean using the @Bean annotation. The commandLineRunner method implements the run method, where various CRUD operations are performed on the database using the StudentDAOImpl instance.
