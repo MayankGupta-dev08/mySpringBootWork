@@ -20,7 +20,7 @@
 ### Dependency Injection
 - **Constructor Injection**: preferred for required dependencies
 - **Setter Injection**: preferred for optional dependencies (If a dependency is not provided, then ur app could provide a reasonable default logic.)
-- **Field Injection**: not preferred, makes the code harder for unit tests (maybe used in legacy projects). It's accomplished by Java Reflection, and we can do this even on private fields.
+- **Field Injection**: not preferred, makes the code harder for unit tests (could be useful with legacy codebases). It's achieved by Java Reflection, and we can do this even on private fields.
 
 
 ### Autowiring in Spring
