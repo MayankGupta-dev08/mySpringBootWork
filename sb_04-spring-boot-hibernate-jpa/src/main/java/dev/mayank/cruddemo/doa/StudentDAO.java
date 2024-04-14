@@ -111,9 +111,10 @@ public class StudentDAO implements DataAccessObjectI<Student> {
                 .anyMatch(f -> f.equalsIgnoreCase(field))) {
             String fieldName = getExactFieldName(field);
             String jpaEntity = MY_CLASS_FOR_TABLE.getSimpleName();
-            String ql = String.format("UPDATE %s SET %s = '%s'", jpaEntity, fieldName, value);
-            System.out.println("Updating... for query=" + ql + ".");
-            int rowsUpdated = entityManager.createNativeQuery(ql, MY_CLASS_FOR_TABLE).executeUpdate();
+            String queryString = String.format("UPDATE %s SET %s = '%s'", jpaEntity, fieldName, value);
+            System.out.println("Updating... for query=" + queryString + ".");
+
+            int rowsUpdated = entityManager.createNativeQuery(queryString, MY_CLASS_FOR_TABLE).executeUpdate();
             System.out.println("Success: Updated rows " + rowsUpdated);
             return rowsUpdated;
         }
@@ -150,9 +151,10 @@ public class StudentDAO implements DataAccessObjectI<Student> {
                 .anyMatch(f -> f.equalsIgnoreCase(field))) {
             String fieldName = getExactFieldName(field);
             String jpaEntity = MY_CLASS_FOR_TABLE.getSimpleName();
-            String ql = String.format("DELETE FROM %s WHERE %s %s '%s'", jpaEntity, fieldName, isLike ? "LIKE" : "=", value);
-            System.out.println("Deleting... for query=" + ql + ".");
-            int rowsUpdated = entityManager.createQuery(ql).executeUpdate();
+            String queryString = String.format("DELETE FROM %s WHERE %s %s '%s'", jpaEntity, fieldName, isLike ? "LIKE" : "=", value);
+            System.out.println("Deleting... for query=" + queryString + ".");
+
+            int rowsUpdated = entityManager.createQuery(queryString).executeUpdate();
             System.out.println("Success: Deleted rows " + rowsUpdated);
             return rowsUpdated;
         }
