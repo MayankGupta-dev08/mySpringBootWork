@@ -13,20 +13,24 @@ import java.util.stream.Stream;
 /**
  * All JPQL (Jakarta Persistence API Query Language) is based on Entity Name and Entity fields.
  * EntityManager is a JPA interface, whose implementation is handled by Hibernate in this case.
+ * Our JPA EntityManager needs a DataSource, which defines the DB Connection info.
+ * Both of them are automatically created by SpringBoot. We will autowire/inject our EM into StudentDAO class.
  */
 @Repository
-public class StudentDAOImpl implements DataAccessObjectI<Student> {
+public class StudentDAO implements DataAccessObjectI<Student> {
 
-    private EntityManager entityManager;
     private static final Class<Student> MY_CLASS_FOR_TABLE = Student.class;
+    private EntityManager entityManager;
 
     @Autowired
     @SuppressWarnings(value = "unused")
-    public StudentDAOImpl(EntityManager entityManager) {
+    public StudentDAO(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
-    // POST
+    /**
+     * @POST
+     */
     @Override
     @Transactional
     public void postEntity(Student student) {
@@ -34,25 +38,27 @@ public class StudentDAOImpl implements DataAccessObjectI<Student> {
         System.out.println("Saved the detail of: " + student.toString());
     }
 
-
     /**
-     * Since Id is a Primary Key we can use find() and it will always return result/null.
+     * @GET by ID. Since ID is a Primary Key, we can use find(), and it will always return result/null.
      */
-    // GET
     @Override
     public Student getEntityById(int id) {
         System.out.println("Finding... the details for the id: " + id);
         return entityManager.find(MY_CLASS_FOR_TABLE, id);
     }
 
-    // GET
+    /**
+     * @GET all
+     */
     @Override
     public List<Student> getAllEntities() {
         System.out.println("Fetching all the entries from the Student Table....");
         return executeQuery("", "");
     }
 
-    // GET
+    /**
+     * @GET by field
+     */
     @Override
     public List<Student> getEntitiesByQueryingField(String field, String value, boolean isLike, String orderByField, boolean isAsc) {
         field = getExactFieldName(field);
@@ -65,7 +71,9 @@ public class StudentDAOImpl implements DataAccessObjectI<Student> {
         return executeQuery(whereClause, orderByClause);
     }
 
-    // PUT
+    /**
+     * @PUT
+     */
     @Override
     @Transactional
     public boolean updateFieldOfEntityById(int id, String field, String value) {
@@ -93,7 +101,9 @@ public class StudentDAOImpl implements DataAccessObjectI<Student> {
         return false;
     }
 
-    // PUT
+    /**
+     * @PUT
+     */
     @Override
     @Transactional
     public int updateAllEntitiesByQuery(String field, String value) {
@@ -111,7 +121,9 @@ public class StudentDAOImpl implements DataAccessObjectI<Student> {
         return -1;
     }
 
-    // DELETE
+    /**
+     * @DELETE By ID
+     */
     @Override
     @Transactional
     public boolean deleteEntityById(int id) {
@@ -128,7 +140,9 @@ public class StudentDAOImpl implements DataAccessObjectI<Student> {
         }
     }
 
-    // DELETE
+    /**
+     * @DELETE By FIELD
+     */
     @Override
     @Transactional
     public int deleteEntityByQuery(String field, String value, boolean isLike) {
@@ -146,7 +160,9 @@ public class StudentDAOImpl implements DataAccessObjectI<Student> {
         return -1;
     }
 
-    // DELETE
+    /**
+     * @DELETE ALL
+     */
     @Override
     @Transactional
     public int deleteAllEntities() {
@@ -158,6 +174,13 @@ public class StudentDAOImpl implements DataAccessObjectI<Student> {
         return rowsUpdated;
     }
 
+    private String getExactFieldName(String field) {
+        return Stream.of("firstName", "lastName", "email")
+                .filter(f -> f.equalsIgnoreCase(field))
+                .findFirst()
+                .orElse("null");
+    }
+
     private List<Student> executeQuery(String whereClause, String orderByClause) {
         // jpaEntity would not be the name of the db_table but entity className
         String jpaEntity = MY_CLASS_FOR_TABLE.getSimpleName();
@@ -165,12 +188,5 @@ public class StudentDAOImpl implements DataAccessObjectI<Student> {
         // createQuery is used for SELECT queries, so we don't need to mention SELECT again
         TypedQuery<Student> query = entityManager.createQuery(ql, MY_CLASS_FOR_TABLE);
         return query.getResultList();
-    }
-
-    private static String getExactFieldName(String field) {
-        return Stream.of("firstName", "lastName", "email")
-                .filter(f -> f.equalsIgnoreCase(field))
-                .findFirst()
-                .orElse("null");
     }
 }

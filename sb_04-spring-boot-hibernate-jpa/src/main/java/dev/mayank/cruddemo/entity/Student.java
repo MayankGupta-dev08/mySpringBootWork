@@ -10,7 +10,7 @@ import jakarta.persistence.*;
 @Table(name = "student")
 public class Student {
 
-    @Id
+    @Id //PrimaryKey
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
@@ -24,6 +24,7 @@ public class Student {
     @Column(name = "email")
     private String email;
 
+    // This constructor is a mandatory due to @Entity
     public Student() {
     }
 

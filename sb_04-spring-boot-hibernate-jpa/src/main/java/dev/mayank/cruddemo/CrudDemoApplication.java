@@ -1,6 +1,6 @@
 package dev.mayank.cruddemo;
 
-import dev.mayank.cruddemo.doa.StudentDAOImpl;
+import dev.mayank.cruddemo.doa.StudentDAO;
 import dev.mayank.cruddemo.entity.Student;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -21,25 +21,25 @@ class CrudDemoApplication {
 
     /**
      * For our CLI App; CommandLineRunner from the SpringBoot Framework will get executed once sspring beans have been loaded.
-     * It is also getting the bean for StudentDAOImpl by Dependency Injection.
+     * It is also getting the bean for StudentDAO by Dependency Injection.
      */
     @Bean
     @SuppressWarnings("unused")
-    public CommandLineRunner commandLineRunner(StudentDAOImpl studentDAO) {
+    public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
         return runner -> {
             System.out.println("Command Line Started!!");
             performCRUDOperations(studentDAO);
         };
     }
 
-    private void performCRUDOperations(StudentDAOImpl studentDAO) {
+    private void performCRUDOperations(StudentDAO studentDAO) {
         createStudentsAndStoreInDB(studentDAO);
         retrieveStudentEntitiesFromDB(studentDAO);
         updateSomeEntitiesFromDB(studentDAO);
         deleteSomeEntitiesFromDB(studentDAO);
     }
 
-    private void createStudentsAndStoreInDB(StudentDAOImpl studentDAO) {
+    private void createStudentsAndStoreInDB(StudentDAO studentDAO) {
         List<Student> students = List.of(
                 new Student("Leo", "Messi", "leo.messi@arg.com"),
                 new Student("Karim", "Benzema", "karim.benzema@frc.com"),
@@ -54,7 +54,7 @@ class CrudDemoApplication {
         System.out.println("------------------------------------------------------------------------------------------");
     }
 
-    private void retrieveStudentEntitiesFromDB(StudentDAOImpl studentDAO) {
+    private void retrieveStudentEntitiesFromDB(StudentDAO studentDAO) {
         //3. Get a student detail using id
         int id = 1;
         Student response = studentDAO.getEntityById(id);
@@ -91,7 +91,7 @@ class CrudDemoApplication {
         System.out.println("------------------------------------------------------------------------------------------");
     }
 
-    private void updateSomeEntitiesFromDB(StudentDAOImpl studentDAO) {
+    private void updateSomeEntitiesFromDB(StudentDAO studentDAO) {
         boolean resp = studentDAO.updateFieldOfEntityById(1, "firstName", "Leonel");
         System.out.println("------------------------------------------------------------------------------------------");
 
@@ -104,7 +104,7 @@ class CrudDemoApplication {
         System.out.println("------------------------------------------------------------------------------------------");
     }
 
-    private void deleteSomeEntitiesFromDB(StudentDAOImpl studentDAO) {
+    private void deleteSomeEntitiesFromDB(StudentDAO studentDAO) {
         studentDAO.deleteEntityById(4);
         System.out.println("------------------------------------------------------------------------------------------");
         studentDAO.deleteEntityByQuery("lastname", "Benzema", false);
