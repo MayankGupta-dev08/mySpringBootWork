@@ -181,12 +181,16 @@ public class StudentDAO implements DataAccessObjectI<Student> {
                 .orElse("null");
     }
 
+    /**
+     * All JPQL syntax is based on the entity name and entity field and not the names used in DB
+     */
     private List<Student> executeQuery(String whereClause, String orderByClause) {
         // jpaEntity would not be the name of the db_table but entity className
         String jpaEntity = MY_CLASS_FOR_TABLE.getSimpleName();
-        String ql = String.format("FROM %s %s %s", jpaEntity, whereClause, orderByClause);
+        String queryString = String.format("FROM %s %s %s", jpaEntity, whereClause, orderByClause);
+
         // createQuery is used for SELECT queries, so we don't need to mention SELECT again
-        TypedQuery<Student> query = entityManager.createQuery(ql, MY_CLASS_FOR_TABLE);
+        TypedQuery<Student> query = entityManager.createQuery(queryString, MY_CLASS_FOR_TABLE);
         return query.getResultList();
     }
 }
