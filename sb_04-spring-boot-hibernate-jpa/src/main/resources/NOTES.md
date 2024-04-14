@@ -101,3 +101,77 @@ Some typical use cases for CommandLineRunner include:
 
 - You can define multiple CommandLineRunner beans in your application context. Spring Boot will execute them in the order specified by their @Order annotation or based on the Ordered interface.
 - In the provided code example, the CrudDemoApplication class defines a CommandLineRunner bean using the @Bean annotation. The commandLineRunner method implements the run method, where various CRUD operations are performed on the database using the StudentDAOImpl instance.
+
+## JPA Repository vs. JPA EntityManager
+
+### JPA Repository
+
+#### Definition
+
+- **JPA Repository** is a feature provided by Spring Data JPA, which simplifies the implementation of data access layers in Spring applications.
+- It provides a set of methods for performing CRUD (Create, Read, Update, Delete) operations on entities without requiring developers to write boilerplate code.
+- JPA Repository interfaces are defined by extending `JpaRepository<T, ID>` or other repository interfaces provided by Spring Data JPA.
+- Spring Data JPA dynamically generates implementations for these interfaces at runtime.
+- Additional features such as pagination and sorting are available.
+- Generates queries based on the method names (by following Spring Data JPA's method naming conventions). Can also create custom queries using `@Query`
+
+#### Example
+
+```java
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface StudentRepository extends JpaRepository<Student, Long> {
+    List<Student> findByLastName(String lastName);
+}
+```
+
+### JPA EntityManager
+
+#### Definition
+
+- **JPA EntityManager** is an interface provided by the Java Persistence API (JPA) for managing entities in a persistence context.
+- It serves as the primary interface for performing CRUD operations, executing queries, and managing the entity lifecycle.
+- EntityManager provides methods for persisting, merging, removing, finding, and querying entities, among other operations.
+- Developers obtain instances of EntityManager from the EntityManagerFactory.
+- Developers use EntityManager to interact directly with the database and perform low-level CRUD operations on entities.
+- EntityManager allows fine-grained control over the entity lifecycle, transaction management, and query execution.
+- It is preferred when we want to have complex queries that require advanced features such as SQL native queries or stored procedures.
+- It supports both JPQL (Java Persistence Query Language) and native SQL queries for querying entities and executing custom SQL statements.
+
+#### Example
+
+```java
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+@Transactional
+@Service
+public class StudentService {
+
+    @PersistenceContext
+    private EntityManager entityManager;
+
+    public void saveStudent(Student student) {
+        entityManager.persist(student);
+    }
+
+    public Student findStudentById(Long id) {
+        return entityManager.find(Student.class, id);
+    }
+}
+```
+
+### Difference between JPA Repository and JPA EntityManager
+
+- If you need low-level control and flexibility, then use EntityManager.
+- If you want a high level of abstraction, then use JpaRepository.
+
+| Aspect                 | JPA Repository                                          | JPA EntityManager                                              |
+|------------------------|---------------------------------------------------------|----------------------------------------------------------------|
+| Purpose                | Simplifies data access by providing pre-defined methods | Provides low-level API for managing entities and persistence   |
+| Abstraction Level      | High-level abstraction over data access operations      | Low-level API for direct manipulation of entities              |
+| Code Generation        | Repository interfaces are generated at runtime          | EntityManager instances are obtained from EntityManagerFactory |
+| Querying               | Supports method-based query creation and JPQL queries   | Supports JPQL queries and native SQL queries                   |
+| Entity Lifecycle       | Limited control over entity lifecycle                   | Fine-grained control over entity lifecycle                     |
+| Transaction Management | Managed by Spring Data JPA                              | Must be explicitly managed using `@Transactional`              |
+| Typical Use Cases      | Rapid development, basic CRUD operations                | Complex data manipulation, custom queries, batch processing    |

@@ -16,7 +16,7 @@ import java.util.stream.Stream;
  * Our JPA EntityManager needs a DataSource, which defines the DB Connection info.
  * Both of them are automatically created by SpringBoot. We will autowire/inject our EM into StudentDAO class.
  */
-@Repository
+@Repository //Specialised Annotation for DAO Class
 public class StudentDAO implements DataAccessObjectI<Student> {
 
     private static final Class<Student> MY_CLASS_FOR_TABLE = Student.class;
