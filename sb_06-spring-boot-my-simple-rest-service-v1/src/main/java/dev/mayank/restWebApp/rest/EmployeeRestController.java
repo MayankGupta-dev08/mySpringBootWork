@@ -43,7 +43,7 @@ public class EmployeeRestController {
     // expose "/employees" for DELETE an employee
     @SuppressWarnings("unused")
     @DeleteMapping("/employees/{employeeId}")
-    public String deleteAll(@PathVariable int employeeId) {
+    public String deleteById(@PathVariable int employeeId) {
         return employeeService.deleteById(employeeId);
     }
 

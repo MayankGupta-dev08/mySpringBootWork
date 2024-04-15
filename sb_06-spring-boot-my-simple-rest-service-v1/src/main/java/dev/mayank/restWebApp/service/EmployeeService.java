@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 /**
  * <p>In the Service layer, we will inject the DAOs which are needed. Here, only one.</p>
@@ -32,8 +33,9 @@ public class EmployeeService implements ServiceI<Employee> {
     @Override
     public Employee findById(int id) {
         Employee employee = employeeDAO.getEntityById(id);
-        isEmployeeNull(employee, String.format("Invalid operation! Could not find Employee with id=%s.", id));
-        System.out.println("Found the detail: " + employee.toString());
+        isEmployeeNull(employee, String.format("No employee found with id: %s.", id));
+
+        System.out.printf("Found the detail: %s%n", employee.toString());
         return employee;
     }
 
@@ -50,7 +52,7 @@ public class EmployeeService implements ServiceI<Employee> {
     @Transactional
     public String deleteById(int id) {
         Employee employeeById = findById(id);
-        System.out.println(String.format("Deleting employee with id: %s...", id));
+        System.out.printf("Deleting employee with id: %s...%n", id);
         return employeeDAO.deleteEntityById(employeeById);
     }
 
@@ -78,6 +80,6 @@ public class EmployeeService implements ServiceI<Employee> {
 
     private void isEmployeeNull(Employee employee, String message) {
         if (employee == null)
-            throw new RuntimeException(message);
+            throw new NoSuchElementException(message);
     }
 }
