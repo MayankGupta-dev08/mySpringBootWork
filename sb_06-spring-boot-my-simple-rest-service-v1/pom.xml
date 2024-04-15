@@ -7,10 +7,11 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>sb_06-spring-boot-my-simple-rest-service</artifactId>
+    <artifactId>sb_06-spring-boot-my-simple-rest-service-v1</artifactId>
     <packaging>jar</packaging>
 
-    <name>sb_06-spring-boot-my-simple-rest-service</name>
+    <name>sb_06-spring-boot-my-simple-rest-service-v1</name>
+    <description>Simple Restful Web Service using SpringBoot and JPA/Hibernate (EntityManager for DAO)</description>
     <url>http://maven.apache.org</url>
 
     <properties>
