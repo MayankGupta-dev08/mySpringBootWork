@@ -35,8 +35,8 @@
         <module>sb_03-spring-boot-core</module>
         <module>sb_04-spring-boot-hibernate-jpa</module>
         <module>sb_05-spring-boot-rest-crud</module>
-        <module>sb_06-spring-boot-my-simple-rest-service</module>
-        <module>sb_07-spring-boot-my-rest-service-springdata-jpa</module>
+        <module>sb_06-spring-boot-my-simple-rest-service-v1</module>
+        <module>sb_07-spring-boot-my-simple-rest-service-v2</module>
         <module>sb_08-spring-boot-my-rest-service-springdata-rest</module>
         <module>sb_09-spring-boot-rest-simple-security</module>
         <module>sb_10-spring-boot-rest-simple-security-jdbc</module>

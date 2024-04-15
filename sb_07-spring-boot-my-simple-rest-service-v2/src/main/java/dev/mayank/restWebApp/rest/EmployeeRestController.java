@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api") // http://localhost:8080/api/
+@RequestMapping("/api")
 public class EmployeeRestController {
 
     private EmployeeService employeeService;
@@ -36,22 +36,22 @@ public class EmployeeRestController {
     // expose "/employees" for POST an employee
     @SuppressWarnings("unused")
     @PostMapping("/employees")
-    public String save(@RequestBody Employee employee) {
+    public Employee save(@RequestBody Employee employee) {
         return employeeService.save(employee);
     }
 
     // expose "/employees" for DELETE an employee
     @SuppressWarnings("unused")
     @DeleteMapping("/employees/{employeeId}")
-    public String deleteAll(@PathVariable int employeeId) {
-        return employeeService.deleteById(employeeId);
+    public void deleteAll(@PathVariable int employeeId) {
+        employeeService.deleteById(employeeId);
     }
 
     // expose "/employees" for DELETE all employees
     @SuppressWarnings("unused")
     @DeleteMapping("/employees")
-    public String deleteAll() {
-        return employeeService.deleteAll();
+    public void deleteAll() {
+        employeeService.deleteAll();
     }
 
     // expose "/employees" for PUT an employee
