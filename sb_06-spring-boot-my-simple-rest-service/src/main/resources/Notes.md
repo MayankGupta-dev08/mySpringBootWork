@@ -44,7 +44,8 @@ The Spring Boot REST API project follows a layered architecture, with clear sepa
    - Implements business logic and coordinates interactions between controllers and DAOs.
    - Annotated with `@Service` annotation.
    - Contains service classes with methods performing business operations, applying business rules, and invoking DAO methods.
-   - Handles transaction management and data manipulation.
+   - Also, useful in case when we have many different DAOs and for a service, we need to use more than one DAO. 
+   - Handles transaction management and data manipulation. So, in the service layer we will have `@Transactional` annotation (whichever method needs it) instead having it in the DOA layer.
 
 3. **DAO Layer**:
 

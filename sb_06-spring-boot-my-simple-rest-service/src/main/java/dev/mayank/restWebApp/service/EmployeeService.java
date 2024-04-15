@@ -8,6 +8,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * <p>In the Service layer, we will inject the DAOs which are needed. Here, only one.</p>
+ * Here we are using `@Transactional` on methods for POST, PUT, and DELETE.
+ */
 @Service
 public class EmployeeService implements ServiceI<Employee> {
 
