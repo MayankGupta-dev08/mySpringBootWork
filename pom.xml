@@ -38,7 +38,7 @@
         <module>sb_06-spring-boot-my-simple-rest-service-v1</module>
         <module>sb_07-spring-boot-my-simple-rest-service-v2</module>
         <module>sb_08-spring-boot-my-rest-service-springdata-rest</module>
-        <module>sb_09-spring-boot-rest-simple-security</module>
+        <module>sb_09-spring-boot-web-service-rest-security</module>
         <module>sb_10-spring-boot-rest-simple-security-jdbc</module>
         <module>sb_11-spring-boot-mvc-thymeleaf</module>
     </modules>
@@ -54,6 +54,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
         </dependency>
     </dependencies>
 
