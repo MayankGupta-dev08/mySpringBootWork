@@ -6,10 +6,10 @@
 
 The Spring Boot REST API project follows a layered architecture, with clear separation of concerns between different components:
 
-         +----------------------+
-         |       Controller     |
-         |  (Restful Endpoints) |
-         +----------------------+
+         +----------------------+                                 +----------------------+
+         |       Controller     |                                 |       Entity         |
+         |  (Restful Endpoints) |                                 +----------------------+                
+         +----------------------+                              
                        |
                        | HTTP Request/Response
                        |
