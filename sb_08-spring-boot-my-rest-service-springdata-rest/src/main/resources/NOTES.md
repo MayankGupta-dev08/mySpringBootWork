@@ -39,6 +39,53 @@
 
 ## API Endpoint variations in the project
 
+- Spring Data REST endpoints are HATEOAS (Hypermedia As The Engine Of Application State) compliant.
+- Hypermedia-drive sites provide information to access REST interfaces (meta-data for REST).
+- Response will include additional meta-data, such as links and page related info.
+- For example, for a REST response from GET: http://localhost:8080/employees/3
+```json
+{
+  "firstName": "Anvi",
+  "lastName": "Gupta",
+  "email": "anvi.gupta@codeWithMayank.com",
+  "_links": {
+    "self": {
+      "href": "http://localhost:8080/employees/3"
+    },
+    "employee": {
+      "href": "http://localhost:8080/employees/3"
+    }
+  }
+}
+```
+- For a response which is collection, it includes page size, total elements, pages etc.
+- For example, for a REST response from GET: http://localhost:8080/employees/
+```json
+{
+  "_embedded": {
+    "employees": [
+      {
+        "firstName": "Avni",
+        "lastName": "Gupta"
+        // ...
+      },
+      // ...
+      {
+        "firstName": "Naksh",
+        "lastName": "Gupta"
+        // ...
+      }
+    ]
+  },
+  "page": {
+    "size": 20,
+    "totalElements": 5,
+    "totalPages": 1,
+    "number": 0
+  }
+}
+```
+
 ### Default REST Endpoints
 
 1. GET - http://localhost:8080/employees
