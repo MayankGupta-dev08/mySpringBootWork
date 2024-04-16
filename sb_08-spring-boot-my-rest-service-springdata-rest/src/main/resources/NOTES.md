@@ -13,6 +13,30 @@
     2. No need of (RestController Class or Service Class) due of spring-boot-starter-data-rest and neither of (DAO
        Class) due to JpaRepository.
 
+## Workflow
+
+    ** No Need of Controller or Service Layer **
+
+         +----------------------+                                 +----------------------+
+         |      RESTFul App     |                                 |       Entity         |
+         |   (SpringBoot App)   |                                 +----------------------+                
+         +----------------------+                              
+                     |   
+                     |    HTTP Request/Response
+                     |    (Automatically Handled by SpringDataRest)
+                     |    Method Invocation
+                     |   
+         +-----------------------+
+         |         DAO           |
+         | (Using JpaRepository) |
+         +-----------------------+
+                     |   
+                     |    Database Operations
+                     |   
+         +-----------------------+
+         |       Database        |
+         +-----------------------+
+
 ## API Endpoint variations in the project
 
 ### Default REST Endpoints
