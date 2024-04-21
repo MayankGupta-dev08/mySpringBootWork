@@ -1,40 +1,13 @@
 # mySpringBootWork
 
-## work1 - myFirstSpringApplication
-
-### 1. user-info
-    - info.app.description = Spring Boot 3: Learn Spring 6, Spring Core, Spring REST, Spring MVC, Spring Security, Thymeleaf, JPA, Hibernate, MySQL
-    - info.app.version = 1.0.0.1
-    - info.app.learner = Mayank Gupta
-    - info.app.tutor = Chad Darby
-
-### 2. Securing spring actuator endpoints
-    - spring.security.user.name=mayankg8
-    - spring.security.user.password=admin01
-
-### 3. Useful Spring-Boot-Documentation Links
-    - info.app.doc-links.1=www.luv2code.com/spring-boot-starters
-    - info.app.doc-links.2=www.luv2code.com/actuator-endpoints
-
-### 4. documentation-links
-    - info.app.doc-links.1=www.luv2code.com/spring-boot-starters
-    - info.app.doc-links.2=www.luv2code.com/actuator-endpoints
-    - info.app.doc-links.3=www.luv2code.com/actuator-docs
-    - info.app.doc-links.4=www.luv2code.com/spring-boot-props
-
-### 5. inApp-links
-    - info.app.localhost-links.1=http://localhost:7070/firstSpringWebApp/actuator/health
-    - info.app.localhost-links.2=http://localhost:7070/firstSpringWebApp/actuator/info
-    - info.app.localhost-links.3=http://localhost:7070/firstSpringWebApp/actuator/beans
-    - info.app.localhost-links.4=http://localhost:7070/firstSpringWebApp/actuator/threaddump
-    - info.app.localhost-links.5=http://localhost:7070/firstSpringWebApp/actuator/mappings
-
-### 6. Defining my custom properties
-    - user.name = mayank
-    - user.email = dev_mg8@gmail.com
-
-### 7. Changing the spring-boot embeded server port from default 8080 to 7070
-    - server.port=7070
-
-### 8. Setting the context path for the application from / --> /firstSpringWebApp
-    - server.servlet.context-path=/firstSpringWebApp
+1. [Resources](https://github.com/MayankGupta-dev08/mySpringBootWork/tree/master/00-spring-boot-resources)
+2. [Module01:- Spring Core](https://github.com/MayankGupta-dev08/mySpringBootWork/tree/master/sb_01-spring-core-framework)
+3. [Module02:- Spring Boot Basics](https://github.com/MayankGupta-dev08/mySpringBootWork/tree/master/sb_02-spring-boot-basic)
+4. [Module03:- Spring Boot Core](https://github.com/MayankGupta-dev08/mySpringBootWork/tree/master/sb_03-spring-boot-core)
+5. [Module04:- Spring Boot with JPA/Hibernate](https://github.com/MayankGupta-dev08/mySpringBootWork/tree/master/sb_04-spring-boot-hibernate-jpa)
+6. [Module05:- Spring Boot: RESTful Service with CRUD](https://github.com/MayankGupta-dev08/mySpringBootWork/tree/master/sb_05-spring-boot-rest-crud)
+7. [Module06:- Spring Boot: RESTful Service with JPA/Hibernate (version1)](https://github.com/MayankGupta-dev08/mySpringBootWork/tree/master/sb_06-spring-boot-my-simple-rest-service-v1)
+8. [Module07:- Spring Boot: RESTful Service with JPA/Hibernate (version2)](https://github.com/MayankGupta-dev08/mySpringBootWork/tree/master/sb_07-spring-boot-my-simple-rest-service-v2)
+9. [Module08:- Spring Boot: RESTful Service with Spring Data REST](https://github.com/MayankGupta-dev08/mySpringBootWork/tree/master/sb_08-spring-boot-my-rest-service-springdata-rest)
+10. [Module09:- Spring Boot: RESTful Service with Simple Spring Security](https://github.com/MayankGupta-dev08/mySpringBootWork/tree/master/sb_09-spring-boot-web-service-rest-security)
+11. [Module10: Spring Boot: RESTful Service with Spring MVC](https://github.com/MayankGupta-dev08/mySpringBootWork/tree/master/sb_10-spring-boot-mvc-thymeleaf)
