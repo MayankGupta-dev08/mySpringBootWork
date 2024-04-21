@@ -6,6 +6,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
@@ -46,31 +48,29 @@ public class EmployeeSecurityConfig {
         return httpSecurity.build();
     }
 
-    /** Hard coding the user data and roles for the security*/
-    /*@Bean
+    /**
+     * Hard coding the user data and roles for the security.
+     * Spring Security Config inMemory Storage.
+     */
+    // @Bean
     public InMemoryUserDetailsManager userDetailsManager() {
-
-        UserDetails suresh = User.builder()
-                .username("suresh")
-                .password("{noop}user01")
-                .roles("CLIENT").build();
-
-        UserDetails rakesh = User.builder()
-                .username("rakesh")
-                .password("{noop}sde01")
-                .roles("DEVELOPER").build();
-
-        UserDetails mahesh = User.builder()
-                .username("mahesh")
-                .password("{noop}admin")
-                .roles("ADMIN").build();
-
-        UserDetails mayank = User.builder()
-                .username("mayank")
-                .password("{noop}leo")
-                .roles("DEVELOPER", "MANAGER", "ADMIN").build();
-
-        return new InMemoryUserDetailsManager(rakesh, suresh, mahesh, mayank);
-    }*/
-
+        return new InMemoryUserDetailsManager(
+                User.builder()
+                        .username("rakesh")
+                        .password("{noop}sde01")
+                        .roles("DEVELOPER").build(),
+                User.builder()
+                        .username("suresh")
+                        .password("{noop}user01")
+                        .roles("CLIENT").build(),
+                User.builder()
+                        .username("mahesh")
+                        .password("{noop}admin")
+                        .roles("ADMIN").build(),
+                User.builder()
+                        .username("mayank")
+                        .password("{noop}leo")
+                        .roles("DEVELOPER", "MANAGER", "ADMIN").build()
+        );
+    }
 }
