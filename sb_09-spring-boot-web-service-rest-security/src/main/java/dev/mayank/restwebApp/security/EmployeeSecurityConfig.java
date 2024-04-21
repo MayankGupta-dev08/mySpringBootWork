@@ -18,19 +18,37 @@ import javax.sql.DataSource;
 @SuppressWarnings("unused")
 public class EmployeeSecurityConfig {
 
+    private static final String USERS_TABLE_NAME = "our_members";   // users
+    private static final String USERNAME_FIELD_IN_USERS_TABLE = "user_name";    // username
+    private static final String PASSWORD_FIELD_IN_USERS_TABLE = "pwd";  // password
+    private static final String ENABLED_FIELD_IN_USERS_TABLE = "active";    // enabled
+    private static final String AUTHORITIES_TABLE = "our_roles";    // authorities
+    private static final String USERNAME_FIELD_IN_AUTHORITIES_TABLE = USERNAME_FIELD_IN_USERS_TABLE;  // username
+    private static final String AUTHORITY_FIELD_IN_AUTHORITIES_TABLE = "role";  // authority
+
     /**
-     * Added support for JDBC: storing the user and roles in DB
+     * <p>Added support for JDBC: storing the user and roles in DB</p>
+     * If the table and fields names are different from the default ones used in Spring Security,
+     * then use a custom query for retrieving the results from user and authorities tables.
      */
     @Bean
     public UserDetailsManager userDetailsManager(DataSource dataSource) {
         JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
-
-        /* If the table and fields names are different from the default ones used in Spring Security,
-         then use a custom query for retrieving the results from user and authorities tables. */
-        // jdbcUserDetailsManager.setUsersByUsernameQuery();
-        // jdbcUserDetailsManager.setAuthoritiesByUsernameQuery();
-
+        // handleQueryInCustomTablesForSpringSecurity(jdbcUserDetailsManager);
         return jdbcUserDetailsManager;
+    }
+
+    /**
+     * Making custom queries for users and authorities' tables
+     */
+    private static void handleQueryInCustomTablesForSpringSecurity(JdbcUserDetailsManager jdbcUserDetailsManager) {
+        String usernameQueryString = "SELECT %s, %s, %s FROM %s where %s=?"
+                .formatted(USERNAME_FIELD_IN_USERS_TABLE, PASSWORD_FIELD_IN_USERS_TABLE, ENABLED_FIELD_IN_USERS_TABLE, USERS_TABLE_NAME, USERNAME_FIELD_IN_USERS_TABLE);
+        jdbcUserDetailsManager.setUsersByUsernameQuery(usernameQueryString);
+
+        String authoritiesQueryString = "SELECT %s, %s FROM %s where %s=?".
+                formatted(USERNAME_FIELD_IN_AUTHORITIES_TABLE, AUTHORITY_FIELD_IN_AUTHORITIES_TABLE, AUTHORITIES_TABLE, USERNAME_FIELD_IN_AUTHORITIES_TABLE);
+        jdbcUserDetailsManager.setAuthoritiesByUsernameQuery(authoritiesQueryString);
     }
 
     @Bean
