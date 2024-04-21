@@ -41,9 +41,8 @@ public class EmployeeSecurityConfig {
         // using Basic HTTP authentication
         httpSecurity.httpBasic(Customizer.withDefaults());
 
-        // disable CSRF (Cross Site Request Forgery)
-        // In General: Not req for (stateless) REST APIs that uses PUT, POST, DELETE and/or PATCH
-        httpSecurity.csrf(AbstractHttpConfigurer::disable);
+        // In General: Not meant for REST APIs for non-browser clients. It's needed for web apps with HTML forms which add/update the data.
+        httpSecurity.csrf(AbstractHttpConfigurer::disable); // Disable CSRF (Cross Site Request Forgery)
 
         return httpSecurity.build();
     }
