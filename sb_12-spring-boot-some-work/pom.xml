@@ -7,11 +7,12 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>sb_10-spring-boot-rest-simple-security-jdbc</artifactId>
+    <artifactId>sb_12-spring-boot-some-work</artifactId>
     <packaging>jar</packaging>
 
-    <name>sb_10-spring-boot-rest-simple-security-jdbc</name>
+    <name>sb_12-spring-boot-some-work</name>
     <url>http://maven.apache.org</url>
+    <description>Some work...</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

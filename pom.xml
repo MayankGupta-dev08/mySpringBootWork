@@ -39,8 +39,9 @@
         <module>sb_07-spring-boot-my-simple-rest-service-v2</module>
         <module>sb_08-spring-boot-my-rest-service-springdata-rest</module>
         <module>sb_09-spring-boot-web-service-rest-security</module>
-        <module>sb_10-spring-boot-rest-simple-security-jdbc</module>
-        <module>sb_11-spring-boot-mvc-thymeleaf</module>
+        <module>sb_10-spring-boot-mvc-thymeleaf</module>
+        <module>sb_11-spring-boot-some-work</module>
+        <module>sb_12-spring-boot-some-work</module>
     </modules>
 
     <!-- Project dependencies -->
