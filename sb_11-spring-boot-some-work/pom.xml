@@ -7,11 +7,12 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>sb_11-spring-boot-mvc-thymeleaf</artifactId>
+    <artifactId>sb_11-spring-boot-some-work</artifactId>
     <packaging>jar</packaging>
 
-    <name>sb_11-spring-boot-mvc-thymeleaf</name>
+    <name>sb_11-spring-boot-some-work</name>
     <url>http://maven.apache.org</url>
+    <description>Some work...</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

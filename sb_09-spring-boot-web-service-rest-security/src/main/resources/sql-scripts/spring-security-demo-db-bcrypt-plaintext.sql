@@ -19,8 +19,9 @@ CREATE TABLE `users` (
 -- Inserting data for table `users`
 --
 -- https://bcrypt-generator.com/
-INSERT INTO `users` 
-VALUES 
+INSERT INTO `users`
+VALUES
+-- username, {encryptionAlgoId}password, enabled
 ('suresh','{bcrypt}$2a$12$7wC85zbfSp7cEwLXkMdF5.RZ9/7LGvgwmtAg44LX.dnqiZ7O0tUWS',1),
 ('rakesh','{bcrypt}$2a$12$hCS2mggoCaKXi8Om4B7UfeA4wLuRTfr74r7gRxlfZpXyIc4CvUerm',1),
 ('mahesh','{bcrypt}$2a$12$vaiXdLDsL.ddpZ5hLsGrGua570BTlUnpcc7Nr9m6rkLHVki2NUZgq',1),
@@ -37,6 +38,7 @@ VALUES
 -- Table structure for table `authorities`
 --
 
+-- authorities is equivalent to roles in spring.
 CREATE TABLE `authorities` (
   `username` varchar(50) NOT NULL,
   `authority` varchar(50) NOT NULL,
@@ -48,6 +50,7 @@ CREATE TABLE `authorities` (
 -- Inserting data for table `authorities`
 --
 
+-- Internally, Spring Security uses "ROLE_" prefix
 INSERT INTO `authorities` 
 VALUES 
 ('suresh','ROLE_CLIENT'),
