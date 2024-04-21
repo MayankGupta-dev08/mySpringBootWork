@@ -23,7 +23,14 @@ public class EmployeeSecurityConfig {
      */
     @Bean
     public UserDetailsManager userDetailsManager(DataSource dataSource) {
-        return new JdbcUserDetailsManager(dataSource);
+        JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
+
+        /* If the table and fields names are different from the default ones used in Spring Security,
+         then use a custom query for retrieving the results from user and authorities tables. */
+        // jdbcUserDetailsManager.setUsersByUsernameQuery();
+        // jdbcUserDetailsManager.setAuthoritiesByUsernameQuery();
+
+        return jdbcUserDetailsManager;
     }
 
     @Bean
