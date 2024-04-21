@@ -10,4 +10,4 @@
 8. [Module07:- Spring Boot: RESTful Service with JPA/Hibernate (version2)](https://github.com/MayankGupta-dev08/mySpringBootWork/tree/master/sb_07-spring-boot-my-simple-rest-service-v2)
 9. [Module08:- Spring Boot: RESTful Service with Spring Data REST](https://github.com/MayankGupta-dev08/mySpringBootWork/tree/master/sb_08-spring-boot-my-rest-service-springdata-rest)
 10. [Module09:- Spring Boot: RESTful Service with Simple Spring Security](https://github.com/MayankGupta-dev08/mySpringBootWork/tree/master/sb_09-spring-boot-web-service-rest-security)
-11. [Module10: Spring Boot: RESTful Service with Spring MVC](https://github.com/MayankGupta-dev08/mySpringBootWork/tree/master/sb_10-spring-boot-mvc-thymeleaf)
+11. [Module10:- Spring Boot: RESTful Service with Spring MVC](https://github.com/MayankGupta-dev08/mySpringBootWork/tree/master/sb_10-spring-boot-mvc-thymeleaf)
