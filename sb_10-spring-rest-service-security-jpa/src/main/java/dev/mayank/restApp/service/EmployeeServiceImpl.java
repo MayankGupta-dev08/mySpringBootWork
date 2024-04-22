@@ -1,7 +1,7 @@
 package dev.mayank.restApp.service;
 
-import com.luv2code.springboot.cruddemo.dao.EmployeeRepository;
-import com.luv2code.springboot.cruddemo.entity.Employee;
+import dev.mayank.restApp.dao.EmployeeRepository;
+import dev.mayank.restApp.entity.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,8 +31,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         if (result.isPresent()) {
             theEmployee = result.get();
-        }
-        else {
+        } else {
             // we didn't find the employee
             throw new RuntimeException("Did not find employee id - " + theId);
         }
