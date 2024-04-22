@@ -1,4 +1,4 @@
-package dev.mayank.rest;
+package dev.mayank.restApp.rest;
 
 /**
  * Constructor Injection: preferred for required dependencies
