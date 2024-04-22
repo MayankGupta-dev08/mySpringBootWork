@@ -7,10 +7,10 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>sb_12-spring-boot-some-work</artifactId>
+    <artifactId>sb_14-spring-boot-some-work</artifactId>
     <packaging>jar</packaging>
 
-    <name>sb_12-spring-boot-some-work</name>
+    <name>sb_14-spring-boot-some-work</name>
     <url>http://maven.apache.org</url>
     <description>Some work...</description>
 
