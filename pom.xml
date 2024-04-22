@@ -41,7 +41,7 @@
         <module>sb_09-spring-boot-web-service-rest-security</module>
         <module>sb_10-spring-boot-mvc-thymeleaf</module>
         <module>sb_11-spring-boot-some-work</module>
-        <module>sb_12-spring-boot-some-work</module>
+        <module>sb_10-spring-rest-service-security-jpa</module>
     </modules>
 
     <!-- Project dependencies -->
