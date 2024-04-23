@@ -41,8 +41,7 @@ public class User {
         this.enabled = enabled;
     }
 
-    public User(String userName, String password, boolean enabled,
-                Collection<Role> roles) {
+    public User(String userName, String password, boolean enabled, Collection<Role> roles) {
         this.userName = userName;
         this.password = password;
         this.enabled = enabled;
