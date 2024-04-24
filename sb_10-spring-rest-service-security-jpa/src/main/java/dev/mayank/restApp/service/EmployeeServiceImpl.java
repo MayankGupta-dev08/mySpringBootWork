@@ -2,21 +2,17 @@ package dev.mayank.restApp.service;
 
 import dev.mayank.restApp.dao.EmployeeRepository;
 import dev.mayank.restApp.entity.Employee;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class EmployeeServiceImpl implements EmployeeService {
 
     private EmployeeRepository employeeRepository;
-
-    @Autowired
-    public EmployeeServiceImpl(EmployeeRepository theEmployeeRepository) {
-        employeeRepository = theEmployeeRepository;
-    }
 
     @Override
     public List<Employee> findAll() {
@@ -26,15 +22,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee findById(int theId) {
         Optional<Employee> result = employeeRepository.findById(theId);
-
         Employee theEmployee = null;
 
-        if (result.isPresent()) {
+        if (result.isPresent())
             theEmployee = result.get();
-        } else {
-            // we didn't find the employee
+        else
             throw new RuntimeException("Did not find employee id - " + theId);
-        }
 
         return theEmployee;
     }

@@ -1,4 +1,4 @@
-package dev.mayank.thymeleaf.demo.controller;
+package dev.mayank.thymeleaf.demo.controller.exc1;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
