@@ -1,4 +1,12 @@
-.style1 {
+.currentDateTime {
+    font-family: 'Courier New', Courier, monospace; /* Typewriter font */
     font-style: italic;
-    color: rgb(0, 81, 128);
+    color: #4169e1; /* Royal Blue */
+    background-color: #fffacd; /* Pale Goldenrod */
+    font-weight: bold;
+    font-size: 3.5em;
+    text-decoration: underline;
+    text-align: center; /* Center aligning the date */
+    padding: 10px; /* Adding padding for better spacing */
+    border-radius: 5px; /* Adding some rounded corners */
 }
