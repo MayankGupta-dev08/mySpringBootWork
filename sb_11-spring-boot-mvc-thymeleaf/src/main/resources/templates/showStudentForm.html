@@ -1,0 +1,38 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Thymeleaf Demo Project: Exercise3 # Show Student Form</title>
+
+    <link rel="stylesheet" th:href="@{/css/stylesEx2.css}">
+</head>
+<body>
+    <div class="container">
+        <h1>| Student Form |</h1>
+        <!-- On submission of the form, action: @/exc3/processStudentForm -->
+        <form th:action="@{/students/processStudentForm}" th:object="${student}" method="POST">
+            First Name: <input type="text" th:field="${student.firstName}"/>
+            <br>
+            Last Name: <input type="text" th:field="${student.lastName}"/>
+            <br>
+            Country:
+            <select th:field="${student.country}">
+                <option th:each="tempCountry : ${countries}" th:value="${tempCountry}" th:text="${tempCountry}" />
+            </select>
+            <br>
+            Favorite Programming Language:
+            <input type="radio" th:field="*{favoriteLanguage}"
+                   th:each="tempLang : ${languages}" th:value="${tempLang}" th:text="${tempLang}" />
+            <br>
+            Favorite Operating Systems:
+            <input type="checkbox" th:field="*{favoriteSystems}"
+                   th:each="tempSystem : ${systems}" th:value="${tempSystem}" th:text="${tempSystem}" />
+            <br>
+            <input type="submit" value="Submit!"/>
+        </form>
+    </div>
+</body>
+</html>

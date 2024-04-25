@@ -14,6 +14,8 @@
 
 ### How does it work and workflow explanation?
 
+### Data Binding in Spring MVC
+
 ## Thymeleaf
 
 ### What is Thymeleaf?
