@@ -17,7 +17,7 @@
 Spring MVC is a framework for building web applications based on the Model-View-Controller architecture.
 
 ```mermaid
-graph LR
+graph TD
 ;
     A[Client Request] --> B[DispatcherServlet];
     B --> C{Handler Mapping};
