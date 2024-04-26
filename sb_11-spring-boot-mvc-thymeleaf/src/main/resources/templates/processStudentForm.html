@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Thymeleaf Demo Project: Exercise3 # Processing Student Form.</title>
 
-    <link rel="stylesheet" th:href="@{/css/stylesEx2.css}">
+    <link rel="stylesheet" th:href="@{/css/studentPF.css}">
 </head>
 <body>
     <div class="container">
@@ -15,11 +15,11 @@
         <br>
         <h2>The Student is confirmed</h2>
         <br>
-        Student Name: <span th:text="${student.firstName} + ' ' + ${student.lastName}."/>
+        Student Name: <span th:text="${student.firstName} + ' ' + ${student.lastName}" />
         <br>
-        Country: <span th:text="${student.country}."/>
+        Country: <span th:text="${student.country}" />
         <br>
-        Favorite Programming Language: <span th:text="${student.favoriteLanguage}."/>
+        Favorite Programming Language: <span th:text="${student.favoriteLanguage}" />
         <br>
         Favorite Operating Systems:
         <ul>

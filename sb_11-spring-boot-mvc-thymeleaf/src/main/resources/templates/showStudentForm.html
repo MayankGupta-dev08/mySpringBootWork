@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Thymeleaf Demo Project: Exercise3 # Show Student Form</title>
 
-    <link rel="stylesheet" th:href="@{/css/stylesEx2.css}">
+    <link rel="stylesheet" th:href="@{/css/studentSF.css}">
 </head>
 <body>
     <div class="container">
@@ -24,11 +24,11 @@
             </select>
             <br>
             Favorite Programming Language:
-            <input type="radio" th:field="*{favoriteLanguage}"
+            <input type="radio" th:field="${student.favoriteLanguage}"
                    th:each="tempLang : ${languages}" th:value="${tempLang}" th:text="${tempLang}" />
             <br>
             Favorite Operating Systems:
-            <input type="checkbox" th:field="*{favoriteSystems}"
+            <input type="checkbox" th:field="${student.favoriteSystems}"
                    th:each="tempSystem : ${systems}" th:value="${tempSystem}" th:text="${tempSystem}" />
             <br>
             <input type="submit" value="Submit!"/>
