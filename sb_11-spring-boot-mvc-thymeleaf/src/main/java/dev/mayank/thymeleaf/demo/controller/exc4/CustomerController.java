@@ -41,6 +41,7 @@ public class CustomerController {
             return "customerSignupForm";
 
         System.out.println(customer);    //logging the data
+        System.out.println(bindingResult.toString());    //logging the data
         return "customerConfirmationForm";
     }
 

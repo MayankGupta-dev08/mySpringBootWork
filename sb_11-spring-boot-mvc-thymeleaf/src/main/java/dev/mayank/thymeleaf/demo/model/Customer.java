@@ -1,9 +1,7 @@
 package dev.mayank.thymeleaf.demo.model;
 
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import dev.mayank.thymeleaf.demo.validation.CourseCode;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,10 +21,12 @@ public final class Customer {
     @Pattern(regexp = "^[A-Z]{3}[0-9]{2}", message = "first 3 characters to be alphabets, rest 2 should be numeric")
     private String postalCode;
 
-    @Min(value = 1, message = "at least 1 is required")
-    @Min(value = 5, message = "at max 5 is possible")
-    private int freePasses;
+    @Min(value = 0, message = "min = 0")
+    @Max(value = 5, message = "max = 5")
+    private Integer freePasses;
 
+    @CourseCode(value = "SpringBoot", message = "code must start with SpringBoot")
+    @NotNull(message = "required")
     private String courseCode;
 
 }
