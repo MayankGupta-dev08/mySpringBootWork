@@ -33,9 +33,10 @@ span {
 
 ul {
     list-style-type: none;
+    color: #007bff;
     padding: 0;
 }
 
 ul li {
-    margin-bottom: 5px;
+    color: #007bff;
 }

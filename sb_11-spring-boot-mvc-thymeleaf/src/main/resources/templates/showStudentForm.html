@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -10,29 +10,39 @@
     <link rel="stylesheet" th:href="@{/css/studentSF.css}">
 </head>
 <body>
-    <div class="container">
-        <h1>| Student Form |</h1>
-        <!-- On submission of the form, action: @/exc3/processStudentForm -->
-        <form th:action="@{/students/processStudentForm}" th:object="${student}" method="POST">
-            First Name: <input type="text" th:field="${student.firstName}"/>
+<div class="container">
+    <h1>| Student Form |</h1>
+    <!-- On submission of the form, action: @/exc3/processStudentForm -->
+    <form th:action="@{/students/processStudentForm}" th:object="${student}" method="POST">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" th:field="${student.firstName}" placeholder="Enter your first name" required>
+        <br>
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" th:field="${student.lastName}" placeholder="Enter your last name" required>
+        <br>
+        <label for="country">Country:</label>
+        <select id="country" th:field="${student.country}" required>
+            <option value="" disabled selected>Select your country</option>
+            <option th:each="tempCountry : ${countries}" th:value="${tempCountry}" th:text="${tempCountry}" />
+        </select>
+        <br>
+        <label>Favorite Programming Language:</label>
+        <br>
+        <div th:each="tempLang : ${languages}">
+            <input type="radio" th:id="${tempLang}" th:field="${student.favoriteLanguage}" th:value="${tempLang}">
+            <label th:for="${tempLang}" th:text="${tempLang}"></label>
             <br>
-            Last Name: <input type="text" th:field="${student.lastName}"/>
+        </div>
+        <br>
+        <label>Favorite Operating Systems:</label>
+        <br>
+        <div th:each="tempSystem : ${systems}">
+            <input type="checkbox" th:id="${tempSystem}" th:field="${student.favoriteSystems}" th:value="${tempSystem}">
+            <label th:for="${tempSystem}" th:text="${tempSystem}"></label>
             <br>
-            Country:
-            <select th:field="${student.country}">
-                <option th:each="tempCountry : ${countries}" th:value="${tempCountry}" th:text="${tempCountry}" />
-            </select>
-            <br>
-            Favorite Programming Language:
-            <input type="radio" th:field="${student.favoriteLanguage}"
-                   th:each="tempLang : ${languages}" th:value="${tempLang}" th:text="${tempLang}" />
-            <br>
-            Favorite Operating Systems:
-            <input type="checkbox" th:field="${student.favoriteSystems}"
-                   th:each="tempSystem : ${systems}" th:value="${tempSystem}" th:text="${tempSystem}" />
-            <br>
-            <input type="submit" value="Submit!"/>
-        </form>
-    </div>
+        </div>
+        <input type="submit" value="Submit">
+    </form>
+</div>
 </body>
 </html>
