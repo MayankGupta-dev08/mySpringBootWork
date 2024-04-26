@@ -5,9 +5,53 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Customer SignUp Form</title>
+
+<!--    <link rel="stylesheet" th:href="@{/css/showForm.css}">-->
 </head>
 <body>
+<div class="container">
+    <h1>| Customer Form |</h1>
+    <form th:action="@{/customers/processCustomerForm}" th:object="${customer}" method="POST">
 
+        <label for="firstName">First Name (*):</label>
+        <input type="text" id="firstName" th:field="${customer.firstName}" placeholder="Enter your first name">
+        <!-- show an error message if present-->
+        <span th:if="${#fields.hasErrors('firstName')}"
+              th:errors="${customer.firstName}"
+              class="error"></span>
+        <br>
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" th:field="${customer.lastName}" placeholder="Enter your last name">
+        <span th:if="${#fields.hasErrors('lastName')}"
+              th:errors="${customer.lastName}"
+              class="error"></span>
+        <br>
+
+        <label for="postalCode">Postal Code:</label>
+        <input type="text" id="postalCode" th:field="${customer.postalCode}" placeholder="Enter your postal code">
+        <span th:if="${#fields.hasErrors('postalCode')}"
+              th:errors="${customer.postalCode}"
+              class="error"></span>
+        <br>
+
+        <label for="freePasses">Free Passes:</label>
+        <input type="text" id="freePasses" th:field="${customer.freePasses}" placeholder="Enter the no. of free passes you have">
+        <span th:if="${#fields.hasErrors('freePasses')}"
+              th:errors="${customer.freePasses}"
+              class="error"></span>
+        <br>
+
+        <label for="courseCode">Course Code:</label>
+        <input type="text" id="courseCode" th:field="${customer.courseCode}" placeholder="Enter your course code">
+        <span th:if="${#fields.hasErrors('courseCode')}"
+              th:errors="${customer.courseCode}"
+              class="error"></span>
+        <br>
+
+        <input type="submit" value="Submit">
+    </form>
+</div>
 </body>
 </html>
