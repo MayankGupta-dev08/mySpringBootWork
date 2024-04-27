@@ -1,6 +1,6 @@
-package dev.mayank.restfulApp.service;
+package dev.mayank.employee.directory.app.service;
 
-import dev.mayank.restfulApp.entity.Employee;
+import dev.mayank.employee.directory.app.entity.Employee;
 
 import java.util.List;
 

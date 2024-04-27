@@ -1,8 +1,8 @@
-package dev.mayank.restfulApp.service;
+package dev.mayank.employee.directory.app.service;
 
-import dev.mayank.restfulApp.dao.EmployeeRepository;
-import dev.mayank.restfulApp.entity.Employee;
-import org.springframework.beans.factory.annotation.Autowired;
+import dev.mayank.employee.directory.app.dao.EmployeeRepository;
+import dev.mayank.employee.directory.app.entity.Employee;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,22 +10,15 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class EmployeeService implements ServiceI<Employee> {
-
     private final EmployeeRepository employeeRepository;
 
-    @Autowired
-    public EmployeeService(EmployeeRepository employeeRepository) {
-        this.employeeRepository = employeeRepository;
-    }
-
-    // GET all
     @Override
     public List<Employee> findAll() {
         return employeeRepository.findAll();
     }
 
-    // GET by id
     @Override
     public Employee findById(int id) {
         Optional<Employee> emp_optional = employeeRepository.findById(id);
@@ -34,7 +27,6 @@ public class EmployeeService implements ServiceI<Employee> {
         return employee;
     }
 
-    // POST
     @Override
     @Transactional
     public Employee save(Employee employee) {
@@ -47,7 +39,6 @@ public class EmployeeService implements ServiceI<Employee> {
         return employeeRepository.save(nonNullEmployee);
     }
 
-    // DELETE by id
     @Override
     @Transactional
     public void deleteById(int id) {
@@ -55,14 +46,12 @@ public class EmployeeService implements ServiceI<Employee> {
         employeeRepository.deleteById(id);
     }
 
-    // DELETE all
     @Override
     @Transactional
     public void deleteAll() {
         employeeRepository.deleteAll();
     }
 
-    // PUT
     @Override
     @Transactional
     public String updateEntity(Employee new_employee) {

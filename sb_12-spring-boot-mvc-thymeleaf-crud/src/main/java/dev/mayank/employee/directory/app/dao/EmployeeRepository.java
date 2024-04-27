@@ -1,7 +1,9 @@
-package dev.mayank.restfulApp.dao;
+package dev.mayank.employee.directory.app.dao;
 
-import dev.mayank.restfulApp.entity.Employee;
+import dev.mayank.employee.directory.app.entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
 
 /**
  * JpaRepository<EntityType, PrimaryKey>.
@@ -9,4 +11,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * Also, @Transactional is not required for the crud methods of this interface.
  */
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
+
+    /**
+     * method to sort by last name
+     */
+    List<Employee> findAllByOrderByLastNameAsc();
 }

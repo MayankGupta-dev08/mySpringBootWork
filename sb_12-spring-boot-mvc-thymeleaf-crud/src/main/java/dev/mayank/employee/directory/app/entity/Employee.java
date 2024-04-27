@@ -1,4 +1,4 @@
-package dev.mayank.restfulApp.entity;
+package dev.mayank.employee.directory.app.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

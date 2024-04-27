@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employees</title>
+    <title>Employees Directory List Page</title>
 
     <!-- linking our css file -->
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
 <body>
-<div>
-    <h1></h1>
+<div class="container">
+    <h1>List of employees</h1>
+    <span th:text="${employees}"></span>
 </div>
 </body>
 </html>
