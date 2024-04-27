@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Thymeleaf Demo Project: Exercise3 # Show Student Form</title>
+
+    <link rel="stylesheet" th:href="@{/css/showForm.css}">
+</head>
+<body>
+<div class="container">
+    <h1>| Student Form |</h1>
+    <!-- On submission of the form, action: @/exc3/processStudentForm -->
+    <form th:action="@{/students/processStudentForm}" th:object="${student}" method="POST">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" th:field="${student.firstName}" placeholder="Enter your first name" required>
+        <br>
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" th:field="${student.lastName}" placeholder="Enter your last name" required>
+        <br>
+        <label for="country">Country:</label>
+        <select id="country" th:field="${student.country}" required>
+            <option value="" disabled selected>Select your country</option>
+            <option th:each="tempCountry : ${countries}" th:value="${tempCountry}" th:text="${tempCountry}" />
+        </select>
+        <br>
+        <label>Favorite Programming Language:</label>
+        <br>
+        <div th:each="tempLang : ${languages}">
+            <input type="radio" th:id="${tempLang}" th:field="${student.favoriteLanguage}" th:value="${tempLang}">
+            <label th:for="${tempLang}" th:text="${tempLang}"></label>
+            <br>
+        </div>
+        <br>
+        <label>Favorite Operating Systems:</label>
+        <br>
+        <div th:each="tempSystem : ${systems}">
+            <input type="checkbox" th:id="${tempSystem}" th:field="${student.favoriteSystems}" th:value="${tempSystem}">
+            <label th:for="${tempSystem}" th:text="${tempSystem}"></label>
+            <br>
+        </div>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+</body>
+</html>

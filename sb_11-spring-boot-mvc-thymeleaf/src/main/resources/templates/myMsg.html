@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thymeleaf Demo Project</title>
+    <title>Thymeleaf Demo Project: Exercise1 # Getting Started</title>
 
-    <!-- linking our css file -->
+    <!-- linking our css file, which is under src/main/resources/static/css/style.css -->
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
 <body>
-    <p th:text="'Time on the server is: ' + ${theDate}" class="style1"/>
+    <!--  The Spring MVC Model will be used to fetch the date using theDate attribute  -->
+    <p th:text="'Time on the server is: ' + ${theDate}" class="currentDateTime"/>
 </body>
 </html>

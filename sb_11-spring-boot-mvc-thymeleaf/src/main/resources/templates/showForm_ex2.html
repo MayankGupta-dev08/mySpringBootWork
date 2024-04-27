@@ -1,0 +1,23 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Thymeleaf Demo Project: Exercise2 # Reading Form Data</title>
+
+    <link rel="stylesheet" th:href="@{/css/stylesEx2.css}">
+</head>
+<body>
+    <div class="container">
+        <h1>Student Form</h1>
+        <!-- On submission of the form, action: @/processForm -->
+        <form th:action="@{/exc2/processFormV3}" method="GET">
+            <input type="text" name="studentName" placeholder="What is your name?" required>
+            <br>
+            <input type="submit" value="Submit!">
+        </form>
+    </div>
+</body>
+</html>

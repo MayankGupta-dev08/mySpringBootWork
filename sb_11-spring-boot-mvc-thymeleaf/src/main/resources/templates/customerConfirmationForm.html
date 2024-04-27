@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Customer Confirmation Form</title>
+
+    <link rel="stylesheet" th:href="@{/css/style4_pf.css}">
+</head>
+<body>
+<div class="container">
+    <h1>| Customer Confirmation Page |</h1>
+    <br>
+    <h2>The Customer is confirmed</h2>
+    <br>
+    <span>Customer's Name: <span th:text="${customer.firstName} + ' ' + ${customer.lastName}" /></span>
+    <br>
+    <span>Customer's Postal Code: <span th:text="${customer.postalCode}" /></span>
+    <br>
+    <span>Course Code: <span th:text="${customer.courseCode}" /></span>
+    <br>
+    <span>Customer's Passes: <span th:text="${customer.freePasses}" /></span>
+    <br>
+</div>
+</body>
+</html>

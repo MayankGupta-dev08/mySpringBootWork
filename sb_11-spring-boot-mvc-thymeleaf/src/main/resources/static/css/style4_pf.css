@@ -1,0 +1,40 @@
+/* CSS for Customer Confirmation Page */
+
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 24px;
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 20px;
+    text-align: center;
+    color: #4caf50;
+    margin-bottom: 20px;
+}
+
+span {
+    display: block;
+    margin-bottom: 15px;
+}
+
+span > span {
+    display: inline-block;
+}
+
+.error {
+    color: #ff0000;
+    font-size: 12px; /* Smaller font size */
+    font-style: italic; /* Italic font style */
+    margin-left: 10px; /* Add some margin for spacing */
+}
