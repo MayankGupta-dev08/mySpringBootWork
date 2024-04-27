@@ -1,4 +1,4 @@
-package dev.mayank.restWebApp.entity;
+package dev.mayank.myRESTfulApp.entity;
 
 import jakarta.persistence.*;
 

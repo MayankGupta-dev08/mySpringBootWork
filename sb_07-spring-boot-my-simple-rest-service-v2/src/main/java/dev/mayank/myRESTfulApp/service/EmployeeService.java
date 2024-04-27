@@ -1,7 +1,7 @@
-package dev.mayank.restWebApp.service;
+package dev.mayank.myRESTfulApp.service;
 
-import dev.mayank.restWebApp.dao.EmployeeRepository;
-import dev.mayank.restWebApp.entity.Employee;
+import dev.mayank.myRESTfulApp.dao.EmployeeRepository;
+import dev.mayank.myRESTfulApp.entity.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

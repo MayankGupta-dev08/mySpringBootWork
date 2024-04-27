@@ -1,6 +1,6 @@
-package dev.mayank.restWebApp.dao;
+package dev.mayank.myRESTfulApp.dao;
 
-import dev.mayank.restWebApp.entity.Employee;
+import dev.mayank.myRESTfulApp.entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

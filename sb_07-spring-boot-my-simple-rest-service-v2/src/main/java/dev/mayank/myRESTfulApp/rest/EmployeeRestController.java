@@ -1,7 +1,7 @@
-package dev.mayank.restWebApp.rest;
+package dev.mayank.myRESTfulApp.rest;
 
-import dev.mayank.restWebApp.entity.Employee;
-import dev.mayank.restWebApp.service.EmployeeService;
+import dev.mayank.myRESTfulApp.entity.Employee;
+import dev.mayank.myRESTfulApp.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

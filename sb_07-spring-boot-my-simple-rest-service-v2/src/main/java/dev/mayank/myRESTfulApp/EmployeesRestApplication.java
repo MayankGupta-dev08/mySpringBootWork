@@ -1,11 +1,11 @@
-package dev.mayank.restWebApp;
+package dev.mayank.myRESTfulApp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RestWebAppApplication {
+public class EmployeesRestApplication {
     public static void main(String[] args) {
-        SpringApplication.run(RestWebAppApplication.class, args);
+        SpringApplication.run(EmployeesRestApplication.class, args);
     }
 }

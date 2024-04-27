@@ -1,6 +1,6 @@
-package dev.mayank.restWebApp.service;
+package dev.mayank.myRESTfulApp.service;
 
-import dev.mayank.restWebApp.entity.Employee;
+import dev.mayank.myRESTfulApp.entity.Employee;
 
 import java.util.List;
 
