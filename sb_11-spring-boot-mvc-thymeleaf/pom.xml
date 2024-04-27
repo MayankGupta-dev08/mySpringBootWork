@@ -12,7 +12,7 @@
 
     <name>sb_11-spring-boot-mvc-thymeleaf</name>
     <url>http://maven.apache.org</url>
-    <description>Demo Project for RESTful Service with SpringBoot, Spring MVC and Thymefeaf</description>
+    <description>Demo Project for RESTful Service with SpringBoot, Spring MVC and Thymeleaf</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
