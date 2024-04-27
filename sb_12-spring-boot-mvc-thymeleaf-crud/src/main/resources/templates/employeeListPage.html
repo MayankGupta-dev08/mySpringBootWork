@@ -16,25 +16,39 @@
 <div class="container-lg">
     <br>
     <h1 class="display-3">List of employees</h1>
-    <div class="text-success"><hr></div>
+    <div class="text-success">
+        <hr>
+    </div>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <a class="btn btn-outline-primary me-md-2 mb-3" th:href="@{showFormForAddingEmployee}" role="button">Add an employee</a>
+        <a class="btn btn-outline-primary me-md-2 mb-3" th:href="@{showFormForAddingEmployee}" role="button">Add an
+            employee</a>
     </div>
     <table class="table table-bordered table-striped table-hover">
         <caption>List of employees in employee directory</caption>
-        <thead  class="table-dark">
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-            </tr>
+        <thead class="table-dark">
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Update Action</th>
+            <th>Delete Action</th>
+        </tr>
         </thead>
         <tbody>
-            <tr th:each="employee : ${employees}">
-                <td th:text="${employee.firstName}"></td>
-                <td th:text="${employee.lastName}"></td>
-                <td th:text="${employee.email}"></td>
-            </tr>
+        <tr th:each="employee : ${employees}">
+            <td th:text="${employee.firstName}"></td>
+            <td th:text="${employee.lastName}"></td>
+            <td th:text="${employee.email}"></td>
+            <td>
+                <a th:href="@{showFormForUpdatingEmployee(employeeId=${employee.id})}"
+                   class="btn btn-info btn-sm btn-hover" role="button">Update</a>
+            </td>
+            <td>
+                <a th:href="@{delete(employeeId=${employee.id})}"
+                   class="btn btn-danger btn-sm btn-hover" role="button"
+                   onclick="if (!(confirm('Do you really want to delete this employee??'))) return false">Delete</a>
+            </td>
+        </tr>
         </tbody>
     </table>
 </div>

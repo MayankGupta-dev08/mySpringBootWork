@@ -21,28 +21,33 @@
             <div class="text-primary">
                 <hr>
             </div>
-            <form action="#" th:action="@{/api/v1/employees/save}" th:object="${newEmployee}" method="POST">
+            <form action="#" th:action="@{/api/v1/employees/save}" th:object="${theEmployee}" method="POST">
+                <!-- Adding hidden field in the form for id to handle update -->
+                <input type="hidden" th:field="${theEmployee.id}">
+
                 <div class="mb-3">
                     <label for="employeeFirstName" class="form-label">First Name</label>
-                    <input type="text" th:field="${newEmployee.firstName}" placeholder="Enter employee's first name"
+                    <input type="text" th:field="${theEmployee.firstName}" placeholder="Enter employee's first name"
                            class="form-control" id="employeeFirstName" required>
                 </div>
                 <div class="mb-3">
                     <label for="employeeLastName" class="form-label">Last Name</label>
-                    <input type="text" th:field="*{lastName}" placeholder="Enter employee's last name"
+                    <input type="text" th:field="${theEmployee.lastName}" placeholder="Enter employee's last name"
                            class="form-control" id="employeeLastName" required>
                 </div>
                 <div class="mb-3">
                     <label for="employeeEmail" class="form-label">Email address</label>
-                    <input type="email" th:field="${newEmployee.email}"
+                    <input type="email" th:field="${theEmployee.email}"
                            placeholder="Enter employee's official email address"
-                           class="form-control" id="employeeEmail" aria-describedby="emailHelp" required>
+                           class="form-control" id="employeeEmail" aria-describedby="emailHelp">
                     <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                 </div>
+
                 <button type="submit" class="btn btn-hover btn-outline-success">Save Employee</button>
             </form>
             <hr class="border-secondary opacity-75">
-            <p><a th:href="@{list}" class="link-info link-underline-opacity-0 link-hover">Back to the list of employees</a></p>
+            <p><a th:href="@{list}" class="link-info link-underline-opacity-0 link-hover">Back to the list of
+                employees</a></p>
         </div>
     </div>
 </div>

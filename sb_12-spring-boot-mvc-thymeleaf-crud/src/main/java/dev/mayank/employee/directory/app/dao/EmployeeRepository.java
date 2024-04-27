@@ -17,5 +17,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
      * Spring Data JPA will parse the method name and will look for a specific format and pattern,
      * thereby will create an appropriate query for the method (all behind the scene).
      */
+    List<Employee> findAllByOrderByFirstNameAsc();
     List<Employee> findAllByOrderByLastNameAsc();
 }

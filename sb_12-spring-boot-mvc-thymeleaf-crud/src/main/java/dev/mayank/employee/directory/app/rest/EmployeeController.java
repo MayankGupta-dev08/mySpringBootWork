@@ -5,10 +5,7 @@ import dev.mayank.employee.directory.app.service.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,11 +32,11 @@ public class EmployeeController {
     /**
      * @param model
      * @return employeeFormPage.html
-     * @controller-method for <a href="http://localhost:8080/api/v1/employees/showFormForAddingEmployee">Add new employee form</a>
+     * @controller-method for <a href="http://localhost:8080/api/v1/employees/showFormForAddingEmployee">Add an employee</a>
      */
     @GetMapping("/showFormForAddingEmployee")
-    public String showNewEmployeeForm(Model model) {
-        model.addAttribute("newEmployee", new Employee());
+    public String showEmployeeFormForAdd(Model model) {
+        model.addAttribute("theEmployee", new Employee());
         return "employeeFormPage";
     }
 
@@ -49,28 +46,32 @@ public class EmployeeController {
      * @controller-method for <a href="http://localhost:8080/api/v1/employees/save">Save an employee</a>
      */
     @PostMapping("/save")
-    public String saveAnEmployee(@ModelAttribute("newEmployee") Employee employee) {
+    public String saveAnEmployee(@ModelAttribute("theEmployee") Employee employee) {
         employeeService.save(employee);
         return "redirect:/api/v1/employees/list";
     }
 
-    /* @GetMapping("/employees/{employeeId}")
-    public Employee findById(@PathVariable int employeeId) {
-        return employeeService.findById(employeeId);
+    /**
+     * @param id
+     * @param model
+     * @return employeeFormPage.html
+     * @controller-method for <a href="http://localhost:8080/api/v1/employees/showFormForUpdatingEmployee">Update an employee</a>
+     */
+    @GetMapping("/showFormForUpdatingEmployee")
+    public String showEmployeeFormForUpdate(@RequestParam("employeeId") int id, Model model) {
+        Employee theEmployee = employeeService.findById(id);
+        model.addAttribute("theEmployee", theEmployee);
+        return "employeeFormPage";
     }
 
-    @DeleteMapping("/employees/{employeeId}")
-    public void deleteAll(@PathVariable int employeeId) {
-        employeeService.deleteById(employeeId);
+    /**
+     * @param id
+     * @return redirect:/list (employeeListPage.html)
+     * @controller-method for <a href="http://localhost:8080/api/v1/employees/delete">Delete an employee</a>
+     */
+    @GetMapping("/delete")
+    public String deleteAnEmployee(@RequestParam("employeeId") int id) {
+        employeeService.deleteById(id);
+        return "redirect:/api/v1/employees/list";
     }
-
-    @DeleteMapping("/employees")
-    public void deleteAll() {
-        employeeService.deleteAll();
-    }
-
-    @PutMapping("/employees")
-    public String update(@RequestBody Employee employee) {
-        return employeeService.updateEntity(employee);
-    } */
 }
