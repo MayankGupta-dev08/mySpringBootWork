@@ -13,7 +13,9 @@ import java.util.List;
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 
     /**
-     * method to sort by last name
+     * To sort by list of employees by last name,
+     * Spring Data JPA will parse the method name and will look for a specific format and pattern,
+     * thereby will create an appropriate query for the method (all behind the scene).
      */
     List<Employee> findAllByOrderByLastNameAsc();
 }

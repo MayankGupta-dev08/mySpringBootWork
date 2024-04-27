@@ -10,13 +10,16 @@
 <body>
 <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Employees Directory</a>
+        <a class="navbar-brand" href="#">Employees Directory App</a>
     </div>
 </nav>
 <div class="container-lg">
     <br>
     <h1 class="display-3">List of employees</h1>
     <div class="text-success"><hr></div>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <a class="btn btn-outline-primary me-md-2 mb-3" th:href="@{showFormForAddingEmployee}" role="button">Add an employee</a>
+    </div>
     <table class="table table-bordered table-striped table-hover">
         <caption>List of employees in employee directory</caption>
         <thead  class="table-dark">
