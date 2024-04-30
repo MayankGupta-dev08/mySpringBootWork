@@ -4,7 +4,7 @@
     <parent>
         <groupId>dev.mayank</groupId>
         <artifactId>mySpringBootWork</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>13.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>sb_08-spring-boot-my-rest-service-springdata-rest</artifactId>
