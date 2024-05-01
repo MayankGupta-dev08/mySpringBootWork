@@ -17,7 +17,6 @@ import javax.sql.DataSource;
 @Configuration
 @SuppressWarnings("unused")
 public class EmployeeSecurityConfig {
-
     private static final String USERS_TABLE_NAME = "our_members";   // users
     private static final String USERNAME_FIELD_IN_USERS_TABLE = "user_name";    // username
     private static final String PASSWORD_FIELD_IN_USERS_TABLE = "pwd";  // password
@@ -27,30 +26,28 @@ public class EmployeeSecurityConfig {
     private static final String AUTHORITY_FIELD_IN_AUTHORITIES_TABLE = "role";  // authority
 
     /**
-     * <p>Added support for JDBC: storing the user and roles in DB</p>
-     * If the table and fields names are different from the default ones used in Spring Security,
-     * then use a custom query for retrieving the results from user and authorities tables.
+     * Provides support for JDBC, allowing storing users and roles in the database.
+     * Custom queries can be used if the table and field names differ from Spring Security defaults.
+     *
+     * @param dataSource The DataSource used for accessing the database.
+     * @return A UserDetailsManager instance configured to use JDBC for user and role management.
      */
     @Bean
     public UserDetailsManager userDetailsManager(DataSource dataSource) {
         JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
-         handleQueryInCustomTablesForSpringSecurity(jdbcUserDetailsManager);
+        handleQueryInCustomTablesForSpringSecurity(jdbcUserDetailsManager);
         return jdbcUserDetailsManager;
     }
 
     /**
-     * Making custom queries for users and authorities' tables
+     * Configures security for HTTP requests, specifying access control rules based on request methods and URL patterns.
+     * Enables HTTP Basic authentication and disables CSRF protection.
+     *
+     * @param httpSecurity The HttpSecurity object used to configure security for HTTP requests.
+     * @return A SecurityFilterChain instance configured with access control rules, HTTP Basic authentication,
+     * and CSRF protection disabled.
+     * @throws Exception If an error occurs during configuration.
      */
-    private static void handleQueryInCustomTablesForSpringSecurity(JdbcUserDetailsManager jdbcUserDetailsManager) {
-        String usernameQueryString = "SELECT %s, %s, %s FROM %s where %s=?"
-                .formatted(USERNAME_FIELD_IN_USERS_TABLE, PASSWORD_FIELD_IN_USERS_TABLE, ENABLED_FIELD_IN_USERS_TABLE, USERS_TABLE_NAME, USERNAME_FIELD_IN_USERS_TABLE);
-        jdbcUserDetailsManager.setUsersByUsernameQuery(usernameQueryString);
-
-        String authoritiesQueryString = "SELECT %s, %s FROM %s where %s=?".
-                formatted(USERNAME_FIELD_IN_AUTHORITIES_TABLE, AUTHORITY_FIELD_IN_AUTHORITIES_TABLE, AUTHORITIES_TABLE, USERNAME_FIELD_IN_AUTHORITIES_TABLE);
-        jdbcUserDetailsManager.setAuthoritiesByUsernameQuery(authoritiesQueryString);
-    }
-
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
 
@@ -73,8 +70,25 @@ public class EmployeeSecurityConfig {
     }
 
     /**
-     * Hard coding the user data and roles for the security.
-     * Spring Security Config inMemory Storage.
+     * Configures custom queries for retrieving user and authority details from custom tables.
+     *
+     * @param jdbcUserDetailsManager The JdbcUserDetailsManager instance to configure with custom queries.
+     */
+    private static void handleQueryInCustomTablesForSpringSecurity(JdbcUserDetailsManager jdbcUserDetailsManager) {
+        String usernameQueryString = "SELECT %s, %s, %s FROM %s where %s=?"
+                .formatted(USERNAME_FIELD_IN_USERS_TABLE, PASSWORD_FIELD_IN_USERS_TABLE, ENABLED_FIELD_IN_USERS_TABLE, USERS_TABLE_NAME, USERNAME_FIELD_IN_USERS_TABLE);
+        jdbcUserDetailsManager.setUsersByUsernameQuery(usernameQueryString);
+
+        String authoritiesQueryString = "SELECT %s, %s FROM %s where %s=?".
+                formatted(USERNAME_FIELD_IN_AUTHORITIES_TABLE, AUTHORITY_FIELD_IN_AUTHORITIES_TABLE, AUTHORITIES_TABLE, USERNAME_FIELD_IN_AUTHORITIES_TABLE);
+        jdbcUserDetailsManager.setAuthoritiesByUsernameQuery(authoritiesQueryString);
+    }
+
+    /**
+     * Provides in-memory storage for user data and roles for security.
+     * This is an alternative to JDBC-based user and role management.
+     *
+     * @return An InMemoryUserDetailsManager instance configured with predefined user data and roles.
      */
     // @Bean
     public InMemoryUserDetailsManager userDetailsManager() {
