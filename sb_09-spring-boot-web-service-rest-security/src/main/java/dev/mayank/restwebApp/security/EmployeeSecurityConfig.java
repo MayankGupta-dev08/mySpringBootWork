@@ -34,7 +34,7 @@ public class EmployeeSecurityConfig {
     @Bean
     public UserDetailsManager userDetailsManager(DataSource dataSource) {
         JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
-        // handleQueryInCustomTablesForSpringSecurity(jdbcUserDetailsManager);
+         handleQueryInCustomTablesForSpringSecurity(jdbcUserDetailsManager);
         return jdbcUserDetailsManager;
     }
 
