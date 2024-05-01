@@ -42,7 +42,7 @@
         <module>sb_10-spring-rest-service-security-jpa</module>
         <module>sb_11-spring-boot-mvc-thymeleaf</module>
         <module>sb_12-spring-boot-mvc-thymeleaf-crud</module>
-        <module>sb_13-spring-boot-mvc-security-crud</module>
+        <module>sb_13-spring-boot-mvc-security-thymeleaf-crud</module>
         <module>sb_14-spring-boot-some-work</module>
     </modules>
 
