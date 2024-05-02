@@ -10,7 +10,7 @@ import java.util.Collection;
 
 @Data
 @Entity
-@Table(name = "user")
+@Table(name = "our_members")
 @NoArgsConstructor
 @AllArgsConstructor
 @SuppressWarnings("unused")
