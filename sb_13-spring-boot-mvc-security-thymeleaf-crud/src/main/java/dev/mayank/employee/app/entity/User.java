@@ -10,10 +10,10 @@ import java.util.Collection;
 
 @Data
 @Entity
-@Table(name = "our_members")
 @NoArgsConstructor
 @AllArgsConstructor
 @SuppressWarnings("unused")
+@Table(name = "our_members")
 public class User {
 
     @Id
@@ -21,13 +21,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "username")
+    @Column(name = "user_name")
     private String username;
 
-    @Column(name = "password")
+    @Column(name = "pwd")
     private String password;
 
-    @Column(name = "enabled")
+    @Column(name = "active")
     private boolean enabled;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

@@ -8,10 +8,10 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name = "role")
 @NoArgsConstructor
 @AllArgsConstructor
 @SuppressWarnings("unused")
+@Table(name = "our_roles")
 public class Role {
 
     @Id
@@ -19,7 +19,7 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "role_name")
     private String name;
 
     public Role(String name) {

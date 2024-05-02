@@ -8,26 +8,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class LoginController {
 
     /**
-     * @return homePage.html
+     * @link: <a href="http://localhost:8080/showMyLoginPage">showMyLoginPage</a>
+     * @return loginForm.html
      */
-    @GetMapping("/")
-    public String showHome() {
-        return "homePage";
+    @GetMapping("/showMyLoginPage")
+    public String showMyLoginPage() {
+        return "loginForm";
     }
 
     /**
-     * @return leadersPage.html
+     * @link: <a href="http://localhost:8080/access-denied">access-denied</a>
+     * @return accessDenied.html
      */
-    @GetMapping("/leaders")
-    public String showLeaders() {
-        return "leadersPage";
-    }
-
-    /**
-     * @return systemsPage.html
-     */
-    @GetMapping("/systems")
-    public String showSystems() {
-        return "systems";
+    @GetMapping("/access-denied")
+    public String showAccessDenied() {
+        return "accessDenied";
     }
 }
