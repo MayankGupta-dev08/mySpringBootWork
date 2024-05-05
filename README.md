@@ -12,4 +12,5 @@
 10. [Module09:- Spring Boot: RESTful Service with Simple Spring Security](https://github.com/MayankGupta-dev08/mySpringBootWork/tree/master/sb_09-spring-boot-web-service-rest-security)
 11. [Module10:- Spring Boot: RESTful Service with Spring Security and JPA/Hibernate](https://github.com/MayankGupta-dev08/mySpringBootWork/tree/master/sb_10-spring-rest-service-security-jpa)
 12. [Module11:- Spring Boot: RESTful Service with Spring MVC and Thymeleaf](https://github.com/MayankGupta-dev08/mySpringBootWork/tree/master/sb_11-spring-boot-mvc-thymeleaf)
-13. [Module12:- Spring Boot: Employee Directory App using Spring Boot, Spring MVC, Spring Data JPA and Thymeleaf](https://github.com/MayankGupta-dev08/mySpringBootWork/tree/master/sb_12-spring-boot-mvc-thymeleaf-crud)
+13. [Module12:- Spring Boot: Employee Directory App using Spring MVC, Spring Data JPA and Thymeleaf](https://github.com/MayankGupta-dev08/mySpringBootWork/tree/master/sb_12-spring-boot-mvc-thymeleaf-crud)
+14. [Module13:- Spring Boot: Employee Directory App using Spring Security, Spring MVC, Spring Data JPA and Thymeleaf](https://github.com/MayankGupta-dev08/mySpringBootWork/tree/master/sb_13-spring-boot-mvc-security-thymeleaf-crud)

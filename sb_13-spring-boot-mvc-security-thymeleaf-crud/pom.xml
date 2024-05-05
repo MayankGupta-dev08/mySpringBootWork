@@ -7,10 +7,10 @@
         <version>13.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>sb_13-spring-boot-mvc-security-crud</artifactId>
+    <artifactId>sb_13-spring-boot-mvc-security-thymeleaf-crud</artifactId>
     <packaging>jar</packaging>
 
-    <name>sb_13-spring-boot-mvc-security-crud</name>
+    <name>sb_13-spring-boot-mvc-security-thymeleaf-crud</name>
     <url>http://maven.apache.org</url>
     <description>Demo Project for RESTful Service using SpringBoot, Spring MVC, Spring Security, Spring Data JPA and Thymeleaf</description>
 
@@ -44,7 +44,6 @@
             <groupId>org.thymeleaf.extras</groupId>
             <artifactId>thymeleaf-extras-springsecurity6</artifactId>
         </dependency>
-
 
         <dependency> <!-- SPRING SECURITY TEST -->
             <groupId>org.springframework.security</groupId>

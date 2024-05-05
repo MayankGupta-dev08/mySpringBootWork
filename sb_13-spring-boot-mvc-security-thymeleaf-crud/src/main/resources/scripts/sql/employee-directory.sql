@@ -30,4 +30,4 @@ INSERT INTO `employee` VALUES
 -- Showing data for table `employee`
 --
 
-SELECT * FROM employee_directory.employee;
+SELECT * FROM 'employee';

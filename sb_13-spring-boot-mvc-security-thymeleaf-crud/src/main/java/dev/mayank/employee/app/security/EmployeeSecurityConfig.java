@@ -1,13 +1,14 @@
-package dev.mayank.restwebApp.security;
+package dev.mayank.employee.app.security;
 
+import dev.mayank.employee.app.service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
@@ -26,6 +27,32 @@ public class EmployeeSecurityConfig {
     private static final String AUTHORITY_FIELD_IN_AUTHORITIES_TABLE = "role";  // authority
 
     /**
+     * Defines a BCryptPasswordEncoder bean for encoding passwords.
+     * This bean is used to securely encode passwords before storing them in the database.
+     *
+     * @return A BCryptPasswordEncoder instance.
+     */
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    /**
+     * Defines an authenticationProvider bean using a custom user service and password encoder.
+     * This bean is responsible for authenticating users against the provided user service and password encoder.
+     *
+     * @param userService The custom user service to use for authentication.
+     * @return A DaoAuthenticationProvider instance configured with the custom user service and password encoder.
+     */
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider(UserService userService) {
+        DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
+        auth.setUserDetailsService(userService); // set the custom user details service
+        auth.setPasswordEncoder(passwordEncoder()); // set the password encoder - bcrypt
+        return auth;
+    }
+
+    /**
      * Provides support for JDBC, allowing storing users and roles in the database.
      * Custom queries can be used if the table and field names differ from Spring Security defaults.
      *
@@ -40,33 +67,33 @@ public class EmployeeSecurityConfig {
     }
 
     /**
-     * Configures security for HTTP requests, specifying access control rules based on request methods and URL patterns.
-     * Enables HTTP Basic authentication and disables CSRF protection.
+     * Defines a SecurityFilterChain bean to configure security for HTTP requests.
+     * This bean configures access control based on HTTP request methods and URL patterns.
+     * It also enables HTTP Basic authentication and disables Cross-Site Request Forgery (CSRF) protection.
      *
-     * @param httpSecurity The HttpSecurity object used to configure security for HTTP requests.
+     * @param http The HttpSecurity object used to configure security for HTTP requests.
      * @return A SecurityFilterChain instance configured with access control rules, HTTP Basic authentication,
      * and CSRF protection disabled.
      * @throws Exception If an error occurs during configuration.
      */
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        httpSecurity.authorizeHttpRequests(configurer ->
+        http.authorizeHttpRequests(configurer ->
                 configurer
-                        .requestMatchers(HttpMethod.GET, "/our-api/our-employees").hasAnyRole("CLIENT", "DEVELOPER", "ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/our-api/our-employees/**").hasAnyRole("CLIENT", "DEVELOPER", "ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/our-api/our-employees").hasRole("DEVELOPER")
-                        .requestMatchers(HttpMethod.PUT, "/our-api/our-employees/**").hasAnyRole("DEVELOPER", "ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/our-api/our-employees/**").hasRole("ADMIN")
-        );
+                        .requestMatchers(HttpMethod.GET, "/api/employees").hasRole("EMPLOYEE")
+                        .requestMatchers(HttpMethod.GET, "/api/employees/**").hasRole("EMPLOYEE")
+                        .requestMatchers(HttpMethod.POST, "/api/employees").hasRole("MANAGER")
+                        .requestMatchers(HttpMethod.PUT, "/api/employees").hasRole("MANAGER")
+                        .requestMatchers(HttpMethod.DELETE, "/api/employees/**").hasRole("ADMIN"));
 
-        // using Basic HTTP authentication
-        httpSecurity.httpBasic(Customizer.withDefaults());
+        // use HTTP Basic authentication
+        http.httpBasic(Customizer.withDefaults());
 
-        // In General: Not meant for REST APIs for non-browser clients. It's needed for web apps with HTML forms which add/update the data.
-        httpSecurity.csrf(AbstractHttpConfigurer::disable); // Disable CSRF (Cross Site Request Forgery)
+        // disable Cross Site Request Forgery (CSRF)
+        http.csrf(AbstractHttpConfigurer::disable);
 
-        return httpSecurity.build();
+        return http.build();
     }
 
     /**
@@ -82,33 +109,5 @@ public class EmployeeSecurityConfig {
         String authoritiesQueryString = "SELECT %s, %s FROM %s where %s=?".
                 formatted(USERNAME_FIELD_IN_AUTHORITIES_TABLE, AUTHORITY_FIELD_IN_AUTHORITIES_TABLE, AUTHORITIES_TABLE, USERNAME_FIELD_IN_AUTHORITIES_TABLE);
         jdbcUserDetailsManager.setAuthoritiesByUsernameQuery(authoritiesQueryString);
-    }
-
-    /**
-     * Provides in-memory storage for user data and roles for security.
-     * This is an alternative to JDBC-based user and role management.
-     *
-     * @return An InMemoryUserDetailsManager instance configured with predefined user data and roles.
-     */
-    // @Bean
-    public InMemoryUserDetailsManager userDetailsManager() {
-        return new InMemoryUserDetailsManager(
-                User.builder()
-                        .username("rakesh")
-                        .password("{noop}sde01")
-                        .roles("DEVELOPER").build(),
-                User.builder()
-                        .username("suresh")
-                        .password("{noop}user01")
-                        .roles("CLIENT").build(),
-                User.builder()
-                        .username("mahesh")
-                        .password("{noop}admin")
-                        .roles("ADMIN").build(),
-                User.builder()
-                        .username("mayank")
-                        .password("{noop}leo")
-                        .roles("DEVELOPER", "MANAGER", "ADMIN").build()
-        );
     }
 }

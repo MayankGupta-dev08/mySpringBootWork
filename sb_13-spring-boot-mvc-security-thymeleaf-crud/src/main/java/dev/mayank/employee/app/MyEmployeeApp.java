@@ -1,11 +1,11 @@
-package dev.mayank.restApp;
+package dev.mayank.employee.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RESTfulAppWithSecurityAndJPA {
+public class MyEmployeeApp {
     public static void main(String[] args) {
-        SpringApplication.run(RESTfulAppWithSecurityAndJPA.class, args);
+        SpringApplication.run(MyEmployeeApp.class, args);
     }
 }
