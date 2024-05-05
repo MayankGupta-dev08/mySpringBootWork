@@ -34,6 +34,34 @@
   - We can use `@Qualifier` in case of setter injections and have more than 1 `@Qualifier`s for a same type by mentioning different name for the qualifiers.
   - `@Qualifier` has higher priority and more specific than `@Primary`.
 - We can inject dependencies by calling any method in our class by simply giving `@Autowired` for that method.
+- We could achieve D.I. along with prevention of dependency ambiguity and that too in a loosely coupled fashion using the `@Resource` annotation. 
+  - Instead of using `@Autowired` and `@Qualifier("${beanName}")`, we could simply use `@Resource(name="${beanName}")` on the field and provide the bean value in the `application.properties` file present in the java/resources section and add another annotation on the class expecting the bean `@PropertySource(value={"classpath:application.properties"})`.
+
+```java
+import jakarta.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Component;
+
+@Component
+@PropertySource(value = {"classpath:application.properties"})
+public class UserPaymentService {
+    /* @Autowired
+    @Qualifier("${phonePe}") */
+    @Resource(name = "${paymentBeanName}")
+    private Payment payment;
+
+    public String processPayment() {
+        return payment.performTransaction();
+    }
+}
+```
+
+[//]: # (application.properties)
+```properties
+paymentBeanName=paytm
+```
 
 
 ### Spring Beans Initialisation
