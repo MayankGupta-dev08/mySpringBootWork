@@ -21,6 +21,13 @@ public class MyCLIApp {
         return runner -> {
             createInstructors(instructorDAO);
             System.out.println("Instructors created!");
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
+            findTheInstructorById(instructorDAO);
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
+            deleteTheInstructorById(instructorDAO);
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         };
     }
 
@@ -37,4 +44,19 @@ public class MyCLIApp {
         System.out.println("Saving... " + instructor2);
         instructorDAO.save(instructor2);
     }
+
+    private void findTheInstructorById(InstructorDAO instructorDAO) {
+        int id = 1;
+        System.out.println("finding the instructor for id = " + id);
+        Instructor instructorById = instructorDAO.findInstructorById(id);
+        System.out.println("Result: " + instructorById);
+    }
+
+    private void deleteTheInstructorById(InstructorDAO instructorDAO) {
+        int id = 1;
+        System.out.println("deleting the instructor for id = " + id);
+        instructorDAO.deleteInstructorById(id);
+        System.out.println("deleted instructor for id = " + id);
+    }
+
 }
