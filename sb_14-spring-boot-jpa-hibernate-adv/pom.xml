@@ -7,17 +7,27 @@
         <version>13.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>sb_14-spring-boot-some-work</artifactId>
+    <artifactId>sb_14-spring-boot-jpa-hibernate-adv</artifactId>
     <packaging>jar</packaging>
 
-    <name>sb_14-spring-boot-some-work</name>
+    <name>sb_14-spring-boot-jpa-hibernate-adv</name>
     <url>http://maven.apache.org</url>
-    <description>Some work...</description>
+    <description>Demo Project for Command Line App using SpringBoot, Spring Data JPA and Hibernate</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
+        <dependency> <!--	Spring Data JPA	-->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <dependency> <!--	MySql Driver	-->
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <scope>runtime</scope>
+        </dependency>
     </dependencies>
 </project>
