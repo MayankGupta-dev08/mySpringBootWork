@@ -18,14 +18,23 @@ public class MyCLIApp {
 
     @Bean
     public CommandLineRunner commandLineRunner(InstructorDAO instructorDAO) {
-        return runner -> createInstructors(instructorDAO);
+        return runner -> {
+            createInstructors(instructorDAO);
+            System.out.println("Instructors created");
+        };
     }
 
     private void createInstructors(InstructorDAO instructorDAO) {
         InstructorDetail instructorDetail1 = new InstructorDetail("codeWithHarry", "python");
         Instructor instructor1 = new Instructor("Harry", "Bhai", "harisKhan@iitkgp.edu.in");
+        instructor1.setInstructorDetail(instructorDetail1);
+        System.out.println("Saving... " + instructor1);
+        instructorDAO.save(instructor1);
 
         InstructorDetail instructorDetail2 = new InstructorDetail("luv2Code", "java");
         Instructor instructor2 = new Instructor("Chad", "Darby", "chadDarby@cmu.edu.us");
+        instructor2.setInstructorDetail(instructorDetail2);
+        System.out.println("Saving... " + instructor2);
+        instructorDAO.save(instructor2);
     }
 }
