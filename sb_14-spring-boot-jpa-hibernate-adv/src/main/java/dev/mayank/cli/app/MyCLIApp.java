@@ -20,7 +20,7 @@ public class MyCLIApp {
     public CommandLineRunner commandLineRunner(InstructorDAO instructorDAO) {
         return runner -> {
             createInstructors(instructorDAO);
-            System.out.println("Instructors created");
+            System.out.println("Instructors created!");
         };
     }
 
