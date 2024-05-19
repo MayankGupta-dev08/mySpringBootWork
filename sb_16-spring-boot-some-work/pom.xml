@@ -7,10 +7,10 @@
         <version>13.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>sb_14-spring-boot-jpa-hibernate-adv</artifactId>
+    <artifactId>sb_16-spring-boot-some-work</artifactId>
     <packaging>jar</packaging>
 
-    <name>sb_14-spring-boot-jpa-hibernate-adv</name>
+    <name>sb_16-spring-boot-some-work</name>
     <url>http://maven.apache.org</url>
     <description>Demo Project for Command Line App using SpringBoot, Spring Data JPA and Hibernate</description>
 
