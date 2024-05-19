@@ -1,6 +1,7 @@
 package dev.mayank.cli.app.dao;
 
 import dev.mayank.cli.app.entity.Instructor;
+import dev.mayank.cli.app.entity.InstructorDetail;
 import jakarta.persistence.EntityManager;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -31,5 +32,17 @@ public class InstructorDAOImpl implements InstructorDAO {
     public void deleteInstructorById(int id) {
         Instructor instructorById = findInstructorById(id);
         entityManager.remove(instructorById);
+    }
+
+    @Override
+    public InstructorDetail findInstructorDetailById(int id) {
+        return entityManager.find(InstructorDetail.class, id);
+    }
+
+    @Override
+    @Transactional
+    public void deleteInstructorDetailById(int id) {
+        InstructorDetail instructorDetail = findInstructorDetailById(id);
+        entityManager.remove(instructorDetail);
     }
 }

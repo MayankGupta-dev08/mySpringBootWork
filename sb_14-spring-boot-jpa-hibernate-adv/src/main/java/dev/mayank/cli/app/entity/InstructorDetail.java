@@ -21,8 +21,20 @@ public class InstructorDetail {
     @Column(name = "core_expertise")
     private String coreExpertise;
 
+    /**
+     * This is done for Bi-directional OneToOne Mapping b/w Instructor and InstructorDetail
+     */
+    @OneToOne(mappedBy = "instructorDetail", cascade = CascadeType.ALL)
+    private Instructor instructor;
+
     public InstructorDetail(String ytChannel, String coreExpertise) {
         this.ytChannel = ytChannel;
         this.coreExpertise = coreExpertise;
+    }
+
+    @Override
+    public String toString() {
+        return "InstructorDetail{id=%d, coreExpertise='%s', ytChannel='%s', instructorId=%d}"
+                .formatted(id, coreExpertise, ytChannel, instructor != null ? instructor.getId() : null);
     }
 }

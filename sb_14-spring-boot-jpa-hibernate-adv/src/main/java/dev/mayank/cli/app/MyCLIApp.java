@@ -28,6 +28,12 @@ public class MyCLIApp {
 
             deleteTheInstructorById(instructorDAO);
             System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
+            findTheInstructorDetailById(instructorDAO);
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
+            deleteTheInstructorDetailById(instructorDAO);
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         };
     }
 
@@ -59,4 +65,17 @@ public class MyCLIApp {
         System.out.println("deleted instructor for id = " + id);
     }
 
+    private void findTheInstructorDetailById(InstructorDAO instructorDAO) {
+        int id = 2;
+        System.out.println("finding the instructor detail for id = " + id);
+        InstructorDetail instructorDetail = instructorDAO.findInstructorDetailById(id);
+        System.out.println("Result: " + instructorDetail);
+    }
+
+    private void deleteTheInstructorDetailById(InstructorDAO instructorDAO) {
+        int id = 2;
+        System.out.println("deleting the instructor detail for id = " + id);
+        instructorDAO.deleteInstructorDetailById(id);
+        System.out.println("deleted instructor for id = " + id);
+    }
 }
