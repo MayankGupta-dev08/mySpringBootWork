@@ -23,8 +23,10 @@ public class InstructorDetail {
 
     /**
      * This is done for Bi-directional OneToOne Mapping b/w Instructor and InstructorDetail
+     * Also we allowed deleting the instructor_detail alone w/o deleting instructor, for other operations both the entities will participate.
      */
-    @OneToOne(mappedBy = "instructorDetail", cascade = CascadeType.ALL)
+    // @OneToOne(mappedBy = "instructorDetail", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "instructorDetail", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private Instructor instructor;
 
     public InstructorDetail(String ytChannel, String coreExpertise) {

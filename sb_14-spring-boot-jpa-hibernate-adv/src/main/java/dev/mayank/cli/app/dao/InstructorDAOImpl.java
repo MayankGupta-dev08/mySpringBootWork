@@ -39,10 +39,22 @@ public class InstructorDAOImpl implements InstructorDAO {
         return entityManager.find(InstructorDetail.class, id);
     }
 
+    /* @Override
+    @Transactional
+    public void deleteInstructorDetailById(int id) {
+        InstructorDetail instructorDetail = findInstructorDetailById(id);
+        entityManager.remove(instructorDetail);
+    } */
+
+    /**
+     * Removing the associated link b/w the two objects while deleting the instructor detail in order
+     * not to support CASCADE.REMOVE and break the bidirectional link for just this operation for instructor_delete
+     */
     @Override
     @Transactional
     public void deleteInstructorDetailById(int id) {
         InstructorDetail instructorDetail = findInstructorDetailById(id);
+        instructorDetail.getInstructor().setInstructorDetail(null);
         entityManager.remove(instructorDetail);
     }
 }

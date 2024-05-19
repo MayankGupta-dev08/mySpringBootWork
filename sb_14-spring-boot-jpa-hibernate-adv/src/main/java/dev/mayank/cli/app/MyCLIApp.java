@@ -22,7 +22,6 @@ public class MyCLIApp {
             createInstructors(instructorDAO);
             System.out.println("Instructors created!");
             System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-
             findTheInstructorById(instructorDAO);
             System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
