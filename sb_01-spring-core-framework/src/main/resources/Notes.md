@@ -69,12 +69,13 @@
 
 ### 1. Spring IoC container
 
-- Beans 
-- Config 
-- Container 
+- Beans (Java POJO)
+- Config5
+- Container
 - Bean Lifecycle Management (Creation, Dependency Injection, and Deletion of Beans)
 
-### 2. Application Context
-- ClasspathXMLApplicationContext 
-- AnnotationConfigApplicationContext 
+### 2. ApplicationContext (extends from BeanFactory)
+
+- ClasspathXMLApplicationContext
+- AnnotationConfigApplicationContext
 - FileSystemXMLApplicationContext 

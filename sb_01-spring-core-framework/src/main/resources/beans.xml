@@ -8,8 +8,8 @@
         <!-- <constructor-arg ref="advancedSpellChecker"/>-->
         <property name="spellChecker" ref="advancedSpellChecker"/>
     </bean>
-    <bean id="basicSpellChecker" class="dev.mayank.emailApp.v1.BasicSpellChecker">
-    </bean>
-    <bean id="advancedSpellChecker" class="dev.mayank.emailApp.v1.AdvancedSpellChecker">
-    </bean>
+
+    <bean id="basicSpellChecker" class="dev.mayank.emailApp.v1.BasicSpellChecker"/>
+
+    <bean id="advancedSpellChecker" class="dev.mayank.emailApp.v1.AdvancedSpellChecker"/>
 </beans>

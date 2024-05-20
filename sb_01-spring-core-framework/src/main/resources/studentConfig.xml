@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           https://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context
+                           https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--Need to create this bean before the bean for student1 as this will be used in it-->
+    <bean class="dev.mayank.other.injection.setter.Address" name="address1">
+        <property name="mainLine" value="A-2/133 MIG Flats"/>
+        <property name="city" value="West Delhi"/>
+        <property name="state" value="New Delhi"/>
+        <property name="pin" value="110059"/>
+        <property name="country" value="India"/>
+    </bean>
+
+    <bean class="dev.mayank.other.injection.setter.Student" name="student1" p:email="rohan.rathore@gmail.com">
+        <property name="id" value="550e8400-e29b-41d4-a716-446655440000"></property>
+        <property name="firstName" value="Rohan"/>
+        <property name="lastName" value="Rathore"/>
+        <property name="subjects">
+            <set>
+                <value>English</value>
+                <value>Hindi</value>
+                <value>Maths</value>
+                <value>Science</value>
+                <value>Social Science</value>
+                <null/>
+            </set>
+        </property>
+        <property name="marks">
+            <list>
+                <value>85</value>
+                <value>92</value>
+                <value>88</value>
+                <value>85</value>
+                <value>80</value>
+            </list>
+        </property>
+        <property name="favTeams">
+            <map>
+                <entry key="cricket" value="Delhi Capitals"></entry>
+                <entry key="football" value="Man City"></entry>
+            </map>
+        </property>
+        <property name="favYtChannels">
+            <props>
+                <prop key="python">Code with Harry</prop>
+                <prop key="java">Learn Code with Durgesh</prop>
+                <prop key="devops">AmigosCode</prop>
+            </props>
+        </property>
+        <property name="address" ref="address1"/>
+    </bean>
+</beans>
