@@ -1,2 +1,4 @@
-package dev.mayank.other.lifecycle;public class Main {
+package dev.mayank.other.lifecycle;
+
+public class Main {
 }
