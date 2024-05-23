@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-                           https://www.springframework.org/schema/beans/spring-beans.xsd
-                           https://www.springframework.org/schema/context
-                           https://www.springframework.org/schema/context/spring-context.xsd">
+                           https://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean class="dev.mayank.other.injection.setter.Student" name="student1" p:email="rohan.rathore@gmail.com">
-        <constructor-arg name="id" value="550e8400-e29b-41d4-a716-446655440000" type="Integer" />
+    <bean class="dev.mayank.other.injection.constructor.Employee" name="employee1">
+        <constructor-arg name="sapId" value="5508400" type="Integer"/>
         <constructor-arg name="fullName" value="Rahul Kapoor"/>
         <constructor-arg name="sex" value="M" type="Character"/>
+        <constructor-arg name="salary" value="1000000" type="Integer"/>
     </bean>
 </beans>
