@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean class="dev.mayank.other.injection.constructor.Employee" name="employee1">
+        <constructor-arg name="sapId" value="5508400" type="Integer"/>
+        <constructor-arg name="fullName" value="Rahul Kapoor"/>
+        <constructor-arg name="sex" value="M" type="Character"/>
+        <constructor-arg name="salary" value="1000000" type="Integer"/>
+    </bean>
+
+    <bean class="dev.mayank.other.injection.constructor.Point" name="point1">
+        <constructor-arg value="4" type="int" index="1"/>
+        <constructor-arg value="8" type="int" index="0"/>
+    </bean>
+</beans>
