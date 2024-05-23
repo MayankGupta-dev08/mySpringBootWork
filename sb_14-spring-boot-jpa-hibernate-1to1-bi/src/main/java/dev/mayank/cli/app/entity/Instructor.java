@@ -33,4 +33,10 @@ public class Instructor {
         this.lastName = lastName;
         this.email = email;
     }
+
+    @Override
+    public String toString() {
+        return "Instructor{id=%d, email='%s', firstName='%s', lastName='%s', instructorDetailId=%d}"
+                .formatted(id, email, firstName, lastName, instructorDetail != null ? instructorDetail.getId() : null);
+    }
 }
