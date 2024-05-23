@@ -1,6 +1,6 @@
 package dev.mayank.other.injection.setter;
 
-public class Address {
+class Address {
     private String mainLine;
     private String city;
     private String state;

@@ -2,7 +2,7 @@ package dev.mayank.other.injection.setter;
 
 import java.util.*;
 
-public class Student {
+class Student {
     private UUID id;
     private String firstName;
     private String lastName;
