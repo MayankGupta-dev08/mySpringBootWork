@@ -7,8 +7,11 @@ class Samosa {
         this.price = price;
     }
 
-    public void init() {
-
+    /**
+     * used as lifecycle method: init
+     */
+    public void setup() {
+        System.out.println("initialization...");
     }
 
     public float getPrice() {
@@ -20,7 +23,10 @@ class Samosa {
         return "~~~ [Samosa = %s/- Rs.] ~~~".formatted(price);
     }
 
-    public void destroy() {
-
+    /**
+     * used as lifecycle method: destroy
+     */
+    public void bye() {
+        System.out.println("closing up...");
     }
 }
