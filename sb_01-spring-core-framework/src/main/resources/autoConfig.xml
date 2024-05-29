@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean class="dev.mayank.other.autowire.xml.Address" name="address2">
+        <property name="street" value="third street"/>
+        <property name="city" value="gacchi bowli"/>
+        <property name="state" value="hyderabad"/>
+        <property name="pinCode" value="610058"/>
+    </bean>
+
+    <bean class="dev.mayank.other.autowire.xml.Address" name="address">
+        <property name="street" value="first street"/>
+        <property name="city" value="uttam nagar"/>
+        <property name="state" value="new delhi"/>
+        <property name="pinCode" value="110061"/>
+    </bean>
+
+    <bean class="dev.mayank.other.autowire.xml.Person" name="p1" autowire="byName">
+        <property name="age" value="18"/>
+    </bean>
+</beans>
