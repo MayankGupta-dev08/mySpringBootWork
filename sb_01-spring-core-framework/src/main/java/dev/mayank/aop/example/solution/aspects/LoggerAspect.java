@@ -19,8 +19,9 @@ import java.util.logging.Logger;
 public class LoggerAspect {
     private static final Logger LOGGER = Logger.getLogger(LoggerAspect.class.getName());
 
-    @Around("execution(* dev.mayank.aop.example.solution.services.*.*(..))")
-    public void log(ProceedingJoinPoint joinPoint) throws Throwable {
+    //@Around("execution(* dev.mayank.aop.example.solution.services.*.*(..))")
+    @Around("@annotation(dev.mayank.aop.example.solution.interfaces.LogAspect)")
+    public void logWIthAnnotation(ProceedingJoinPoint joinPoint) throws Throwable {
         LOGGER.info("Method %s is called.".formatted(joinPoint.getSignature().getName()));
         Instant startTime = Instant.now();
 

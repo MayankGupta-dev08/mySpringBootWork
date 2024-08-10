@@ -1,5 +1,6 @@
 package dev.mayank.aop.example.solution.services;
 
+import dev.mayank.aop.example.solution.interfaces.LogAspect;
 import dev.mayank.aop.example.solution.interfaces.Speaker;
 import dev.mayank.aop.example.solution.interfaces.Tyres;
 import dev.mayank.aop.example.solution.model.Song;
@@ -18,15 +19,18 @@ public class VehicleServices {
         this.tyres = tyres;
     }
 
+    @LogAspect
     public String playMusic(boolean isVehicleStarted, Song song) {
         //throw new UnsupportedOperationException("Method not implemented");
         return speaker.makeSound(song);
     }
 
+    @LogAspect
     public String moveVehicle(boolean isVehicleStarted) {
         return tyres.rotate();
     }
 
+    @LogAspect
     public String stopVehicle(boolean isVehicleStarted) {
         return tyres.stop();
     }
