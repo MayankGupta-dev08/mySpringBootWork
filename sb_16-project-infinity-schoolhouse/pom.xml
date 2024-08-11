@@ -7,23 +7,17 @@
         <version>14.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>sb_03-spring-boot-core</artifactId>
+    <artifactId>sb_16-project-infinity-schoolhouse</artifactId>
     <packaging>jar</packaging>
 
-    <name>sb_03-spring-boot-core</name>
+    <name>sb_16-project-infinity-schoolhouse</name>
     <url>http://maven.apache.org</url>
+    <description>School App Project (Infinity Schoolhouse) using Spring Boot</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
-        <!-- ADDING SUPPORT FOR SPRING BOOT DEVTOOLS -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-            <optional>true</optional>
-        </dependency>
     </dependencies>
 </project>

@@ -7,7 +7,7 @@
     <groupId>dev.mayank</groupId> <!-- Unique identifier for the project's group -->
     <artifactId>mySpringBootWork</artifactId> <!-- Unique identifier for the project -->
     <packaging>pom</packaging> <!-- Packaging type, in this case, a POM project -->
-    <version>13.0-SNAPSHOT</version> <!-- Project version -->
+    <version>14.0-SNAPSHOT</version> <!-- Project version -->
     <name>mySpringBootWork</name> <!-- Project name -->
     <url>http://maven.apache.org</url> <!-- Project URL -->
 
@@ -45,7 +45,8 @@
         <module>sb_13-spring-boot-mvc-security-thymeleaf-crud</module>
         <module>sb_14-spring-boot-jpa-hibernate-1to1-bi</module>
         <module>sb_15-spring-boot-jpa-hibernate-1tomany-bi</module>
-        <module>sb_16-spring-boot-some-work</module>
+        <module>sb_16-project-infinity-schoolhouse</module>
+        <module>sb_17-spring-boot-some-work</module>
     </modules>
 
     <!-- Project dependencies -->
