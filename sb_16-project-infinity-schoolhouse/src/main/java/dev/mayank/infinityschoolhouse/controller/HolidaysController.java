@@ -53,13 +53,19 @@ public class HolidaysController {
         holidays.add(new Holiday(CHRISTMAS, LocalDate.of(2024, 12, 25), HolidayType.RELIGIOUS));
     }
 
-    @GetMapping("/holidays")
-    public String getAllHolidays(@RequestParam(required = false) boolean national, @RequestParam(required = false) boolean religious,
-                                 @RequestParam(required = false) boolean festival, Model model) {
-        model.addAttribute("national", national);
-        model.addAttribute("religious", religious);
-        model.addAttribute("festival", festival);
-
+    @GetMapping("/holidays/{display}")
+    public String getAllHolidays(@PathVariable String display, Model model) {
+        if(null != display && display.equals("all")) {
+            model.addAttribute("national", true);
+            model.addAttribute("religious", true);
+            model.addAttribute("festival", true);
+        } else if(null != display && display.equals("national")) {
+            model.addAttribute("national", true);
+        } else if(null != display && display.equals("religious")) {
+            model.addAttribute("religious", true);
+        } else if(null != display && display.equals("festival")) {
+            model.addAttribute("festival", true);
+        }
         Holiday.HolidayType[] holidayTypes = Holiday.HolidayType.values();
         for (Holiday.HolidayType holidayType : holidayTypes) {
             model.addAttribute(holidayType.name(), holidays.stream()
