@@ -38,10 +38,10 @@
         <div class="container py-lg-5 py-4">
             <div class="title-heading-w3 text-center mb-sm-5 mb-4">
                 <h5 class="title-small">Infinity Schoolhouse</h5>
-                <h3 class="title-style">Awesome Holidays</h3>
+                <h3 class="title-style">Our School Holidays</h3>
             </div>
             <div class="row">
-                <div class="col-lg-4">
+                <div class="col-lg-4" th:if="${national} == true">
                     <h5 class="sub-title-timeline"><i class="fas fa-flag"></i> National Holidays</h5>
                     <div class="timeline">
                         <div th:each="holiday : ${NATIONAL}" class="column">
@@ -56,7 +56,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-4 mt-lg-0 mt-4">
+                <div class="col-lg-4 mt-lg-0 mt-4" th:if="${festival} == true">
                     <h5 class="sub-title-timeline">🪔 Festival Holidays</h5>
                     <div class="timeline">
                         <div th:each="holiday : ${FESTIVAL}" class="column">
@@ -71,7 +71,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-4 mt-lg-0 mt-4">
+                <div class="col-lg-4 mt-lg-0 mt-4" th:if="${religious} == true">
                     <h5 class="sub-title-timeline"><i class="fas fa-praying-hands"></i> Religious Holidays</h5>
                     <div class="timeline">
                         <div th:each="holiday : ${RELIGIOUS}" class="column">

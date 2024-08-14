@@ -54,7 +54,12 @@ public class HolidaysController {
     }
 
     @GetMapping("/holidays")
-    public String getAllHolidays(Model model) {
+    public String getAllHolidays(@RequestParam(required = false) boolean national, @RequestParam(required = false) boolean religious,
+                                 @RequestParam(required = false) boolean festival, Model model) {
+        model.addAttribute("national", national);
+        model.addAttribute("religious", religious);
+        model.addAttribute("festival", festival);
+
         Holiday.HolidayType[] holidayTypes = Holiday.HolidayType.values();
         for (Holiday.HolidayType holidayType : holidayTypes) {
             model.addAttribute(holidayType.name(), holidays.stream()
