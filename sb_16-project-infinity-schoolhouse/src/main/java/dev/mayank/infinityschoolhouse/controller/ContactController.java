@@ -12,7 +12,6 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @SuppressWarnings("unused")
@@ -38,6 +37,8 @@ public class ContactController {
             return "contact.html";
         }
         contactDetailService.saveContactDetail(contactDetail);
+        contactDetailService.setCounter(contactDetailService.getCounter() + 1);
+        LOGGER.info("Contact Detail saved successfully! Total saves: {}", contactDetailService.getCounter());
         return "redirect:/contact";
     }
 }
