@@ -46,7 +46,7 @@
                 <ul>
                     <li class="alert alert-danger" role="alert" th:each="error : ${#fields.errors('contactDetail.*')}" th:text="${error}" />
                 </ul>
-                <form th:action="@{/saveMsg}" method="post" class="signin-form" th:object="${contactDetail}">
+                <form action="/saveMsg" method="post" class="signin-form" th:object="${contactDetail}">
                     <div class="input-grids">
                         <div class="row">
                             <div class="col-sm-6">
