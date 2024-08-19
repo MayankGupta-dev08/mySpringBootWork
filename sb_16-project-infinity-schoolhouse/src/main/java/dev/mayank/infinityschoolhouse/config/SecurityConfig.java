@@ -16,7 +16,7 @@ public class SecurityConfig {
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.csrf(csrf -> csrf.disable());
+        httpSecurity.csrf(csrf -> csrf.ignoringRequestMatchers("/saveMsg"));
         httpSecurity.authorizeRequests(requests -> {
             requests
                     .requestMatchers("/about").permitAll()
@@ -27,6 +27,7 @@ public class SecurityConfig {
                     .requestMatchers("/holidays/**").permitAll()
                     .requestMatchers("/", "/home").permitAll()
                     .requestMatchers("/login").permitAll()
+                    .requestMatchers("/logout").permitAll()
                     .requestMatchers("/saveMsg").permitAll();
         });
         httpSecurity.formLogin(formLogin -> {
