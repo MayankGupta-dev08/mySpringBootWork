@@ -11,6 +11,7 @@
     <!-- CSS -->
     <link href="//fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style-starter.css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -45,7 +46,7 @@
                 <ul>
                     <li class="alert alert-danger" role="alert" th:each="error : ${#fields.errors('contactDetail.*')}" th:text="${error}" />
                 </ul>
-                <form th:action="@{/saveMsg}" method="post" class="signin-form" th:object="${contactDetail}">
+                <form action="/saveMsg" method="post" class="signin-form" th:object="${contactDetail}">
                     <div class="input-grids">
                         <div class="row">
                             <div class="col-sm-6">
