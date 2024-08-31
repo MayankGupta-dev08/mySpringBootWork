@@ -1,5 +1,7 @@
 package dev.mayank.infinityschoolhouse.model;
 
+import dev.mayank.infinityschoolhouse.util.HolidayType;
+
 import java.time.LocalDate;
 
 public class Holiday {
@@ -23,11 +25,5 @@ public class Holiday {
 
     public HolidayType getType() {
         return type;
-    }
-
-    public enum HolidayType {
-        NATIONAL,
-        RELIGIOUS,
-        FESTIVAL
     }
 }
