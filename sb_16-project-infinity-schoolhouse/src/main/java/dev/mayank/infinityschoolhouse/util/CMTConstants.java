@@ -1,6 +1,9 @@
 package dev.mayank.infinityschoolhouse.util;
 
-public class ContactMsgTableConstants {
+import jdk.jfr.Description;
+
+@Description("Constants for the contact_msg table")
+public final class CMTConstants {
     public static final String TABLE_NAME = "contact_msg";
     public static final String COLUMN_ID = "contact_id";
     public static final String COLUMN_NAME = "name";
@@ -15,5 +18,5 @@ public class ContactMsgTableConstants {
     public static final String COLUMN_UPDATED_BY = "updated_by";
     public static final String COLUMN_ALL = "*";
 
-    private ContactMsgTableConstants() {}
+    private CMTConstants() {}
 }
