@@ -37,8 +37,6 @@ public class ContactController {
             return "contact.html";
         }
         contactDetailService.saveContactDetail(contactDetail);
-        contactDetailService.setCounter(contactDetailService.getCounter() + 1);
-        LOGGER.info("Contact Detail saved successfully! Total saves: {}", contactDetailService.getCounter());
         return "redirect:/contact";
     }
 }
