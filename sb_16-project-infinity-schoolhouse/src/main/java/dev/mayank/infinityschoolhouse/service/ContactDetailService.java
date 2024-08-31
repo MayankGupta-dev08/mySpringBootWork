@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.SessionScope;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @SessionScope
@@ -40,5 +41,10 @@ public class ContactDetailService {
         } else LOGGER.error("Failed to save contact detail: {}", contactDetail);
 
         return isSaved;
+    }
+
+    public List<ContactDetail> getAllMessagesWithOpenStatus() {
+        LOGGER.info("Fetching all messages with status: {}", ISHConstants.OPEN);
+        return contactRepository.getAllMessagesWithStatus(ISHConstants.OPEN);
     }
 }

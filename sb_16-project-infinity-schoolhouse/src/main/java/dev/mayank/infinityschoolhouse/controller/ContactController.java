@@ -12,6 +12,9 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
 @SuppressWarnings("unused")
@@ -38,5 +41,18 @@ public class ContactController {
         }
         contactDetailService.saveContactDetail(contactDetail);
         return "redirect:/contact";
+    }
+
+    @RequestMapping(value = {"/displayMessages"})
+    public ModelAndView displayOpenMessages() {
+        LOGGER.info("Displaying all 'OPEN' messages");
+
+        ModelAndView modelAndView = new ModelAndView();
+        List<ContactDetail> messagesWithOpenStatus = contactDetailService.getAllMessagesWithOpenStatus();
+        modelAndView.addObject("openMessages", messagesWithOpenStatus);
+        modelAndView.setViewName("messages.html");
+
+        LOGGER.info("Returning all 'OPEN' messages");
+        return modelAndView;
     }
 }
