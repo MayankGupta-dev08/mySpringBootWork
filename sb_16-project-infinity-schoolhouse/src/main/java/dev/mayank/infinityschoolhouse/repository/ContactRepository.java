@@ -2,7 +2,7 @@ package dev.mayank.infinityschoolhouse.repository;
 
 import dev.mayank.infinityschoolhouse.model.ContactDetail;
 import dev.mayank.infinityschoolhouse.rowmapper.ContactDetailRowMapper;
-import dev.mayank.infinityschoolhouse.util.ContactMsgTableConstants;
+import dev.mayank.infinityschoolhouse.util.CMTConstants;
 import dev.mayank.infinityschoolhouse.util.SQLQueryBuilder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,51 +24,34 @@ public class ContactRepository {
     }
 
     public int saveContactMsg(ContactDetail contactDetail) {
-        log.info("Saving contact detail: {}", contactDetail);
-
-        String sql = SQLQueryBuilder.buildInsertQuery(ContactMsgTableConstants.TABLE_NAME,
-                ContactMsgTableConstants.COLUMN_NAME, ContactMsgTableConstants.COLUMN_MOBILE,
-                ContactMsgTableConstants.COLUMN_EMAIL, ContactMsgTableConstants.COLUMN_SUBJECT,
-                ContactMsgTableConstants.COLUMN_MESSAGE, ContactMsgTableConstants.COLUMN_STATUS,
-                ContactMsgTableConstants.COLUMN_CREATED_AT, ContactMsgTableConstants.COLUMN_CREATED_BY);
-        log.info("SQL for insert: {}", sql);
-
-        int update = jdbcTemplate.update(sql, contactDetail.getName(), contactDetail.getMobileNum(), contactDetail.getEmail(),
+        String sql = SQLQueryBuilder.buildInsertQuery(CMTConstants.TABLE_NAME,
+                CMTConstants.COLUMN_NAME, CMTConstants.COLUMN_MOBILE,
+                CMTConstants.COLUMN_EMAIL, CMTConstants.COLUMN_SUBJECT,
+                CMTConstants.COLUMN_MESSAGE, CMTConstants.COLUMN_STATUS,
+                CMTConstants.COLUMN_CREATED_AT, CMTConstants.COLUMN_CREATED_BY);
+        log.debug("SQL for insert: {}", sql);
+        return jdbcTemplate.update(sql, contactDetail.getName(), contactDetail.getMobileNum(), contactDetail.getEmail(),
                 contactDetail.getSubject(), contactDetail.getMessage(), contactDetail.getStatus(), contactDetail.getCreatedAt(),
                 contactDetail.getCreatedBy());
-
-        log.info("Contact detail saved successfully: {}", contactDetail);
-        return update;
     }
 
     public List<ContactDetail> getAllMessagesWithStatus(String status) {
-        log.info("Fetching all messages with status: {}", status);
-
-        String sql = SQLQueryBuilder.buildSelectQueryWithCondition(ContactMsgTableConstants.TABLE_NAME,
-                ContactMsgTableConstants.COLUMN_STATUS, ContactMsgTableConstants.COLUMN_ALL);
-
-        List<ContactDetail> list = jdbcTemplate.query(sql, ps -> ps.setString(1, status), new ContactDetailRowMapper());
-
-        log.info("Returning all messages with status: {}", status);
-        return list;
+        String sql = SQLQueryBuilder.buildSelectQueryWithCondition(CMTConstants.TABLE_NAME,
+                CMTConstants.COLUMN_STATUS, CMTConstants.COLUMN_ALL);
+        log.debug("SQL for select: {}", sql);
+        return jdbcTemplate.query(sql, ps -> ps.setString(1, status), new ContactDetailRowMapper());
     }
 
     public int updateMessageStatus(int id, String status, String user) {
-        log.info("Updating message status with id: {}", id);
-
-        String sql = SQLQueryBuilder.buildUpdateQuery(ContactMsgTableConstants.TABLE_NAME,
-                ContactMsgTableConstants.COLUMN_ID, ContactMsgTableConstants.COLUMN_STATUS,
-                ContactMsgTableConstants.COLUMN_UPDATED_AT, ContactMsgTableConstants.COLUMN_UPDATED_BY);
-        log.info("SQL for update: {}", sql);
-
-        int update = jdbcTemplate.update(sql, pss -> {
+        String sql = SQLQueryBuilder.buildUpdateQuery(CMTConstants.TABLE_NAME,
+                CMTConstants.COLUMN_ID, CMTConstants.COLUMN_STATUS,
+                CMTConstants.COLUMN_UPDATED_AT, CMTConstants.COLUMN_UPDATED_BY);
+        log.debug("SQL for update: {}", sql);
+        return jdbcTemplate.update(sql, pss -> {
             pss.setString(1, status);
             pss.setString(3, user);
             pss.setTimestamp(2, Timestamp.valueOf(LocalDateTime.now()));
             pss.setInt(4, id);
         });
-
-        log.info("Message status updated successfully with id: {}", id);
-        return update;
     }
 }
