@@ -4,6 +4,10 @@ VALUES
     ('John Doe', '1234567890', 'john@example.com', 'Subject 1', 'Message 1', 'open', CURRENT_TIMESTAMP, 'system'),
     ('Jane Doe', '0987654321', ' jane@gamil.com', 'Subject 2', 'Message 2', 'open', CURRENT_TIMESTAMP, 'system');
 
+SELECT * FROM contact_msg;
+
+--
+
 INSERT INTO holidays
     (name, date, type, created_at, created_by)
 VALUES
@@ -24,3 +28,5 @@ VALUES
     ('Diwali', '2024-10-31', 'Festival', CURRENT_TIMESTAMP, 'admin'),
     ('Guru Nanak Birthday', '2024-11-15', 'Religious', CURRENT_TIMESTAMP, 'admin'),
     ('Christmas', '2024-12-25', 'Religious', CURRENT_TIMESTAMP, 'admin');
+
+SELECT * FROM holidays;
