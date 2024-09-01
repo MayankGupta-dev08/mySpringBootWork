@@ -53,7 +53,7 @@ public class ContactController {
     @GetMapping(value = {"/closeMsg"})
     public String closeMessage(@RequestParam("id") int id, Authentication authentication) {
         boolean isUpdated = contactDetailService.updateMessageStatus(id, authentication.getName());
-        if ((!isUpdated)) log.error("Failed to close message with id: {}", id);
+        if (!isUpdated) log.error("Failed to close message with id: {}", id);
         return "redirect:/displayMessages";
     }
 }

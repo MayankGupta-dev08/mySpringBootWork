@@ -23,7 +23,7 @@ public class HolidaysController {
 
     @GetMapping("/holidays/{display}")
     public String getAllHolidays(@PathVariable String display, Model model) {
-        List<Holiday> allHolidays = holidayRepository.getAllHolidays();
+        List<Holiday> allHolidays = holidayRepository.findAll();
         HolidayType holidayType = HolidayType.fromString(display);
 
         if (null != holidayType) {
