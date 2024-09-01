@@ -1,29 +1,16 @@
 package dev.mayank.infinityschoolhouse.model;
 
 import dev.mayank.infinityschoolhouse.util.HolidayType;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
-public class Holiday {
-    private final String name;
-    private final LocalDate date;
-    private final HolidayType type;
-
-    public Holiday(String name, LocalDate date, HolidayType type) {
-        this.name = name;
-        this.date = date;
-        this.type = type;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public HolidayType getType() {
-        return type;
-    }
+@Data
+@NoArgsConstructor
+public class Holiday extends BaseEntity {
+    private int id;
+    private String name;
+    private LocalDate date;
+    private HolidayType type;
 }
