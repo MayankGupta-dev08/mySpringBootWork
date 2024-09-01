@@ -11,3 +11,14 @@ CREATE TABLE IF NOT EXISTS `contact_msg` (
   `updated_at` TIMESTAMP DEFAULT NULL,
   `updated_by` varchar(50) DEFAULT NULL
 );
+
+CREATE TABLE IF NOT EXISTS `holidays` (
+  `holiday_id` int AUTO_INCREMENT  PRIMARY KEY,
+  `name` varchar(20) NOT NULL,
+  `date` date NOT NULL,
+  `type` varchar(20) NOT NULL,
+  `created_at` TIMESTAMP NOT NULL,
+  `created_by` varchar(50) NOT NULL,
+  `updated_at` TIMESTAMP DEFAULT NULL,
+  `updated_by` varchar(50) DEFAULT NULL
+);

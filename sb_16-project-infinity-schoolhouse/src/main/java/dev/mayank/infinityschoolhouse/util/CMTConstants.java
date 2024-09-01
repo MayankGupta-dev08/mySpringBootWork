@@ -2,8 +2,8 @@ package dev.mayank.infinityschoolhouse.util;
 
 import jdk.jfr.Description;
 
-@Description("Constants for the contact_msg table")
-public final class CMTConstants {
+@Description("Constants for the 'contact_msg' table")
+public final class CMTConstants extends TableConstants {
     public static final String TABLE_NAME = "contact_msg";
     public static final String COLUMN_ID = "contact_id";
     public static final String COLUMN_NAME = "name";
@@ -12,11 +12,8 @@ public final class CMTConstants {
     public static final String COLUMN_SUBJECT = "subject";
     public static final String COLUMN_MESSAGE = "message";
     public static final String COLUMN_STATUS = "status";
-    public static final String COLUMN_CREATED_AT = "created_at";
-    public static final String COLUMN_CREATED_BY = "created_by";
-    public static final String COLUMN_UPDATED_AT = "updated_at";
-    public static final String COLUMN_UPDATED_BY = "updated_by";
-    public static final String COLUMN_ALL = "*";
 
-    private CMTConstants() {}
+    private CMTConstants() {
+        super();
+    }
 }
