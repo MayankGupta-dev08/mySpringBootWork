@@ -15,4 +15,5 @@
 13. [Module12:- Spring Boot: Employee Directory App using Spring MVC, Spring Data JPA and Thymeleaf](https://github.com/MayankGupta-dev08/mySpringBootWork/tree/master/sb_12-spring-boot-mvc-thymeleaf-crud)
 14. [Module13:- Spring Boot: Employee Directory App using Spring Security, Spring MVC, Spring Data JPA and Thymeleaf](https://github.com/MayankGupta-dev08/mySpringBootWork/tree/master/sb_13-spring-boot-mvc-security-thymeleaf-crud)
 15. [Module14:- Spring Boot: CLI App using Spring Data JPA and Hibernate (OneToOne-Uni/Bi Mapping)](https://github.com/MayankGupta-dev08/mySpringBootWork/tree/master/sb_14-spring-boot-jpa-hibernate-1to1-bi)
-16. [Module14:- Spring Boot: CLI App using Spring Data JPA and Hibernate (OneToMany-Bidirectional Mapping)](https://github.com/MayankGupta-dev08/mySpringBootWork/tree/master/sb_15-spring-boot-jpa-hibernate-1tomany-bi)
+16. [Module15:- Spring Boot: CLI App using Spring Data JPA and Hibernate (OneToMany-Bidirectional Mapping)](https://github.com/MayankGupta-dev08/mySpringBootWork/tree/master/sb_15-spring-boot-jpa-hibernate-1tomany-bi)
+17. [Module16:- Infinity Schoolhouse Website](https://github.com/MayankGupta-dev08/mySpringBootWork/tree/master/sb_16-project-infinity-schoolhouse)
