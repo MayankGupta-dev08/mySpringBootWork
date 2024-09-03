@@ -5,7 +5,6 @@ import dev.mayank.infinityschoolhouse.service.ContactDetailService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -51,8 +50,8 @@ public class ContactController {
     }
 
     @GetMapping(value = {"/closeMsg"})
-    public String closeMessage(@RequestParam("id") int id, Authentication authentication) {
-        boolean isUpdated = contactDetailService.updateMessageStatus(id, authentication.getName());
+    public String closeMessage(@RequestParam("id") int id) {
+        boolean isUpdated = contactDetailService.updateMessageStatus(id);
         if (!isUpdated) log.error("Failed to close message with id: {}", id);
         return "redirect:/displayMessages";
     }

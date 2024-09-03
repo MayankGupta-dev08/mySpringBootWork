@@ -3,10 +3,12 @@ package dev.mayank.infinityschoolhouse;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 
 @SpringBootApplication
+@EnableJpaAuditing(auditorAwareRef = "auditAwareImpl")
 @EntityScan(basePackages = "dev.mayank.infinityschoolhouse.model")
 @EnableJpaRepositories(basePackages = "dev.mayank.infinityschoolhouse.repository")
 public class InfinitySchoolhouse {
