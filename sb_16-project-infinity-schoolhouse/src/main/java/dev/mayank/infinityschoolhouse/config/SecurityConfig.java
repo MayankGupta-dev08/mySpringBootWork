@@ -1,11 +1,9 @@
 package dev.mayank.infinityschoolhouse.config;
 
-import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
@@ -21,7 +19,8 @@ public class SecurityConfig {
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http, HandlerMappingIntrospector introspector) throws Exception {
         MvcRequestMatcher.Builder mvcMatcherBuilder = new MvcRequestMatcher.Builder(introspector);
 
-        http.csrf(csrf -> csrf.ignoringRequestMatchers(mvcMatcherBuilder.pattern("/saveMsg")))
+        http.csrf(csrf -> csrf.ignoringRequestMatchers(mvcMatcherBuilder.pattern("/saveMsg"))
+                        .ignoringRequestMatchers(mvcMatcherBuilder.pattern("/public/**")))
                 .authorizeHttpRequests(requests -> requests
                         .requestMatchers(mvcMatcherBuilder.pattern("/dashboard")).authenticated()
                         .requestMatchers(mvcMatcherBuilder.pattern("/displayMessages")).hasRole("ADMIN")
@@ -36,7 +35,8 @@ public class SecurityConfig {
                         .requestMatchers(mvcMatcherBuilder.pattern("/about")).permitAll()
                         .requestMatchers(mvcMatcherBuilder.pattern("/assets/**")).permitAll()
                         .requestMatchers(mvcMatcherBuilder.pattern("/login")).permitAll()
-                        .requestMatchers(mvcMatcherBuilder.pattern("/logout")).permitAll())
+                        .requestMatchers(mvcMatcherBuilder.pattern("/logout")).permitAll()
+                        .requestMatchers(mvcMatcherBuilder.pattern("/public/**")).permitAll())
                 .formLogin(loginConfigurer -> loginConfigurer.loginPage("/login")
                         .defaultSuccessUrl("/dashboard").failureUrl("/login?error=true").permitAll())
                 .logout(logoutConfigurer -> logoutConfigurer.logoutSuccessUrl("/login?logout=true")

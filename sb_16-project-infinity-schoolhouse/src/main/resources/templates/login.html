@@ -10,7 +10,7 @@
 
     <!-- CSS -->
     <link href="//fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style-starter.css">
+    <link rel="stylesheet" href="/assets/css/style-starter.css">
     <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
 </head>
 
@@ -54,7 +54,7 @@
                         </div>
                         <div class="col-md-8 login-center text-start">
                             <button class="btn btn-style btn-style-3 text-left">Log In</button>
-                            <a class="new-user text-right" href="">New User ?</a>
+                            <a th:href="@{/public/register}" class="new-user text-right">New User ?</a>
                         </div>
                     </form>
                 </div>
