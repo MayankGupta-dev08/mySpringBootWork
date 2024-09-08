@@ -1,10 +1,14 @@
-USE sql12728899;
+USE defaultdb;
 
 SELECT @@sql_mode;
 SET SESSION sql_mode = '';
 
+--
+
+DROP TABLE contact_msg;
+
 CREATE TABLE IF NOT EXISTS contact_msg (
-  contact_id int AUTO_INCREMENT  PRIMARY KEY,
+  contact_id int AUTO_INCREMENT PRIMARY KEY,
   name varchar(100) NOT NULL,
   mobile_num varchar(10) NOT NULL,
   email varchar(100) NOT NULL,
@@ -13,26 +17,28 @@ CREATE TABLE IF NOT EXISTS contact_msg (
   status varchar(10) NOT NULL,
   created_at TIMESTAMP NOT NULL,
   created_by varchar(50) NOT NULL,
-  updated_at TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT NULL,
   updated_by varchar(50) DEFAULT NULL
 );
 
-ALTER TABLE sql12728899.contact_msg MODIFY COLUMN updated_at timestamp NULL;
+ALTER TABLE defaultdb.contact_msg MODIFY COLUMN updated_at timestamp NULL;
 
 --
 
+DROP TABLE holidays;
+
 CREATE TABLE IF NOT EXISTS holidays (
-  holiday_id int AUTO_INCREMENT  PRIMARY KEY,
+  holiday_id int AUTO_INCREMENT PRIMARY KEY,
   name varchar(20) NOT NULL,
   date date NOT NULL,
   type varchar(20) NOT NULL,
   created_at TIMESTAMP NOT NULL,
   created_by varchar(50) NOT NULL,
-  updated_at TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT NULL,
   updated_by varchar(50) DEFAULT NULL
 );
 
-ALTER TABLE sql12728899.holidays MODIFY COLUMN updated_at timestamp NULL;
+ALTER TABLE defaultdb.holidays MODIFY COLUMN updated_at timestamp NULL;
 
 --
 
@@ -41,12 +47,12 @@ CREATE TABLE IF NOT EXISTS `roles` (
   `role_name` varchar(50) NOT NULL,
   `created_at` TIMESTAMP NOT NULL,
   `created_by` varchar(50) NOT NULL,
-  `updated_at` TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT NULL,
   `updated_by` varchar(50) DEFAULT NULL,
    PRIMARY KEY (`role_id`)
 );
 
-ALTER TABLE sql12728899.roles MODIFY COLUMN updated_at timestamp NULL;
+ALTER TABLE defaultdb.roles MODIFY COLUMN updated_at timestamp NULL;
 
 --
 
@@ -59,12 +65,12 @@ CREATE TABLE IF NOT EXISTS `address` (
   `zip_code` int NOT NULL,
   `created_at` TIMESTAMP NOT NULL,
   `created_by` varchar(50) NOT NULL,
-  `updated_at` TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT NULL,
   `updated_by` varchar(50) DEFAULT NULL,
    PRIMARY KEY (`address_id`)
 );
 
-ALTER TABLE sql12728899.address MODIFY COLUMN updated_at timestamp NULL;
+ALTER TABLE defaultdb.address MODIFY COLUMN updated_at timestamp NULL;
 
 --
 
@@ -78,11 +84,11 @@ CREATE TABLE IF NOT EXISTS `person` (
   `address_id` int NULL,
   `created_at` TIMESTAMP NOT NULL,
   `created_by` varchar(50) NOT NULL,
-  `updated_at` TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT NULL,
   `updated_by` varchar(50) DEFAULT NULL,
    PRIMARY KEY (`person_id`),
    FOREIGN KEY (role_id) REFERENCES roles(role_id),
    FOREIGN KEY (address_id) REFERENCES address(address_id)
 );
 
-ALTER TABLE sql12728899.person MODIFY COLUMN updated_at timestamp NULL;
+ALTER TABLE defaultdb.person MODIFY COLUMN updated_at timestamp NULL;
