@@ -38,7 +38,7 @@ public class ISHUserAuthenticationProvider implements AuthenticationProvider {
         String password = authentication.getCredentials().toString();
         Person person = personRepository.readByEmail(emailAddress);
         if (null != person && person.getPersonId() > 0 && passwordEncoder.matches(password, person.getPwd())) {
-            return new UsernamePasswordAuthenticationToken(person.getName(), null,
+            return new UsernamePasswordAuthenticationToken(emailAddress, null,
                     getGrantedAuthorities(person.getRole()));
         }
         throw new BadCredentialsException("Invalid credentials!");
