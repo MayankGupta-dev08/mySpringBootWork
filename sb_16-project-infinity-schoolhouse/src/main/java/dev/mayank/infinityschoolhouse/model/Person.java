@@ -11,6 +11,7 @@ import lombok.Data;
 
 @Data
 @Entity
+@Table(name = "person")
 @FieldValueMatch.List({
         @FieldValueMatch(
                 firstField = "pwd",
@@ -60,4 +61,12 @@ public class Person extends BaseEntity {
     @NotBlank(message = "Confirm Password must not be blank")
     @Size(min = 5, message = "Confirm Password must be at least 5 characters long")
     private String confirmPwd;
+
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, targetEntity = Role.class)
+    @JoinColumn(name = "role_id", referencedColumnName = "role_id", nullable = false)
+    private Role role;
+
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = Address.class)
+    @JoinColumn(name = "address_id", referencedColumnName = "addressId", nullable = true)
+    private Address address;
 }

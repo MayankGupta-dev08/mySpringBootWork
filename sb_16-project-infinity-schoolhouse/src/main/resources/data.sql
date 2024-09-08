@@ -6,7 +6,7 @@ VALUES
 
 SELECT * FROM contact_msg;
 
---
+---
 
 INSERT INTO holidays
     (name, date, type, created_at, created_by)
@@ -30,3 +30,20 @@ VALUES
     ('Christmas', '2024-12-25', 'RELIGIOUS', CURRENT_TIMESTAMP, 'admin');
 
 SELECT * FROM holidays;
+
+---
+
+INSERT INTO `roles` (`role_name`,`created_at`, `created_by`)
+  VALUES ('ADMIN', CURDATE(), 'DBA');
+
+INSERT INTO `roles` (`role_name`,`created_at`, `created_by`)
+  VALUES ('STUDENT', CURDATE(), 'DBA');
+
+SELECT * FROM roles;
+
+---
+
+INSERT INTO `person` (`name`,`email`,`mobile_number`,`pwd`,`role_id`,`created_at`, `created_by`)
+    VALUES ('Techno Sorcerer', 'ts_admin@ish.com', '8000000008', 'admin', 1 , CURDATE(), 'DBA');
+
+SELECT * FROM person;
