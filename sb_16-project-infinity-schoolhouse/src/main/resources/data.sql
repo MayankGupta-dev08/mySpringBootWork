@@ -41,6 +41,6 @@ SELECT * FROM roles;
 ---
 
 INSERT INTO person (`name`,`email`,`mobile_number`,`pwd`,`role_id`,`created_at`, `created_by`)
-    VALUES ('Techno Sorcerer', 'ts_admin@ish.com', '8000000008', 'admin', 1 , CURDATE(), 'DBA');
+    VALUES ('Techno Sorcerer', 'ts_admin@ish.com', '8000000008', '$2a$12$bgFGpqVwGKfdxIt9AGklQ.8pzuLJfrUG9bnY3THNsHt7DqFBhNR3i', 1 , CURDATE(), 'DBA');
 
 SELECT * FROM person;
