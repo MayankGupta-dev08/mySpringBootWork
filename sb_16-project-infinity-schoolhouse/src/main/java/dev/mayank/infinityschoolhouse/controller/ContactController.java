@@ -8,10 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Slf4j
 @Controller
@@ -38,21 +37,5 @@ public class ContactController {
         }
         contactDetailService.saveContactDetail(contactDetail);
         return "redirect:/contact";
-    }
-
-    @RequestMapping(value = {"/displayMessages"})
-    public ModelAndView displayOpenMessages() {
-        ModelAndView modelAndView = new ModelAndView();
-        List<ContactDetail> messagesWithOpenStatus = contactDetailService.getAllMessagesWithOpenStatus();
-        modelAndView.addObject("openMessages", messagesWithOpenStatus);
-        modelAndView.setViewName("messages.html");
-        return modelAndView;
-    }
-
-    @GetMapping(value = {"/closeMsg"})
-    public String closeMessage(@RequestParam("id") int id) {
-        boolean isUpdated = contactDetailService.updateMessageStatus(id);
-        if (!isUpdated) log.error("Failed to close message with id: {}", id);
-        return "redirect:/displayMessages";
     }
 }
