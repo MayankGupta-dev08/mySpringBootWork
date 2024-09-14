@@ -3,11 +3,13 @@ package dev.mayank.infinityschoolhouse.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "class")
 public class ISHClass extends BaseEntity {

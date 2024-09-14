@@ -90,4 +90,35 @@ public class AdminController {
         if (error != null) studentsMV.addObject("errorMessage", "Invalid Email entered!!");
         return studentsMV;
     }
+
+    @PostMapping(value = {"/addStudent"})
+    public ModelAndView addStudent(Model model, @ModelAttribute("person") Person person, HttpSession session) {
+        ModelAndView modelAndView = new ModelAndView();
+        ISHClass iSHClass = (ISHClass) session.getAttribute("iSHClass");
+        Person student = personRepository.readByEmail(person.getEmail());
+        if (student == null || student.getPersonId() <= 0) {
+            modelAndView.setViewName("redirect:/admin/displayStudents?classId=" + iSHClass.getClassId() + "&error=true");
+        } else {
+            student.setISHClass(iSHClass);
+            personRepository.save(student);
+            iSHClass.getStudents().add(student);
+            ishClassRepository.save(iSHClass);
+            modelAndView.setViewName("redirect:/admin/displayStudents?classId=" + iSHClass.getClassId());
+        }
+        return modelAndView;
+    }
+
+    @RequestMapping(value = {"/deleteStudent"})
+    public ModelAndView deleteStudent(Model model, @RequestParam int personId, HttpSession session) {
+        ISHClass iSHClass = (ISHClass) session.getAttribute("iSHClass");
+        ModelAndView modelAndView = new ModelAndView("redirect:/admin/displayStudents?classId=" + iSHClass.getClassId());
+        personRepository.findById(personId).ifPresent(student -> {
+            student.setISHClass(null);
+            personRepository.save(student);
+            iSHClass.getStudents().remove(student);
+            ISHClass updatedISHClass = ishClassRepository.save(iSHClass);
+            session.setAttribute("iSHClass", updatedISHClass);
+        });
+        return modelAndView;
+    }
 }
