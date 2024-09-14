@@ -83,9 +83,9 @@ public class AdminController {
                                         @RequestParam(value = "error", required = false) String error) {
         ModelAndView studentsMV = new ModelAndView("students.html");
         ishClassRepository.findById(classId).ifPresent(ishClass -> {
-            studentsMV.addObject("ishClass", ishClass);
+            studentsMV.addObject("iSHClass", ishClass);
             studentsMV.addObject("person", new Person());
-            session.setAttribute("ishClass", ishClass);
+            session.setAttribute("iSHClass", ishClass);
         });
         if (error != null) studentsMV.addObject("errorMessage", "Invalid Email entered!!");
         return studentsMV;
