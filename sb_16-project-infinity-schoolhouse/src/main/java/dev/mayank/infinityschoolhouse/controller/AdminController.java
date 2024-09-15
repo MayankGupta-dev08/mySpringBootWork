@@ -1,8 +1,10 @@
 package dev.mayank.infinityschoolhouse.controller;
 
 import dev.mayank.infinityschoolhouse.model.ContactDetail;
+import dev.mayank.infinityschoolhouse.model.Course;
 import dev.mayank.infinityschoolhouse.model.ISHClass;
 import dev.mayank.infinityschoolhouse.model.Person;
+import dev.mayank.infinityschoolhouse.repository.CourseRepository;
 import dev.mayank.infinityschoolhouse.repository.ISHClassRepository;
 import dev.mayank.infinityschoolhouse.repository.PersonRepository;
 import dev.mayank.infinityschoolhouse.service.ContactDetailService;
@@ -25,12 +27,15 @@ public class AdminController {
     private ContactDetailService contactDetailService;
     private PersonRepository personRepository;
     private ISHClassRepository ishClassRepository;
+    private CourseRepository courseRepository;
 
     @Autowired
-    public AdminController(ContactDetailService contactDetailService, PersonRepository personRepository, ISHClassRepository ishClassRepository) {
+    public AdminController(ContactDetailService contactDetailService, PersonRepository personRepository,
+                           ISHClassRepository ishClassRepository, CourseRepository courseRepository) {
         this.contactDetailService = contactDetailService;
         this.personRepository = personRepository;
         this.ishClassRepository = ishClassRepository;
+        this.courseRepository = courseRepository;
     }
 
     @RequestMapping(value = {"/displayMessages"})
@@ -118,6 +123,65 @@ public class AdminController {
             iSHClass.getStudents().remove(student);
             ISHClass updatedISHClass = ishClassRepository.save(iSHClass);
             session.setAttribute("iSHClass", updatedISHClass);
+        });
+        return modelAndView;
+    }
+
+    @RequestMapping(value = {"/displayCourses"})
+    public ModelAndView displayCourses() {
+        List<Course> coursesList = courseRepository.findAll();
+        ModelAndView coursesMV = new ModelAndView("courses_ish.html");
+        coursesMV.addObject("courses", coursesList);
+        coursesMV.addObject("course", new Course());
+        return coursesMV;
+    }
+
+    @PostMapping(value = {"/addNewCourse"})
+    public ModelAndView addNewCourse(Model model, @ModelAttribute("course") Course course) {
+        courseRepository.save(course);
+        ModelAndView displayCoursesMV = new ModelAndView("redirect:/admin/displayCourses");
+        return displayCoursesMV;
+    }
+
+    @RequestMapping(value = {"/viewStudents"})
+    public ModelAndView viewStudents(Model model, @RequestParam int courseId,
+                                     HttpSession session, @RequestParam(value = "error", required = false) String error) {
+        ModelAndView course_studentsMV = new ModelAndView("course_students.html");
+        courseRepository.findById(courseId).ifPresent(course -> {
+            course_studentsMV.addObject("course", course);
+            course_studentsMV.addObject("person", new Person());
+            session.setAttribute("course", course);
+        });
+        if (error != null) course_studentsMV.addObject("errorMessage", "Invalid Email entered!!");
+        return course_studentsMV;
+    }
+
+    @PostMapping(value = {"/addStudentToCourse"})
+    public ModelAndView addStudentToCourse(Model model, @ModelAttribute("person") Person person, HttpSession session) {
+        ModelAndView modelAndView = new ModelAndView();
+        Course course = (Course) session.getAttribute("course");
+        Person student = personRepository.readByEmail(person.getEmail());
+        if (student == null || student.getPersonId() <= 0) {
+            modelAndView.setViewName("redirect:/admin/viewStudents?courseId=" + course.getCourseId() + "&error=true");
+        } else {
+            student.getCourses().add(course);
+            personRepository.save(student);
+            course.getPersons().add(student);
+            session.setAttribute("course", course);
+            modelAndView.setViewName("redirect:/admin/viewStudents?courseId=" + course.getCourseId());
+        }
+        return modelAndView;
+    }
+
+    @RequestMapping(value = {"/deleteStudentFromCourse"})
+    public ModelAndView deleteStudentFromCourse(Model model, @RequestParam int personId, HttpSession session) {
+        Course course = (Course) session.getAttribute("course");
+        ModelAndView modelAndView = new ModelAndView("redirect:/admin/viewStudents?courseId=" + course.getCourseId());
+        personRepository.findById(personId).ifPresent(student -> {
+            student.getCourses().remove(course);
+            personRepository.save(student);
+            course.getPersons().remove(student);
+            session.setAttribute("course", course);
         });
         return modelAndView;
     }
