@@ -13,8 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.annotation.SessionScope;
 
-import java.util.Optional;
-
 @Slf4j
 @Service
 @SessionScope
@@ -60,24 +58,7 @@ public class ContactDetailService {
      */
     @Transactional
     public boolean updateMessageStatus(int contact_id) {
-        boolean isUpdated = false;
-        try {
-            Optional<ContactDetail> optionalContact = contactRepository.findById(contact_id);
-            if (optionalContact.isEmpty()) {
-                log.error("Message with id: {} not found", contact_id);
-            } else {
-                ContactDetail contactDetail = optionalContact.get();
-                contactDetail.setStatus(ISHConstants.CLOSE);
-                ContactDetail updated = contactRepository.save(contactDetail);
-                if (updated != null && updated.getStatus().equals(ISHConstants.CLOSE)) {
-                    log.info("Message with id: {} closed successfully", contact_id);
-                    isUpdated = true;
-                }
-            }
-        } catch (Exception e) {
-            log.error("Error updating message status for id: {}", contact_id, e);
-            throw e; // Re-throw the exception to ensure the transaction is rolled back
-        }
-        return isUpdated;
+        int rows = contactRepository.updateStatusById(contact_id, ISHConstants.CLOSED);
+        return rows > 0;
     }
 }
