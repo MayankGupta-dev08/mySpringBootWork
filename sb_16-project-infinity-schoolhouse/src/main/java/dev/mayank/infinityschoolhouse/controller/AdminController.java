@@ -12,6 +12,8 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -38,20 +40,29 @@ public class AdminController {
         this.courseRepository = courseRepository;
     }
 
-    @RequestMapping(value = {"/displayMessages"})
-    public ModelAndView displayOpenMessages() {
-        ModelAndView modelAndView = new ModelAndView();
-        List<ContactDetail> messagesWithOpenStatus = contactDetailService.getAllMessagesWithOpenStatus();
-        modelAndView.addObject("openMessages", messagesWithOpenStatus);
-        modelAndView.setViewName("messages.html");
-        return modelAndView;
+    @RequestMapping(value = {"/displayMessages/page/{pageNum}"})
+    public ModelAndView displayOpenMessages(Model model, @PathVariable("pageNum") int pageNum,
+                                            @RequestParam("sortField") String sortField, @RequestParam("sortDir") String sortDir) {
+        ModelAndView openMessagesMV = new ModelAndView("messages.html");
+        Page<ContactDetail> msgPage = contactDetailService.getOpenMessagesWithPaging(pageNum, sortField, sortDir);
+        List<ContactDetail> openContactMsgs = msgPage.getContent();
+
+        model.addAttribute("currentPage", pageNum);
+        model.addAttribute("totalPages", msgPage.getTotalPages());
+        model.addAttribute("totalMsgs", msgPage.getTotalElements());
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDir", sortDir);
+        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
+
+        openMessagesMV.addObject("openMessages", openContactMsgs);
+        return openMessagesMV;
     }
 
     @GetMapping(value = {"/closeMsg"})
     public String closeMessage(@RequestParam("id") int id) {
         boolean isUpdated = contactDetailService.updateMessageStatus(id);
         if (!isUpdated) log.error("Failed to close message with id: {}", id);
-        return "redirect:/admin/displayMessages";
+        return "redirect:/admin/displayMessages/page/1?sortField=name&sortDir=asc";
     }
 
     @RequestMapping(value = {"/displayClasses"})
@@ -129,7 +140,8 @@ public class AdminController {
 
     @RequestMapping(value = {"/displayCourses"})
     public ModelAndView displayCourses() {
-        List<Course> coursesList = courseRepository.findAll();
+        //List<Course> coursesList = courseRepository.findAllByOrderByNameAsc();
+        List<Course> coursesList = courseRepository.findAll(Sort.by("name").ascending());
         ModelAndView coursesMV = new ModelAndView("courses_ish.html");
         coursesMV.addObject("courses", coursesList);
         coursesMV.addObject("course", new Course());

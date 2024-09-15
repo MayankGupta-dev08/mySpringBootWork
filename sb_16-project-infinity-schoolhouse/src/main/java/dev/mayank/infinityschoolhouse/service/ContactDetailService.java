@@ -5,11 +5,14 @@ import dev.mayank.infinityschoolhouse.repository.ContactRepository;
 import dev.mayank.infinityschoolhouse.util.ISHConstants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.annotation.SessionScope;
 
-import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -42,8 +45,13 @@ public class ContactDetailService {
     /**
      * @return List of all messages with status as 'Open'
      */
-    public List<ContactDetail> getAllMessagesWithOpenStatus() {
-        return contactRepository.findByStatus(ISHConstants.OPEN);
+    public Page<ContactDetail> getOpenMessagesWithPaging(int pageNum, String sortField, String sortDir) {
+        int pageSize = 5;
+        Pageable pageable = PageRequest.of(pageNum - 1, pageSize,
+                sortDir.equals("asc") ? Sort.by(sortField).ascending() : Sort.by(sortField).descending());
+        Page<ContactDetail> msgPage = contactRepository.findByStatus(ISHConstants.OPEN, pageable);
+        log.info("Retrieved all msgPage with status as 'Open'");
+        return msgPage;
     }
 
     /**
