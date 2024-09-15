@@ -40,6 +40,7 @@
         <div class="container py-md-1 py-1">
             <div class="title-main text-center mx-auto mb-md-1 mb-1" style="max-width:500px;">
                 <h3 class="title-style" th:text="${'Welcome - ' + username}"></h3>
+                <h4 class="" th:if="${!#strings.isEmpty(studentClass)}" th:text="${'You are a student of [' + studentClass + ']'}"></h4>
                 <p class="" th:text="${'You logged in as - ' + roles}"></p>
             </div>
 
@@ -103,6 +104,22 @@
                     <div class="col-sm-6 col-lg-3" sec:authorize="hasRole('ROLE_ADMIN')">
                         <a th:href="@{/admin/displayCourses}">
                             <div class="overview-item overview-item--c2">
+                                <div class="overview__inner">
+                                    <div class="overview-box clearfix">
+                                        <div class="icon">
+                                            <i class="fas fa-envelope-open-text"></i>
+                                        </div>
+                                        <div class="text">
+                                            <h2>Courses</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-sm-6 col-lg-3" sec:authorize="hasRole('ROLE_STUDENT')">
+                        <a th:href="@{/student/displayStudentCourses}">
+                            <div class="overview-item overview-item--c3">
                                 <div class="overview__inner">
                                     <div class="overview-box clearfix">
                                         <div class="icon">
