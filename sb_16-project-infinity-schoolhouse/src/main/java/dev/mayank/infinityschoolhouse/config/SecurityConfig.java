@@ -19,12 +19,13 @@ public class SecurityConfig {
         MvcRequestMatcher.Builder mvcMatcherBuilder = new MvcRequestMatcher.Builder(introspector);
 
         http.csrf(csrf -> csrf.ignoringRequestMatchers(mvcMatcherBuilder.pattern("/saveMsg"))
-                        .ignoringRequestMatchers(mvcMatcherBuilder.pattern("/public/**")))
+                        .ignoringRequestMatchers(mvcMatcherBuilder.pattern("/public/**"))
+                        .ignoringRequestMatchers(mvcMatcherBuilder.pattern("/api/**")))
                 .authorizeHttpRequests(requests -> requests
                         .requestMatchers(mvcMatcherBuilder.pattern("/dashboard")).authenticated()
                         .requestMatchers(mvcMatcherBuilder.pattern("/admin/**")).hasRole("ADMIN")
                         .requestMatchers(mvcMatcherBuilder.pattern("/student/**")).hasRole("STUDENT")
-//                        .requestMatchers(mvcMatcherBuilder.pattern("/admin/closeMsg/**")).hasRole("ADMIN")
+                        .requestMatchers(mvcMatcherBuilder.pattern("/api/**")).authenticated()
                         .requestMatchers(mvcMatcherBuilder.pattern("/displayProfile")).authenticated()
                         .requestMatchers(mvcMatcherBuilder.pattern("/updateProfile")).authenticated()
                         .requestMatchers(mvcMatcherBuilder.pattern("")).permitAll()
