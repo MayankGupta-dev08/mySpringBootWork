@@ -1,5 +1,6 @@
 package dev.mayank.infinityschoolhouse.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
@@ -19,18 +20,22 @@ import java.time.LocalDateTime;
 @Description("Base entity for all entities")
 public class BaseEntity {
 
+    @JsonIgnore
     @CreatedDate
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
+    @JsonIgnore
     @CreatedBy
     @Column(name = "created_by", updatable = false)
     private String createdBy;
 
+    @JsonIgnore
     @LastModifiedDate
     @Column(name = "updated_at", insertable = false)
     private LocalDateTime updatedAt;
 
+    @JsonIgnore
     @LastModifiedBy
     @Column(name = "updated_by", insertable = false)
     private String updatedBy;

@@ -2,13 +2,14 @@ package dev.mayank.infinityschoolhouse.controller;
 
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 
 @Slf4j
-@ControllerAdvice
 @SuppressWarnings("unused")
+@ControllerAdvice(annotations = Controller.class)
 public class GlobalExceptionController {
 
     @ExceptionHandler(ConstraintViolationException.class)

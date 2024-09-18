@@ -104,6 +104,104 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "deleteMessage",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "invocationFrom",
+								"value": "mobile",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"contactId\": 33\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/contact/deleteMessage",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"contact",
+								"deleteMessage"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "closeMessage",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "invocationFrom",
+								"value": "mobile",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"contactId\": 33,\r\n  \"status\": \"Closed\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/contact/closeMessage",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"contact",
+								"closeMessage"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getMessagesByStatus - xml",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/contact/getMessagesByStatus?status=Closed",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"contact",
+								"getMessagesByStatus"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "Open",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "Closed"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
