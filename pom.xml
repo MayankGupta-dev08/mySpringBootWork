@@ -46,6 +46,7 @@
         <module>sb_14-spring-boot-jpa-hibernate-1to1-bi</module>
         <module>sb_15-spring-boot-jpa-hibernate-1tomany-bi</module>
         <module>sb_16-project-infinity-schoolhouse</module>
+        <module>sb_17-ish-proxy-service</module>
     </modules>
 
     <!-- Project dependencies -->
