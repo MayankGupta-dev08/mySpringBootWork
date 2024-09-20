@@ -1,0 +1,74 @@
+{
+	"info": {
+		"_postman_id": "489e30b1-cabc-4662-9860-325cfdf03bd6",
+		"name": "ISH Proxy Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36150161"
+	},
+	"item": [
+		{
+			"name": "Contact Msg",
+			"item": [
+				{
+					"name": "getMessages",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/getMessages?status=Open",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"getMessages"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "Open",
+									"description": "Messages which are yet to be responded"
+								},
+								{
+									"key": "status",
+									"value": "Closed",
+									"description": "Messages which are dealt with.",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8081",
+			"type": "string"
+		}
+	]
+}
