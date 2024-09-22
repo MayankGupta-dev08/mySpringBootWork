@@ -43,10 +43,16 @@
 					"name": "sendMessage",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "invocationFrom",
+								"value": "proxy-service",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"Rahul Sharma\",\r\n  \"mobileNum\": \"9876543210\",\r\n  \"email\": \"rahul.sharma@gmail.com\",\r\n  \"subject\": \"Admission Inquiry\",\r\n  \"message\": \"I would like to know more about the admission process.\",\r\n  \"status\": \"Open\",\r\n  \"created_at\": \"2023-10-01\",\r\n  \"created_by\": \"anonymousUser\"\r\n}",
+							"raw": "{\r\n  \"name\": \"Rohit Sharma\",\r\n  \"mobileNum\": \"9876543220\",\r\n  \"email\": \"rohit.sharma@gmail.com\",\r\n  \"subject\": \"Admission Inquiry\",\r\n  \"message\": \"I would like to know more about the admission process.\",\r\n  \"status\": \"Open\",\r\n  \"created_at\": \"2023-10-01\",\r\n  \"created_by\": \"anonymousUser\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -60,6 +66,40 @@
 							],
 							"path": [
 								"sendMessage"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "Closed",
+									"description": "Messages which are dealt with.",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "saveMsg",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Ishant Sharma\",\r\n  \"mobileNum\": \"9855543210\",\r\n  \"email\": \"ishant.sharma@gmail.com\",\r\n  \"subject\": \"Admission Inquiry\",\r\n  \"message\": \"I would like to know more about the admission process.\",\r\n  \"status\": \"Open\",\r\n  \"created_at\": \"2023-10-01\",\r\n  \"created_by\": \"anonymousUser\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/saveMsg",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"saveMsg"
 							],
 							"query": [
 								{
